@@ -83,6 +83,41 @@ function renderItinerary() {
   `).join("");
 }
 
+const activityScroller = document.getElementById("activity-logo-scroller");
+let isActivityPaused = false;
+let activityInterval = null;
+const activityScrollSpeed = 0.8;
+
+function initActivityScroller() {
+  if (!activityScroller) return;
+
+  activityScroller.addEventListener("mouseenter", () => {
+    isActivityPaused = true;
+  });
+
+  activityScroller.addEventListener("mouseleave", () => {
+    isActivityPaused = false;
+  });
+
+  if (activityInterval) {
+    clearInterval(activityInterval);
+  }
+
+  activityInterval = setInterval(() => {
+    if (isActivityPaused || activityScroller.scrollWidth <= activityScroller.clientWidth) {
+      return;
+    }
+
+    activityScroller.scrollLeft += activityScrollSpeed;
+
+    if (activityScroller.scrollLeft >= activityScroller.scrollWidth - activityScroller.clientWidth - 1) {
+      activityScroller.scrollLeft = 0;
+    }
+  }, 20);
+}
+
+window.addEventListener("load", initActivityScroller);
+
 filterButtons.forEach((button) => {
   button.addEventListener("click", () => {
     filterButtons.forEach((btn) => {
@@ -99,4 +134,5 @@ filterButtons.forEach((button) => {
 
 renderDestinations();
 renderItinerary();
+startActivityScroll();
 

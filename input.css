@@ -7,6 +7,15 @@ body {
     margin: 0;
 }
 
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
 .nav-links {
     display: flex;
     flex-direction: row;
