@@ -85,11 +85,27 @@ function renderItinerary() {
 
 const activityScroller = document.getElementById("activity-logo-scroller");
 let isActivityPaused = false;
-let activityInterval = null;
-const activityScrollSpeed = 0.8;
+let activityFrame = null;
+const activityScrollSpeed = 0.5;
+
+function animateActivityScroll() {
+  if (!activityScroller) return;
+
+  if (!isActivityPaused && activityScroller.scrollWidth > activityScroller.clientWidth) {
+    activityScroller.scrollLeft += activityScrollSpeed;
+
+    if (activityScroller.scrollLeft >= activityScroller.scrollWidth - activityScroller.clientWidth) {
+      activityScroller.scrollLeft = 0;
+    }
+  }
+
+  activityFrame = window.requestAnimationFrame(animateActivityScroll);
+}
 
 function initActivityScroller() {
   if (!activityScroller) return;
+
+  activityScroller.scrollLeft = 0;
 
   activityScroller.addEventListener("mouseenter", () => {
     isActivityPaused = true;
@@ -99,24 +115,16 @@ function initActivityScroller() {
     isActivityPaused = false;
   });
 
-  if (activityInterval) {
-    clearInterval(activityInterval);
+  if (!activityFrame) {
+    activityFrame = window.requestAnimationFrame(animateActivityScroll);
   }
-
-  activityInterval = setInterval(() => {
-    if (isActivityPaused || activityScroller.scrollWidth <= activityScroller.clientWidth) {
-      return;
-    }
-
-    activityScroller.scrollLeft += activityScrollSpeed;
-
-    if (activityScroller.scrollLeft >= activityScroller.scrollWidth - activityScroller.clientWidth - 1) {
-      activityScroller.scrollLeft = 0;
-    }
-  }, 20);
 }
 
-window.addEventListener("load", initActivityScroller);
+if (document.readyState !== "loading") {
+  initActivityScroller();
+} else {
+  window.addEventListener("DOMContentLoaded", initActivityScroller);
+}
 
 filterButtons.forEach((button) => {
   button.addEventListener("click", () => {
