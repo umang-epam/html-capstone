@@ -7,100 +7,102 @@
     <link rel="stylesheet" href="output.css" />
   </head>
   <body class="min-h-screen bg-slate-50 text-slate-900">
-    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-      <!-- Header / navigation -->
-      <header class="flex items-center justify-between py-4">
-        <div>
-          <p class="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-600">Velora</p>
-          <p class="text-xs text-slate-500">Travel Studio</p>
-        </div>
-        <nav class="flex items-center gap-4 text-sm font-medium text-slate-600">
-          <a href="#discover" class="transition hover:text-slate-900">Tours</a>
-          <a href="#itineraries" class="transition hover:text-slate-900">Hotels</a>
-          <a href="#insights" class="transition hover:text-slate-900">Tickets</a>
-          <a href="#" class="transition hover:text-slate-900">Rental</a>
-          <a href="#" class="transition hover:text-slate-900">Activities</a>
-        </nav>
-      </header>
-
       <!-- Hero section -->
-      <section class="relative overflow-visible rounded-[2.5rem] bg-slate-100 px-6 pb-48 pt-16 shadow-xl sm:px-10 lg:px-12 lg:py-18">
-        <div class="absolute right-0 top-0 -mr-20 -mt-20 h-72 w-72 rounded-full bg-cyan-200/50 blur-3xl"></div>
-        <div class="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-          <div class="space-y-6 pb-12 lg:pb-20">
-            <div class="max-w-2xl space-y-4">
-              <h1 class="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
-                Begin Your <span class="font-bold">Fantastic Travel</span> Experience Here
-              </h1>
-              <p class="max-w-xl text-base leading-8 text-slate-600 sm:text-lg">
-                Discover handcrafted travel experiences that blend adventure and luxury, creating memories that last a lifetime.
-              </p>
-            </div>
-
-            <div class="flex flex-wrap items-center gap-4">
-              <a href="#discover" class="inline-flex items-center justify-center rounded-full bg-yellow-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-yellow-300">Discover Now</a>
-              <button class="inline-flex items-center gap-2 text-sm font-semibold text-slate-900 transition hover:text-slate-700">
-                <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white shadow">
-                  <span class="block h-2.5 w-2.5 rounded-full bg-black"></span>
-                </span>
-                How it works?
-              </button>
-            </div>
-
-            <div class="grid gap-4 sm:grid-cols-3">
-              <div class="rounded-[1.5rem] bg-white px-5 py-4 shadow-sm">
-                <p class="text-lg font-semibold text-slate-900">85%</p>
-                <p class="mt-1 text-sm text-slate-500">Customer satisfaction</p>
-              </div>
-              <div class="rounded-[1.5rem] bg-white px-5 py-4 shadow-sm">
-                <p class="text-lg font-semibold text-slate-900">2k+</p>
-                <p class="mt-1 text-sm text-slate-500">Verified stays</p>
-              </div>
-              <div class="rounded-[1.5rem] bg-white px-5 py-4 shadow-sm">
-                <p class="text-lg font-semibold text-slate-900">24/7</p>
-                <p class="mt-1 text-sm text-slate-500">Support worldwide</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="relative">
-            <div class="relative overflow-hidden rounded-[2rem] bg-slate-950 p-6 text-white shadow-2xl sm:p-8">
-              <div class="absolute -right-8 top-6 h-24 w-24 rounded-full bg-cyan-400/20 blur-3xl"></div>
-              <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=870&q=80" alt="Happy couple on vacation" class="h-[420px] w-full rounded-[1.5rem] object-cover shadow-lg" />
-            </div>
-          </div>
+      <section class="relative isolate min-h-screen overflow-hidden bg-slate-950 text-white">
+        <div class="absolute inset-0 z-0 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80" alt="Travel destination" class="absolute inset-0 h-full w-full object-cover block" />
+          <div class="absolute inset-0 bg-slate-950/70"></div>
+          <div class="absolute inset-0 bg-cyan-400/10"></div>
         </div>
-        <!-- Tours search overlay card -->
-        <div class="absolute left-1/2 bottom-[-5rem] sm:bottom-[-8rem] lg:bottom-[-8rem] w-full max-w-7xl -translate-x-1/2 transform px-6 sm:px-8 z-20">
-          <div class="rounded-[2.5rem] bg-white p-6 sm:p-8 shadow-2xl ring-1 ring-slate-200">
-            <div class="flex items-center justify-between gap-4">
-              <span class="rounded-full bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-700">Tours</span>
-              <span class="text-sm font-medium text-slate-500">Need some help?</span>
+
+        <div class="relative z-10 mx-auto flex min-h-[calc(100vh-2rem)] max-w-7xl flex-col justify-between px-4 pb-20 pt-6 sm:px-6 lg:px-8 lg:pb-24 lg:pt-8">
+          <header class="flex items-center justify-between py-4">
+            <div>
+              <p class="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300">Velora</p>
+              <p class="text-xs text-slate-300">Travel Studio</p>
             </div>
-            <div class="mt-5 grid gap-4 sm:grid-cols-4">
-              <div class="rounded-[1.5rem] border border-slate-200 bg-slate-50 px-4 py-4 text-sm text-slate-700">
-                <p class="font-semibold">Location</p>
-                <p class="mt-2 text-slate-500">New York, USA</p>
+            <div class="flex items-center gap-3">
+              <nav class="hidden items-center gap-4 text-sm font-medium text-slate-200 sm:flex">
+                <a href="#discover" class="transition hover:text-white">Tours</a>
+                <a href="#itineraries" class="transition hover:text-white">Hotels</a>
+                <a href="#insights" class="transition hover:text-white">Tickets</a>
+                <a href="#" class="transition hover:text-white">Rental</a>
+                <a href="#" class="transition hover:text-white">Activities</a>
+              </nav>
+              <a href="#" class="inline-flex items-center justify-center rounded-full bg-cyan-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-cyan-400">Sign in</a>
+            </div>
+          </header>
+
+          <div class="grid flex-1 gap-10 py-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:py-12">
+            <div class="space-y-6 pb-8 lg:pb-10">
+              <div class="max-w-2xl space-y-4">
+                <h1 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                  Begin Your <span class="font-bold text-cyan-300">Fantastic Travel</span> Experience Here
+                </h1>
+                <p class="max-w-xl text-base leading-8 text-slate-200 sm:text-lg">
+                  Discover handcrafted travel experiences that blend adventure and luxury, creating memories that last a lifetime.
+                </p>
               </div>
-              <div class="rounded-[1.5rem] border border-slate-200 bg-slate-50 px-4 py-4 text-sm text-slate-700">
-                <p class="font-semibold">Check In</p>
-                <p class="mt-2 text-slate-500">02 January 2024</p>
+
+              <div class="flex flex-wrap items-center gap-4">
+                <a href="#discover" class="inline-flex items-center justify-center rounded-full bg-yellow-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-yellow-300">Discover Now</a>
+                <button class="inline-flex items-center gap-2 text-sm font-semibold text-white transition hover:text-cyan-200">
+                  <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/90 shadow">
+                    <span class="block h-2.5 w-2.5 rounded-full bg-slate-950"></span>
+                  </span>
+                  How it works?
+                </button>
               </div>
-              <div class="rounded-[1.5rem] border border-slate-200 bg-slate-50 px-4 py-4 text-sm text-slate-700">
-                <p class="font-semibold">Check Out</p>
-                <p class="mt-2 text-slate-500">02 January 2024</p>
-              </div>
-              <div class="flex items-center justify-between rounded-[1.5rem] border border-slate-200 bg-slate-950 px-4 py-4 text-sm text-white">
-                <div>
-                  <p class="font-semibold">Guest</p>
-                  <p class="mt-2 text-slate-300">2 adults, 2 children</p>
+
+              <div class="grid gap-4 sm:grid-cols-3">
+                <div class="rounded-[1.5rem] bg-white/90 px-5 py-4 text-slate-900 shadow-sm">
+                  <p class="text-lg font-semibold">85%</p>
+                  <p class="mt-1 text-sm text-slate-500">Customer satisfaction</p>
                 </div>
-                <button class="rounded-full bg-white px-4 py-2 text-xs font-semibold text-slate-950">Search</button>
+                <div class="rounded-[1.5rem] bg-white/90 px-5 py-4 text-slate-900 shadow-sm">
+                  <p class="text-lg font-semibold">2k+</p>
+                  <p class="mt-1 text-sm text-slate-500">Verified stays</p>
+                </div>
+                <div class="rounded-[1.5rem] bg-white/90 px-5 py-4 text-slate-900 shadow-sm">
+                  <p class="text-lg font-semibold">24/7</p>
+                  <p class="mt-1 text-sm text-slate-500">Support worldwide</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-6">
+              <div class="relative overflow-hidden rounded-[2rem] border border-white/20 bg-slate-950/40 p-6 text-white shadow-2xl sm:p-8">
+                <div class="absolute -right-8 top-6 h-24 w-24 rounded-full bg-cyan-400/20 blur-3xl"></div>
+                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=870&q=80" alt="Happy couple on vacation" class="h-[320px] w-full rounded-[1.5rem] object-cover shadow-lg sm:h-[380px]" />
+              </div>
+
+              <div class="rounded-[2rem] border border-white/20 bg-white/10 p-6 shadow-2xl backdrop-blur-xl sm:p-8">
+                <p class="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-200">Sign in</p>
+                <h2 class="mt-3 text-2xl font-semibold text-white">Welcome back</h2>
+                <p class="mt-2 text-sm text-slate-300">Access your saved trips and exclusive offers.</p>
+
+                <form class="mt-6 space-y-4">
+                  <label class="block">
+                    <span class="sr-only">Email</span>
+                    <input type="email" placeholder="Email address" class="w-full rounded-full border border-white/20 bg-slate-950/40 px-4 py-3 text-sm text-white outline-none transition focus:border-cyan-300 focus:ring-2 focus:ring-cyan-300/40" />
+                  </label>
+                  <label class="block">
+                    <span class="sr-only">Password</span>
+                    <input type="password" placeholder="Password" class="w-full rounded-full border border-white/20 bg-slate-950/40 px-4 py-3 text-sm text-white outline-none transition focus:border-cyan-300 focus:ring-2 focus:ring-cyan-300/40" />
+                  </label>
+                  <button type="submit" class="w-full rounded-full bg-cyan-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-cyan-400">Sign in</button>
+                  <p class="text-center text-sm text-slate-300">
+                    New here?
+                    <a href="#" class="ml-1 font-semibold text-cyan-200 hover:text-cyan-100">Create an account</a>
+                  </p>
+                </form>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
 
       <!-- Partner logos section -->
       <section class="mt-30 rounded-[2rem] bg-white p-30 shadow-xl sm:p-6 lg:p-6">
