@@ -1,0 +1,260 @@
+{
+  "hero": {
+    "brand": {
+      "name": "Velora",
+      "tagline": "Travel Studio"
+    },
+    "nav": [
+      { "label": "Tours", "href": "#discover" },
+      { "label": "Hotels", "href": "#itineraries" },
+      { "label": "Tickets", "href": "#insights" },
+      { "label": "Rental", "href": "#" },
+      { "label": "Activities", "href": "#" }
+    ],
+    "signin": {
+      "label": "Sign in",
+      "modalTitle": "Welcome back",
+      "modalSubtitle": "Access your saved trips and exclusive offers.",
+      "submitLabel": "Sign in",
+      "accountText": "New here?",
+      "accountLink": "Create an account"
+    },
+    "title": "Begin Your Fantastic Travel Experience Here",
+    "highlight": "Fantastic Travel",
+    "description": "Discover handcrafted travel experiences that blend adventure and luxury, creating memories that last a lifetime.",
+    "primaryCta": { "label": "Discover Now", "href": "#discover" },
+    "secondaryCta": { "label": "How it works?" },
+    "stats": [
+      { "value": "85%", "label": "Customer satisfaction" },
+      { "value": "2k+", "label": "Verified stays" },
+      { "value": "24/7", "label": "Support worldwide" }
+    ],
+    "backgroundImage": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80",
+    "mainImage": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=870&q=80",
+    "mainImageAlt": "Happy couple on vacation"
+  },
+  "partners": [
+    { "name": "PayPal", "image": "assets/paypal.png.png" },
+    { "name": "Stripe", "image": "assets/stripe.png.png" },
+    { "name": "Mastercard", "image": "assets/mastercard.png.png" },
+    { "name": "Skrill", "image": "assets/skrill.png.png" }
+  ],
+  "discover": {
+    "eyebrow": "Live search",
+    "title": "Pick a vibe that fits your mood",
+    "filters": [
+      { "label": "All", "value": "All" },
+      { "label": "Beach", "value": "Beach" },
+      { "label": "City", "value": "City" },
+      { "label": "Nature", "value": "Nature" }
+    ],
+    "destinations": [
+      {
+        "title": "Maui Cove",
+        "location": "Hawaii, USA",
+        "tag": "Beach",
+        "price": "$980",
+        "rating": "4.8",
+        "image": "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        "title": "Northern Lights Lodge",
+        "location": "Reykjavík, Iceland",
+        "tag": "Nature",
+        "price": "$1,240",
+        "rating": "4.9",
+        "image": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        "title": "Metro Bloom Hotel",
+        "location": "Tokyo, Japan",
+        "tag": "City",
+        "price": "$760",
+        "rating": "4.7",
+        "image": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=900&q=80"
+      },
+      {
+        "title": "Golden Bay Escape",
+        "location": "Bali, Indonesia",
+        "tag": "Beach",
+        "price": "$890",
+        "rating": "4.8",
+        "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80"
+      }
+    ]
+  },
+  "activities": {
+    "eyebrow": "Travel By Activities",
+    "title": "Navigate the Globe with Confidence",
+    "featured": {
+      "eyebrow": "Featured places",
+      "title": "Popular destinations and experiences"
+    },
+    "scroller": [
+      { "title": "Explore Ruins", "image": "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=200&q=80" },
+      { "title": "Beach Snorkel", "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=200&q=80" },
+      { "title": "City Cycling", "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=200&q=80" },
+      { "title": "Mountain Trek", "image": "https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=200&q=80" },
+      { "title": "Food Tour", "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=200&q=80" },
+      { "title": "River Cruise", "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=200&q=80" },
+      { "title": "Spa Retreat", "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80" },
+      { "title": "Road Trip", "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=200&q=80" },
+      { "title": "Forest Hike", "image": "https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=200&q=80" },
+      { "title": "Desert Safari", "image": "https://images.unsplash.com/photo-1496306784236-60f5bdd5e0e8?auto=format&fit=crop&w=200&q=80" },
+      { "title": "Snow Escape", "image": "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=200&q=80" }
+    ],
+    "cards": [
+      {
+        "title": "Adventure Activities",
+        "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=80",
+        "items": ["Mountain Hiking", "Rock Climbing", "Rafting Excursion"]
+      },
+      {
+        "title": "Cultural Exploration",
+        "image": "https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=900&q=80",
+        "items": ["Temple Tours", "Local Cuisine", "Heritage Walks"]
+      },
+      {
+        "title": "Wildlife Experiences",
+        "image": "https://images.unsplash.com/photo-1529539795627-95c9dd4f40d8?auto=format&fit=crop&w=900&q=80",
+        "items": ["Safari Tours", "Bird Watching", "Nature Walks"]
+      },
+      {
+        "title": "Relaxation Travel",
+        "image": "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=80",
+        "items": ["Spa Retreats", "Beach Lounging", "Yoga Sessions"]
+      },
+      {
+        "title": "Wellness Tours",
+        "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80",
+        "items": ["Meditation Retreats", "Healthy Cuisine", "Mindful Hikes"]
+      },
+      {
+        "title": "River Cruise",
+        "image": "https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?auto=format&fit=crop&w=900&q=80",
+        "items": ["Luxury Journeys", "Scenic Views", "Onboard Dining"]
+      }
+    ]
+  },
+  "itinerary": {
+    "eyebrow": "Suggested plan",
+    "title": "Your 3-day adventure",
+    "badge": "Handpicked",
+    "items": [
+      {
+        "day": "Day 1",
+        "title": "Arrival + sunset cruise",
+        "details": "Check in, enjoy a welcome dinner, and board a golden-hour cruise."
+      },
+      {
+        "day": "Day 2",
+        "title": "Hidden beaches and cafés",
+        "details": "Rent a bike, discover local beaches, and pause for coffee at a seaside café."
+      },
+      {
+        "day": "Day 3",
+        "title": "Scenic lookout and spa",
+        "details": "End with a panoramic hike and a restorative spa session."
+      }
+    ]
+  },
+  "insights": {
+    "eyebrow": "Traveler insights",
+    "title": "Why explorers love Velora",
+    "cards": [
+      { "value": "82%", "description": "Of travelers save 20% by booking flexible packages." },
+      { "value": "15k+", "description": "Local guides available across 40+ destinations." }
+    ],
+    "quote": {
+      "text": "Every plan felt personal and effortless.",
+      "author": "— Mia, solo explorer"
+    }
+  },
+  "offers": {
+    "eyebrow": "Flight Offer Deals",
+    "title": "Competitive fares for your route-specific searches.",
+    "items": [
+      {
+        "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=80",
+        "dates": "09 Jun 2024 - 16 Jun 2024",
+        "origin": "Denmark",
+        "destination": "New York",
+        "tag": "Business",
+        "price": "$288.15",
+        "seats": "18 Seats left",
+        "buttonText": "Book Now"
+      },
+      {
+        "image": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80",
+        "dates": "12 Jun 2024 - 20 Jun 2024",
+        "origin": "Norway",
+        "destination": "London",
+        "tag": "Economy",
+        "price": "$214.40",
+        "seats": "12 Seats left",
+        "buttonText": "Book Now"
+      },
+      {
+        "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80",
+        "dates": "18 Jun 2024 - 28 Jun 2024",
+        "origin": "Sweden",
+        "destination": "Barcelona",
+        "tag": "Premium",
+        "price": "$352.90",
+        "seats": "7 Seats left",
+        "buttonText": "Book Now"
+      }
+    ]
+  },
+  "testimonials": {
+    "eyebrow": "testimonials",
+    "title": "What our clients are saying about us?",
+    "description": "Discover how you can offset your adventure’s carbon emissions and support the sustainable initiatives practiced by our operators worldwide.",
+    "items": [
+      {
+        "name": "Sara Mohamed",
+        "location": "Jakarta",
+        "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80",
+        "quote": "I’ve been using the hotel booking system for several years now, and it’s become my go-to platform for planning my trips. The interface is user-friendly, and I appreciate the detailed information and real-time availability of hotels."
+      },
+      {
+        "name": "Atend John",
+        "location": "California",
+        "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80",
+        "quote": "I had a last-minute business trip, and the hotel booking system came to the rescue. I was able to find a high-quality hotel in no time and even got a great deal on the room."
+      }
+    ]
+  },
+  "newsletter": {
+    "eyebrow": "Join our newsletter",
+    "title": "Subscribe to see secret deals prices drop the moment you sign up!",
+    "description": "No ads. No trails. No commitments.",
+    "image": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80",
+    "buttonText": "Subscribe"
+  },
+  "footer": {
+    "brand": "Travila",
+    "description": "Dive into local recommendations for a truly authentic experience.",
+    "phoneLabel": "Need help? Call us",
+    "phoneNumber": "1-800-222-8888",
+    "columns": [
+      {
+        "title": "Company",
+        "links": ["About Us", "Community Blog", "Jobs & Careers", "Contact Us", "Our Awards"]
+      },
+      {
+        "title": "Services",
+        "links": ["Tour Guide", "Tour Booking", "Hotel Booking", "Ticket Booking", "Rental Services"]
+      },
+      {
+        "title": "Legal",
+        "links": ["Terms of Service", "Privacy Policy", "Cookies Policy", "Data Processing", "Data Policy"]
+      },
+      {
+        "title": "Support",
+        "links": ["Forum support", "Help Center", "How it works", "Security"]
+      }
+    ],
+    "copyright": "© 2024 Travila Inc. All rights reserved."
+  }
+}

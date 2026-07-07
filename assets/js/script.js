@@ -1,54 +1,135 @@
-const destinations = [
-  {
-    title: "Maui Cove",
-    location: "Hawaii, USA",
-    tag: "Beach",
-    price: "$980",
-    rating: "4.8",
-    image: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=900&q=80"
-  },
-  {
-    title: "Northern Lights Lodge",
-    location: "Reykjavík, Iceland",
-    tag: "Nature",
-    price: "$1,240",
-    rating: "4.9",
-    image: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=900&q=80"
-  },
-  {
-    title: "Metro Bloom Hotel",
-    location: "Tokyo, Japan",
-    tag: "City",
-    price: "$760",
-    rating: "4.7",
-    image: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=900&q=80"
-  },
-  {
-    title: "Golden Bay Escape",
-    location: "Bali, Indonesia",
-    tag: "Beach",
-    price: "$890",
-    rating: "4.8",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80"
+const uiDataUrl = "./data/ui-data.json";
+let uiData = null;
+let activeDestinationFilter = "All";
+
+const activityScroller = document.getElementById("activity-logo-scroller");
+let isActivityPaused = false;
+let activityFrame = null;
+const activityScrollSpeed = 0.5;
+
+function setTextContent(id, value) {
+  const element = document.getElementById(id);
+  if (element) {
+    element.textContent = value;
   }
-];
+}
 
-const itinerary = [
-  { day: "Day 1", title: "Arrival + sunset cruise", details: "Check in, enjoy a welcome dinner, and board a golden-hour cruise." },
-  { day: "Day 2", title: "Hidden beaches and cafés", details: "Rent a bike, discover local beaches, and pause for coffee at a seaside café." },
-  { day: "Day 3", title: "Scenic lookout and spa", details: "End with a panoramic hike and a restorative spa session." }
-];
+function renderHero(data) {
+  if (!data?.hero) return;
 
-const destinationContainer = document.getElementById("destinations");
-const itineraryList = document.getElementById("itinerary-list");
-const filterButtons = document.querySelectorAll("[data-filter]");
+  const hero = data.hero;
 
-function renderDestinations(filter = "All") {
-  const visible = filter === "All"
-    ? destinations
-    : destinations.filter((item) => item.tag === filter);
+  setTextContent("hero-brand-name", hero.brand?.name || "Velora");
+  setTextContent("hero-brand-tagline", hero.brand?.tagline || "Travel Studio");
 
+  const heroNavLinks = document.getElementById("hero-nav-links");
+  if (heroNavLinks) {
+    heroNavLinks.innerHTML = (hero.nav || []).map((item) => `
+      <a href="${item.href || "#"}" class="transition hover:text-white">${item.label}</a>
+    `).join("");
+  }
+
+  const heroTitle = document.getElementById("hero-title");
+  if (heroTitle) {
+    heroTitle.innerHTML = `Begin Your <span class="font-bold text-cyan-300">${hero.highlight || "Fantastic Travel"}</span> Experience Here`;
+  }
+
+  const heroDescription = document.getElementById("hero-description");
+  if (heroDescription) {
+    heroDescription.textContent = hero.description || "";
+  }
+
+  const heroPrimaryCta = document.getElementById("hero-primary-cta");
+  if (heroPrimaryCta) {
+    heroPrimaryCta.textContent = hero.primaryCta?.label || "Discover Now";
+    heroPrimaryCta.href = hero.primaryCta?.href || "#discover";
+  }
+
+  const heroSecondaryCta = document.getElementById("hero-secondary-cta");
+  if (heroSecondaryCta) {
+    heroSecondaryCta.innerHTML = `
+      <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/90 shadow">
+        <span class="block h-2.5 w-2.5 rounded-full bg-slate-950"></span>
+      </span>
+      ${hero.secondaryCta?.label || "How it works?"}
+    `;
+  }
+
+  const heroStats = document.getElementById("hero-stats");
+  if (heroStats && hero.stats?.length) {
+    heroStats.innerHTML = hero.stats.map((item) => `
+      <div class="rounded-[1.5rem] bg-white/90 px-5 py-4 text-slate-900 shadow-sm">
+        <p class="text-lg font-semibold">${item.value}</p>
+        <p class="mt-1 text-sm text-slate-500">${item.label}</p>
+      </div>
+    `).join("");
+  }
+
+  const heroBackgroundImage = document.getElementById("hero-background-image");
+  if (heroBackgroundImage) {
+    heroBackgroundImage.src = hero.backgroundImage || heroBackgroundImage.src;
+  }
+
+  const heroMainImage = document.getElementById("hero-main-image");
+  if (heroMainImage) {
+    heroMainImage.src = hero.mainImage || heroMainImage.src;
+    heroMainImage.alt = hero.mainImageAlt || heroMainImage.alt;
+  }
+}
+
+function renderPartners(data) {
+  const partnerLogos = document.getElementById("partner-logos");
+  const partners = data?.partners || [];
+
+  if (!partnerLogos) return;
+
+  if (partners.length) {
+    partnerLogos.innerHTML = partners.map((partner) => `
+      <div class="flex items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2">
+        <img src="${partner.image}" alt="${partner.name} logo" class="h-6 object-contain" />
+      </div>
+    `).join("");
+  }
+
+  setTextContent("partners-eyebrow", "Partner with");
+  setTextContent("partners-title", "Trusted by leading travel and payment brands");
+}
+
+function renderDiscover(data) {
+  const discover = data?.discover;
+  if (!discover) return;
+
+  const filterButtons = document.getElementById("filter-buttons");
+  if (filterButtons) {
+    filterButtons.innerHTML = discover.filters?.map((filter) => `
+      <button
+        data-filter="${filter.value}"
+        class="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-50 ${filter.value === activeDestinationFilter ? "bg-slate-900 text-white" : ""}"
+      >
+        ${filter.label}
+      </button>
+    `).join("");
+
+    filterButtons.querySelectorAll("[data-filter]").forEach((button) => {
+      button.addEventListener("click", () => {
+        activeDestinationFilter = button.getAttribute("data-filter") || "All";
+        renderDiscover(data);
+      });
+    });
+  }
+
+  setTextContent("discover-eyebrow", discover.eyebrow || "Live search");
+  setTextContent("discover-title", discover.title || "Pick a vibe that fits your mood");
+  renderDestinations(discover.destinations || []);
+}
+
+function renderDestinations(destinations = []) {
+  const destinationContainer = document.getElementById("destinations");
   if (!destinationContainer) return;
+
+  const visible = activeDestinationFilter === "All"
+    ? destinations
+    : destinations.filter((item) => item.tag === activeDestinationFilter);
 
   destinationContainer.innerHTML = visible.map((item) => `
     <article class="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-slate-50">
@@ -68,10 +149,51 @@ function renderDestinations(filter = "All") {
   `).join("");
 }
 
-function renderItinerary() {
-  if (!itineraryList) return;
+function renderActivities(data) {
+  const activities = data?.activities;
+  if (!activities) return;
 
-  itineraryList.innerHTML = itinerary.map((item) => `
+  setTextContent("activities-eyebrow", activities.eyebrow || "Travel By Activities");
+  setTextContent("activities-title", activities.title || "Navigate the Globe with Confidence");
+  setTextContent("activities-featured-eyebrow", activities.featured?.eyebrow || "Featured places");
+  setTextContent("activities-featured-title", activities.featured?.title || "Popular destinations and experiences");
+
+  const scroller = document.getElementById("activity-logo-scroller");
+  if (scroller) {
+    scroller.innerHTML = (activities.scroller || []).map((item) => `
+      <article class="flex min-w-[120px] flex-col items-center gap-3 rounded-[1.75rem] border border-slate-200 bg-white px-4 py-5 text-center shadow-sm">
+        <img src="${item.image}" alt="${item.title}" class="h-20 w-20 rounded-full object-cover" />
+        <p class="text-sm font-semibold text-slate-900">${item.title}</p>
+      </article>
+    `).join("");
+  }
+
+  const cardsContainer = document.getElementById("activities-cards");
+  if (cardsContainer) {
+    cardsContainer.innerHTML = (activities.cards || []).map((card) => `
+      <div class="rounded-[1.75rem] overflow-hidden border border-slate-200 bg-slate-50 shadow-sm">
+        <img src="${card.image}" alt="${card.title}" class="h-48 w-full object-cover" />
+        <div class="space-y-3 p-6">
+          <p class="text-lg font-semibold text-slate-900">${card.title}</p>
+          <div class="grid gap-2 text-sm text-slate-600">
+            ${card.items.map((item) => `<p>${item}</p>`).join("")}
+          </div>
+        </div>
+      </div>
+    `).join("");
+  }
+}
+
+function renderItinerary(data) {
+  const itineraryList = document.getElementById("itinerary-list");
+  const itinerary = data?.itinerary;
+  if (!itineraryList || !itinerary) return;
+
+  setTextContent("itinerary-eyebrow", itinerary.eyebrow || "Suggested plan");
+  setTextContent("itinerary-title", itinerary.title || "Your 3-day adventure");
+  setTextContent("itinerary-badge", itinerary.badge || "Handpicked");
+
+  itineraryList.innerHTML = (itinerary.items || []).map((item) => `
     <div class="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4">
       <div class="flex items-center justify-between">
         <p class="text-sm font-semibold text-cyan-600">${item.day}</p>
@@ -83,10 +205,179 @@ function renderItinerary() {
   `).join("");
 }
 
-const activityScroller = document.getElementById("activity-logo-scroller");
-let isActivityPaused = false;
-let activityFrame = null;
-const activityScrollSpeed = 0.5;
+function renderInsights(data) {
+  const insights = data?.insights;
+  if (!insights) return;
+
+  setTextContent("insights-eyebrow", insights.eyebrow || "Traveler insights");
+  setTextContent("insights-title", insights.title || "Why explorers love Velora");
+
+  const insightsCards = document.getElementById("insights-cards");
+  if (insightsCards) {
+    insightsCards.innerHTML = (insights.cards || []).map((card) => `
+      <div class="rounded-[1.25rem] border border-white/10 bg-white/10 p-4">
+        <p class="text-3xl font-semibold">${card.value}</p>
+        <p class="mt-1 text-sm text-slate-300">${card.description}</p>
+      </div>
+    `).join("") + `
+      <div class="rounded-[1.25rem] border border-white/10 bg-white/10 p-4 md:col-span-2">
+        <p id="insights-quote-text" class="text-lg font-semibold">“${insights.quote?.text || "Every plan felt personal and effortless."}”</p>
+        <p id="insights-quote-author" class="mt-2 text-sm text-slate-300">${insights.quote?.author || "— Mia, solo explorer"}</p>
+      </div>
+    `;
+  }
+}
+
+function renderOffers(data) {
+  const offers = data?.offers;
+  if (!offers) return;
+
+  setTextContent("offers-eyebrow", offers.eyebrow || "Flight Offer Deals");
+  setTextContent("offers-title", offers.title || "Competitive fares for your route-specific searches.");
+
+  const offersGrid = document.getElementById("offers-grid");
+  if (offersGrid) {
+    offersGrid.innerHTML = (offers.items || []).map((offer) => `
+      <article class="group overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-50 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+        <div class="relative overflow-hidden rounded-t-[2rem]">
+          <img src="${offer.image}" alt="${offer.destination}" class="h-56 w-full object-cover transition duration-500 group-hover:scale-105" />
+          <button class="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white bg-white/90 text-slate-900 shadow-sm transition hover:bg-white">
+            <span class="text-lg">♥</span>
+          </button>
+        </div>
+        <div class="p-6 sm:p-7">
+          <div class="flex flex-wrap items-center justify-between gap-4 text-sm text-slate-500">
+            <span>${offer.dates}</span>
+          </div>
+          <div class="mt-5 grid gap-4 md:grid-cols-2">
+            <div class="rounded-[1.5rem] bg-white p-4 shadow-sm">
+              <p class="text-sm uppercase tracking-[0.2em] text-slate-500">${offer.origin}</p>
+              <p class="mt-2 text-lg font-semibold text-slate-900">${offer.destination}</p>
+              <p class="mt-2 text-sm text-slate-500">${offer.tag}</p>
+            </div>
+            <div class="rounded-[1.5rem] bg-white p-4 shadow-sm">
+              <p class="text-sm uppercase tracking-[0.2em] text-slate-500">Business</p>
+              <p class="mt-2 text-2xl font-semibold text-slate-900">${offer.price}</p>
+            </div>
+          </div>
+          <div class="mt-5 flex flex-wrap items-center justify-between gap-4">
+            <span class="text-sm text-slate-500">${offer.seats}</span>
+            <button class="rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">${offer.buttonText}</button>
+          </div>
+        </div>
+      </article>
+    `).join("");
+  }
+}
+
+function renderTestimonials(data) {
+  const testimonials = data?.testimonials;
+  if (!testimonials) return;
+
+  setTextContent("testimonials-title", testimonials.title || "What our clients are saying about us?");
+  setTextContent("testimonials-description", testimonials.description || "");
+
+  const testimonialsGrid = document.getElementById("testimonials-grid");
+  if (testimonialsGrid) {
+    testimonialsGrid.innerHTML = (testimonials.items || []).map((item) => `
+      <article class="rounded-[2rem] bg-white p-6 shadow-sm">
+        <div class="flex items-center gap-4">
+          <img src="${item.image}" alt="${item.name}" class="h-16 w-16 rounded-full object-cover" />
+          <div>
+            <p class="text-lg font-semibold text-slate-900">${item.name}</p>
+            <p class="text-sm text-slate-500">${item.location}</p>
+          </div>
+        </div>
+        <div class="mt-4 flex items-center gap-1 text-amber-400">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <p class="mt-4 text-sm leading-7 text-slate-600">${item.quote}</p>
+      </article>
+    `).join("");
+  }
+}
+
+function renderNewsletter(data) {
+  const newsletter = data?.newsletter;
+  if (!newsletter) return;
+
+  setTextContent("newsletter-eyebrow", newsletter.eyebrow || "Join our newsletter");
+  setTextContent("newsletter-title", newsletter.title || "Subscribe to see secret deals prices drop the moment you sign up!");
+  setTextContent("newsletter-description", newsletter.description || "");
+
+  const newsletterImage = document.getElementById("newsletter-image");
+  if (newsletterImage) {
+    newsletterImage.src = newsletter.image || newsletterImage.src;
+  }
+
+  const newsletterSubmitButton = document.getElementById("newsletter-submit-button");
+  if (newsletterSubmitButton) {
+    newsletterSubmitButton.textContent = newsletter.buttonText || "Subscribe";
+  }
+}
+
+function renderFooter(data) {
+  const footer = data?.footer;
+  if (!footer) return;
+
+  setTextContent("footer-brand", footer.brand || "Travila");
+  setTextContent("footer-description", footer.description || "");
+  setTextContent("footer-phone-label", footer.phoneLabel || "Need help? Call us");
+  setTextContent("footer-phone-number", footer.phoneNumber || "1-800-222-8888");
+  setTextContent("footer-copyright", footer.copyright || "");
+
+  const footerColumns = document.querySelectorAll(".footer-links-column");
+  const footerColumnData = footer.columns || [];
+  footerColumns.forEach((column, index) => {
+    const title = column.querySelector("h3");
+    const list = column.querySelector("ul");
+    if (title && footerColumnData[index]) {
+      title.textContent = footerColumnData[index].title || title.textContent;
+    }
+
+    if (list && footerColumnData[index]) {
+      list.innerHTML = footerColumnData[index].links.map((link) => `
+        <li><a href="#" class="transition hover:text-slate-900">${link}</a></li>
+      `).join("");
+    }
+  });
+}
+
+function renderSigninModal(data) {
+  const signin = data?.hero?.signin;
+  if (!signin) return;
+
+  const openSigninButton = document.getElementById("open-signin-modal");
+  if (openSigninButton) {
+    openSigninButton.textContent = signin.label || "Sign in";
+  }
+
+  setTextContent("signin-modal-label", signin.modalLabel || "Sign in");
+  setTextContent("signin-modal-title", signin.modalTitle || "Welcome back");
+  setTextContent("signin-modal-subtitle", signin.modalSubtitle || "Access your saved trips and exclusive offers.");
+  const signinSubmitButton = document.getElementById("signin-modal-submit");
+  if (signinSubmitButton) {
+    signinSubmitButton.textContent = signin.submitLabel || "Sign in";
+  }
+  const signinLink = document.getElementById("signin-modal-link");
+  if (signinLink) {
+    signinLink.textContent = signin.accountLink || "Create an account";
+  }
+}
+
+function renderApp(data) {
+  renderHero(data);
+  renderPartners(data);
+  renderDiscover(data);
+  renderActivities(data);
+  renderItinerary(data);
+  renderInsights(data);
+  renderOffers(data);
+  renderTestimonials(data);
+  renderNewsletter(data);
+  renderFooter(data);
+  renderSigninModal(data);
+}
 
 function animateActivityScroll() {
   if (!activityScroller) return;
@@ -119,26 +410,6 @@ function initActivityScroller() {
     activityFrame = window.requestAnimationFrame(animateActivityScroll);
   }
 }
-
-if (document.readyState !== "loading") {
-  initActivityScroller();
-} else {
-  window.addEventListener("DOMContentLoaded", initActivityScroller);
-}
-
-filterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    filterButtons.forEach((btn) => {
-      btn.classList.remove("bg-slate-900", "text-white");
-      btn.classList.add("border-slate-200", "text-slate-600");
-    });
-
-    button.classList.add("bg-slate-900", "text-white");
-    button.classList.remove("border-slate-200", "text-slate-600");
-
-    renderDestinations(button.getAttribute("data-filter") || "All");
-  });
-});
 
 const signinModal = document.getElementById("signin-modal");
 const signinOpenButton = document.getElementById("open-signin-modal");
@@ -226,6 +497,27 @@ if (newsletterOkButton) {
   newsletterOkButton.addEventListener("click", closeNewsletterModal);
 }
 
-renderDestinations();
-renderItinerary();
+async function initApp() {
+  try {
+    const response = await fetch(uiDataUrl, { cache: "no-store" });
+    if (!response.ok) {
+      throw new Error("Failed to fetch UI data");
+    }
+    uiData = await response.json();
+  } catch (error) {
+    console.warn("Unable to load UI data from API, keeping the existing UI content.", error);
+  }
+
+  if (uiData) {
+    renderApp(uiData);
+  }
+
+  if (document.readyState !== "loading") {
+    initActivityScroller();
+  } else {
+    window.addEventListener("DOMContentLoaded", initActivityScroller);
+  }
+}
+
+initApp();
 
