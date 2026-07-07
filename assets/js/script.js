@@ -132,7 +132,92 @@ filterButtons.forEach((button) => {
   });
 });
 
+const signinModal = document.getElementById("signin-modal");
+const signinOpenButton = document.getElementById("open-signin-modal");
+const signinCloseOverlay = document.getElementById("close-signin-modal");
+const signinCloseButton = document.getElementById("close-modal-button");
+
+function openSigninModal() {
+  if (!signinModal) return;
+  signinModal.classList.remove("hidden");
+  signinModal.classList.add("flex");
+}
+
+function closeSigninModal() {
+  if (!signinModal) return;
+  signinModal.classList.add("hidden");
+  signinModal.classList.remove("flex");
+}
+
+if (signinOpenButton) {
+  signinOpenButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    openSigninModal();
+  });
+}
+
+if (signinCloseOverlay) {
+  signinCloseOverlay.addEventListener("click", closeSigninModal);
+}
+
+if (signinCloseButton) {
+  signinCloseButton.addEventListener("click", closeSigninModal);
+}
+
+window.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeSigninModal();
+    closeNewsletterModal();
+  }
+});
+
+const newsletterForm = document.getElementById("newsletter-form");
+const newsletterModal = document.getElementById("newsletter-modal");
+const newsletterCloseOverlay = document.getElementById("close-newsletter-modal");
+const newsletterCloseButton = document.getElementById("close-newsletter-button");
+const newsletterOkButton = document.getElementById("newsletter-ok-button");
+const newsletterEmailConfirmation = document.getElementById("newsletter-email-confirmation");
+
+function openNewsletterModal(email) {
+  if (!newsletterModal) return;
+  if (newsletterEmailConfirmation) {
+    newsletterEmailConfirmation.textContent = email;
+  }
+  newsletterModal.classList.remove("hidden");
+  newsletterModal.classList.add("flex");
+}
+
+function closeNewsletterModal() {
+  if (!newsletterModal) return;
+  newsletterModal.classList.add("hidden");
+  newsletterModal.classList.remove("flex");
+}
+
+if (newsletterForm) {
+  newsletterForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const emailInput = document.getElementById("newsletter-email");
+    const emailValue = emailInput?.value.trim();
+
+    if (emailValue) {
+      openNewsletterModal(emailValue);
+      emailInput.value = "";
+    }
+  });
+}
+
+if (newsletterCloseOverlay) {
+  newsletterCloseOverlay.addEventListener("click", closeNewsletterModal);
+}
+
+if (newsletterCloseButton) {
+  newsletterCloseButton.addEventListener("click", closeNewsletterModal);
+}
+
+if (newsletterOkButton) {
+  newsletterOkButton.addEventListener("click", closeNewsletterModal);
+}
+
 renderDestinations();
 renderItinerary();
-startActivityScroll();
 
