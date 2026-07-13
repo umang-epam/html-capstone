@@ -1,6 +1,7 @@
 const uiDataUrl = "./data/ui-data.json";
 let uiData = null;
 let activeDestinationFilter = "All";
+let heroSearchQuery = "";
 
 const activityScroller = document.getElementById("activity-logo-scroller");
 let isActivityPaused = false;
@@ -123,13 +124,47 @@ function renderDiscover(data) {
   renderDestinations(discover.destinations || []);
 }
 
+function getVisibleDestinations(destinations = []) {
+  const query = heroSearchQuery.trim().toLowerCase();
+  const byTag = activeDestinationFilter === "All"
+    ? destinations
+    : destinations.filter((item) => item.tag === activeDestinationFilter);
+
+  if (!query) {
+    return byTag;
+  }
+
+  return byTag.filter((item) => {
+    const haystack = `${item.title} ${item.location}`.toLowerCase();
+    return haystack.includes(query);
+  });
+}
+
 function renderDestinations(destinations = []) {
   const destinationContainer = document.getElementById("destinations");
   if (!destinationContainer) return;
 
-  const visible = activeDestinationFilter === "All"
-    ? destinations
-    : destinations.filter((item) => item.tag === activeDestinationFilter);
+  const visible = getVisibleDestinations(destinations);
+  const searchResultsText = document.getElementById("hero-search-results");
+  const activeQuery = heroSearchQuery.trim();
+
+  if (searchResultsText) {
+    if (activeQuery) {
+      searchResultsText.textContent = `${visible.length} stay${visible.length === 1 ? "" : "s"} match “${activeQuery}”.`;
+    } else {
+      searchResultsText.textContent = "Search by city, hotel, or destination to find your next stay.";
+    }
+  }
+
+  if (!visible.length) {
+    destinationContainer.innerHTML = `
+      <div class="md:col-span-2 xl:col-span-3 rounded-[1.5rem] border border-dashed border-slate-300 bg-slate-50 p-8 text-center text-slate-600">
+        <p class="text-lg font-semibold text-slate-900">No stays match that search yet.</p>
+        <p class="mt-2 text-sm">Try a city, hotel, or destination like Tokyo, Maui, or Reykjavík.</p>
+      </div>
+    `;
+    return;
+  }
 
   destinationContainer.innerHTML = visible.map((item) => `
     <article class="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-slate-50">
@@ -379,6 +414,24 @@ function renderApp(data) {
   renderSigninModal(data);
 }
 
+function initHeroSearch() {
+  const searchForm = document.getElementById("hero-search-form");
+  const searchInput = document.getElementById("hero-search-input");
+
+  if (!searchForm || !searchInput) return;
+
+  searchForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    heroSearchQuery = searchInput.value.trim();
+    renderDiscover(uiData);
+  });
+
+  searchInput.addEventListener("input", () => {
+    heroSearchQuery = searchInput.value.trim();
+    renderDiscover(uiData);
+  });
+}
+
 function animateActivityScroll() {
   if (!activityScroller) return;
 
@@ -510,6 +563,7 @@ async function initApp() {
 
   if (uiData) {
     renderApp(uiData);
+    initHeroSearch();
   }
 
   if (document.readyState !== "loading") {
