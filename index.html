@@ -8,83 +8,159 @@
     <link rel="stylesheet" href="output.css" />
   </head>
   <body class="min-h-screen bg-slate-50 text-slate-900">
-      <!-- Hero section -->
-      <section class="relative isolate min-h-screen overflow-hidden bg-slate-950 text-white">
-        <div class="absolute inset-0 z-0 overflow-hidden">
-          <img id="hero-background-image" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80" alt="Travel destination" class="absolute inset-0 h-full w-full object-cover block" />
-          <div class="absolute inset-0 bg-slate-950/70"></div>
-          <div class="absolute inset-0 bg-cyan-400/10"></div>
+      <!-- Top Info Bar -->
+      <div class="bg-gradient-to-r from-slate-900 to-slate-800 text-white text-xs py-2 px-4">
+        <div class="mx-auto max-w-7xl flex items-center justify-between flex-wrap gap-2">
+          <div class="flex items-center gap-4">
+            <div class="flex items-center gap-1">
+              <span>📞</span>
+              <span>+1 222-555-33-99</span>
+            </div>
+            <span>|</span>
+            <div class="flex items-center gap-1">
+              <span>✉️</span>
+              <span>support@travila.com</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <span>✨ Unlock the Magic of Travel with Travila · Your Gateway to Extraordinary Experiences</span>
+            <a href="#" class="text-yellow-400 font-semibold hover:text-yellow-300">Get This Now →</a>
+          </div>
         </div>
+      </div>
 
-        <div class="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-between px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
-          <header class="flex items-center justify-between py-4">
-            <div>
-              <p id="hero-brand-name" class="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300">Velora</p>
-              <p id="hero-brand-tagline" class="text-xs text-slate-300">Travel Studio</p>
+      <!-- Main Navigation Bar -->
+      <nav class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center gap-2">
+              <div class="text-2xl font-bold text-slate-900">🧳</div>
+              <span class="text-xl font-bold text-slate-900">Travila</span>
             </div>
-            <div class="flex items-center gap-3">
-              <nav id="hero-nav-links" class="hidden items-center gap-4 text-sm font-medium text-slate-200 sm:flex">
-                <a href="#discover" class="transition hover:text-white">Tours</a>
-                <a href="#itineraries" class="transition hover:text-white">Hotels</a>
-                <a href="#insights" class="transition hover:text-white">Tickets</a>
-                <a href="#" class="transition hover:text-white">Rental</a>
-                <a href="#" class="transition hover:text-white">Activities</a>
-              </nav>
-              <button id="open-signin-modal" class="inline-flex items-center justify-center rounded-full bg-yellow-400 px-4 py-2 text-sm font-semibold text-black transition hover:bg-yellow-300">Sign in</button>
-            </div>
-          </header>
 
-          <div class="grid flex-1 gap-10 py-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:py-12">
-            <div class="space-y-6 pb-8 lg:pb-10">
-              <div class="max-w-2xl space-y-4">
-                <h1 id="hero-title" class="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
-                  Begin Your <span class="font-bold text-cyan-300">Fantastic Travel</span> Experience Here
+            <!-- Center Menu -->
+            <div class="hidden lg:flex items-center gap-8">
+              <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Home</a>
+              <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Tours</a>
+              <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Destinations</a>
+              <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Activities</a>
+              <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Hotel</a>
+              <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Rental</a>
+              <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Tickets</a>
+              <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Pages</a>
+              <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Blog</a>
+              <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Contact</a>
+            </div>
+
+            <!-- Right Side Controls -->
+            <div class="flex items-center gap-4">
+              <button class="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-full bg-slate-900 text-white text-sm font-semibold hover:bg-slate-800 transition">
+                Become Local Expert
+              </button>
+              <select class="text-xs border border-slate-300 rounded px-2 py-1 bg-white text-slate-700">
+                <option>EN</option>
+                <option>ES</option>
+                <option>FR</option>
+              </select>
+              <select class="text-xs border border-slate-300 rounded px-2 py-1 bg-white text-slate-700">
+                <option>USD</option>
+                <option>EUR</option>
+                <option>GBP</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Hero section -->
+      <section class="relative overflow-hidden bg-gradient-to-br from-blue-100 via-blue-50 to-cyan-50 py-12">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-center lg:gap-8">
+            <!-- Left Content -->
+            <div class="space-y-8 py-8 lg:py-16">
+              <div class="space-y-4">
+                <h1 id="hero-title" class="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-5xl">
+                  Begin Your <span class="font-black text-slate-900">Fantastic Travel Experience</span> <span class="font-light text-slate-600">Here</span>
                 </h1>
-                <p id="hero-description" class="max-w-xl text-base leading-8 text-slate-200 sm:text-lg">
-                  Discover handcrafted travel experiences that blend adventure and luxury, creating memories that last a lifetime.
+                <p id="hero-description" class="max-w-xl text-base leading-8 text-slate-600">
+                  Discover handcrafted travel experiences that blend adventure and luxury, creating memories that last a lifetime
                 </p>
               </div>
 
+              <!-- CTA Buttons -->
               <div class="flex flex-wrap items-center gap-4">
-                <a id="hero-primary-cta" href="#discover" class="inline-flex items-center justify-center rounded-full bg-yellow-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-yellow-300">Discover Now</a>
-                <button id="hero-secondary-cta" class="inline-flex items-center gap-2 text-sm font-semibold text-white transition hover:text-cyan-200">
-                  <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/90 shadow">
-                    <span class="block h-2.5 w-2.5 rounded-full bg-slate-950"></span>
+                <a id="hero-primary-cta" href="#discover" class="inline-flex items-center justify-center rounded-full bg-yellow-400 px-8 py-3 text-sm font-bold text-black transition hover:bg-yellow-300">
+                  Discover Now
+                </a>
+                <button id="hero-secondary-cta" class="inline-flex items-center gap-3 text-sm font-semibold text-slate-900 transition hover:text-slate-700">
+                  <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-black">
+                    <span class="block h-0 w-0 border-l-4 border-t-2.5 border-b-2.5 border-l-white border-t-transparent border-b-transparent"></span>
                   </span>
-                  How it works?
+                  How It Works?
                 </button>
               </div>
 
-              <form id="hero-search-form" class="w-full max-w-xl rounded-[1.75rem] border border-white/20 bg-white/90 p-3 shadow-lg">
-                <div class="flex flex-col gap-3 sm:flex-row">
-                  <label class="flex-1">
-                    <span class="sr-only">Search by location or hotel name</span>
-                    <input id="hero-search-input" type="text" placeholder="Search locations or hotel names" class="w-full rounded-full border border-slate-200 bg-slate-950/90 px-4 py-3 text-sm text-white outline-none transition focus:border-cyan-300 focus:ring-2 focus:ring-cyan-300/40" />
-                  </label>
-                  <button type="submit" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">Search</button>
+              <!-- Search Section with Tabs -->
+              <div class="space-y-4">
+                <!-- Search Tabs -->
+                <div class="flex gap-3 border-b border-slate-300">
+                  <button class="rounded-t-lg bg-black px-4 py-2 text-sm font-semibold text-white">Tours</button>
+                  <button class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-slate-900">Hotels</button>
+                  <button class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-slate-900">Tickets</button>
+                  <button class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-slate-900">Rental</button>
+                  <button class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-slate-900">Activities</button>
+                  <div class="ml-auto flex items-center gap-2 pr-4">
+                    <span class="text-xs text-slate-500">🤝</span>
+                    <button class="text-xs font-medium text-slate-600 hover:text-slate-900">Need some help?</button>
+                  </div>
                 </div>
-                <p id="hero-search-results" class="mt-2 text-sm text-slate-200">Search by city, hotel, or destination to find your next stay.</p>
-              </form>
 
-              <div id="hero-stats" class="grid gap-4 sm:grid-cols-3">
-                <div class="rounded-[1.5rem] bg-white/90 px-5 py-4 text-slate-900 shadow-sm">
-                  <p class="text-lg font-semibold">85%</p>
-                  <p class="mt-1 text-sm text-slate-500">Customer satisfaction</p>
-                </div>
-                <div class="rounded-[1.5rem] bg-white/90 px-5 py-4 text-slate-900 shadow-sm">
-                  <p class="text-lg font-semibold">2k+</p>
-                  <p class="mt-1 text-sm text-slate-500">Verified stays</p>
-                </div>
-                <div class="rounded-[1.5rem] bg-white/90 px-5 py-4 text-slate-900 shadow-sm">
-                  <p class="text-lg font-semibold">24/7</p>
-                  <p class="mt-1 text-sm text-slate-500">Support worldwide</p>
-                </div>
+                <!-- Search Form -->
+                <form id="hero-search-form" class="rounded-lg bg-white p-4 shadow-lg">
+                  <div class="grid gap-4 sm:grid-cols-5">
+                    <div class="flex flex-col">
+                      <label class="mb-2 text-xs font-semibold text-slate-700">Location</label>
+                      <select class="rounded border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
+                        <option>New York, USA</option>
+                        <option>Los Angeles, USA</option>
+                        <option>Paris, France</option>
+                      </select>
+                    </div>
+                    <div class="flex flex-col">
+                      <label class="mb-2 text-xs font-semibold text-slate-700">Check in</label>
+                      <input type="date" class="rounded border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400" value="2024-01-02" />
+                    </div>
+                    <div class="flex flex-col">
+                      <label class="mb-2 text-xs font-semibold text-slate-700">Check out</label>
+                      <input type="date" class="rounded border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400" value="2024-01-02" />
+                    </div>
+                    <div class="flex flex-col">
+                      <label class="mb-2 text-xs font-semibold text-slate-700">Guest</label>
+                      <select class="rounded border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700 outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
+                        <option>2 adults, 2 children</option>
+                        <option>1 adult</option>
+                        <option>2 adults</option>
+                      </select>
+                    </div>
+                    <div class="flex flex-col justify-end">
+                      <button type="submit" class="inline-flex items-center justify-center gap-2 rounded-lg bg-black px-6 py-2 text-sm font-semibold text-white transition hover:bg-slate-800">
+                        🔍 Search
+                      </button>
+                    </div>
+                  </div>
+                </form>
               </div>
             </div>
 
-            <div class="relative overflow-hidden rounded-[2rem] border border-white/20 bg-slate-950/40 p-6 text-white shadow-2xl sm:p-8">
-              <div class="absolute -right-8 top-6 h-24 w-24 rounded-full bg-cyan-400/20 blur-3xl"></div>
-              <img id="hero-main-image" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=870&q=80" alt="Happy couple on vacation" class="h-[320px] w-full rounded-[1.5rem] object-cover shadow-lg sm:h-[380px]" />
+            <!-- Right Image -->
+            <div class="relative">
+              <div class="relative h-96 sm:h-96 lg:h-full lg:min-h-[500px]">
+                <img id="hero-main-image" src="assets/banner.png (1).png" alt="Happy couple on vacation" class="h-full w-full object-cover rounded-lg" />
+                <!-- Decorative elements -->
+                <div class="absolute -top-4 -right-4 h-20 w-20 rounded-full bg-yellow-300 opacity-80"></div>
+                <div class="absolute bottom-12 -left-6 h-16 w-16 rounded-full bg-blue-300 opacity-60"></div>
+              </div>
             </div>
           </div>
         </div>
