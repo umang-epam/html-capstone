@@ -422,74 +422,241 @@
     <!-- Search Section Container -->
     <div class="max-w-6xl rounded-2xl bg-white p-6 shadow-lg mx-auto">
       <!-- Search Tabs -->
-      <div class="mb-6 flex items-center justify-between border-b border-slate-100 pb-4">
-        <div class="flex gap-2">
-          <button
-            class="rounded-full bg-black px-6 py-2 text-sm font-semibold text-white hover:bg-slate-800">Tours</button>
-          <button class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-slate-900">Hotels</button>
-          <button class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-slate-900">Tickets</button>
-          <button class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-slate-900">Rental</button>
-          <button class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-slate-900">Activities</button>
+      <div class="mb-6 flex items-center justify-between border-b border-slate-100 pb-4 flex-wrap gap-2">
+        <div class="flex gap-2 flex-wrap" id="search-tab-headers">
+          <button type="button" data-tab="tours"
+            class="tab-btn rounded-full bg-black px-6 py-2 text-sm font-semibold text-white hover:bg-slate-800 transition">Tours</button>
+          <button type="button" data-tab="hotels"
+            class="tab-btn px-4 py-2 text-sm font-medium text-slate-700 hover:text-slate-900 transition">Hotels</button>
+          <button type="button" data-tab="tickets"
+            class="tab-btn px-4 py-2 text-sm font-medium text-slate-700 hover:text-slate-900 transition">Tickets</button>
+          <button type="button" data-tab="rental"
+            class="tab-btn px-4 py-2.5 text-sm font-medium text-slate-700 hover:text-slate-900 transition">Rental</button>
+          <button type="button" data-tab="activities"
+            class="tab-btn px-4 py-2.5 text-sm font-medium text-slate-700 hover:text-slate-900 transition">Activities</button>
         </div>
-        <button class="flex items-center gap-1 text-sm font-medium text-slate-600 hover:text-slate-900">
+        <button type="button" class="flex items-center gap-1 text-sm font-medium text-slate-600 hover:text-slate-900">
           <span>👤</span>
           <span>Need some help?</span>
         </button>
       </div>
 
       <!-- Search Form -->
-      <!-- Search Form -->
-<form id="hero-search-form" class="space-y-0">
-  <div class="grid gap-6 sm:grid-cols-5">
+      <form id="hero-search-form" class="space-y-0">
+        <!-- Tours Tab Grid -->
+        <div id="grid-tours" class="grid gap-6 sm:grid-cols-5 tab-grid">
+          <div class="flex flex-col">
+            <label class="mb-2 text-xs font-semibold text-slate-700">Location</label>
+            <select id="search-location"
+              class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
+              <option value="">📍 All Locations</option>
+              <option value="Hawaii, USA">Hawaii, USA</option>
+              <option value="Reykjavík, Iceland">Reykjavík, Iceland</option>
+              <option value="Tokyo, Japan">Tokyo, Japan</option>
+              <option value="Bali, Indonesia">Bali, Indonesia</option>
+              <option value="Zermatt, Switzerland">Zermatt, Switzerland</option>
+              <option value="Barcelona, Spain">Barcelona, Spain</option>
+              <option value="Malé, Maldives">Malé, Maldives</option>
+              <option value="Sedona, USA">Sedona, USA</option>
+            </select>
+          </div>
+          <div class="flex flex-col">
+            <label class="mb-2 text-xs font-semibold text-slate-700">Check in</label>
+            <input id="search-checkin" type="date"
+              class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400" />
+          </div>
+          <div class="flex flex-col">
+            <label class="mb-2 text-xs font-semibold text-slate-700">Check out</label>
+            <input id="search-checkout" type="date"
+              class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400" />
+          </div>
+          <div class="flex flex-col">
+            <label class="mb-2 text-xs font-semibold text-slate-700">Guest</label>
+            <select id="search-guests"
+              class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
+              <option>👥 2 adults, 2 children</option>
+              <option>1 adult</option>
+              <option>2 adults</option>
+              <option>3 adults</option>
+            </select>
+          </div>
+          <div class="flex flex-col justify-end">
+            <button type="submit"
+              class="inline-flex items-center justify-center gap-2 rounded-full bg-black px-8 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800">
+              🔍 Search
+            </button>
+          </div>
+        </div>
 
-    <div class="flex flex-col">
-      <label class="mb-2 text-xs font-semibold text-slate-700">Location</label>
-      <select id="search-location"
-  class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
-  <option value="">📍 All Locations</option>
-  <option value="Hawaii, USA">Hawaii, USA</option>
-  <option value="Reykjavík, Iceland">Reykjavík, Iceland</option>
-  <option value="Tokyo, Japan">Tokyo, Japan</option>
-  <option value="Bali, Indonesia">Bali, Indonesia</option>
-  <option value="Zermatt, Switzerland">Zermatt, Switzerland</option>
-  <option value="Barcelona, Spain">Barcelona, Spain</option>
-  <option value="Malé, Maldives">Malé, Maldives</option>
-  <option value="Sedona, USA">Sedona, USA</option>
-</select>
-    </div>
+        <!-- Hotels Tab Grid -->
+        <div id="grid-hotels" class="grid gap-6 sm:grid-cols-5 tab-grid hidden">
+          <div class="flex flex-col">
+            <label class="mb-2 text-xs font-semibold text-slate-700">Destination</label>
+            <select id="search-hotels-location"
+              class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
+              <option value="">🏨 Where are you staying?</option>
+              <option value="Hawaii, USA">Hawaii, USA</option>
+              <option value="Reykjavík, Iceland">Reykjavík, Iceland</option>
+              <option value="Tokyo, Japan">Tokyo, Japan</option>
+              <option value="Bali, Indonesia">Bali, Indonesia</option>
+              <option value="Zermatt, Switzerland">Zermatt, Switzerland</option>
+              <option value="Barcelona, Spain">Barcelona, Spain</option>
+              <option value="Malé, Maldives">Malé, Maldives</option>
+              <option value="Sedona, USA">Sedona, USA</option>
+            </select>
+          </div>
+          <div class="flex flex-col">
+            <label class="mb-2 text-xs font-semibold text-slate-700">Check in</label>
+            <input id="search-hotels-checkin" type="date"
+              class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400" />
+          </div>
+          <div class="flex flex-col">
+            <label class="mb-2 text-xs font-semibold text-slate-700">Check out</label>
+            <input id="search-hotels-checkout" type="date"
+              class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400" />
+          </div>
+          <div class="flex flex-col">
+            <label class="mb-2 text-xs font-semibold text-slate-700">Rooms & Guests</label>
+            <select id="search-hotels-guests"
+              class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
+              <option>👥 1 room, 2 guests</option>
+              <option>1 room, 1 guest</option>
+              <option>2 rooms, 4 guests</option>
+            </select>
+          </div>
+          <div class="flex flex-col justify-end">
+            <button type="submit"
+              class="inline-flex items-center justify-center gap-2 rounded-full bg-black px-8 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800">
+              🔍 Search Hotels
+            </button>
+          </div>
+        </div>
 
-    <div class="flex flex-col">
-      <label class="mb-2 text-xs font-semibold text-slate-700">Check in</label>
-      <input id="search-checkin" type="date"
-        class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400" />
-    </div>
+        <!-- Tickets Tab Grid -->
+        <div id="grid-tickets" class="grid gap-6 sm:grid-cols-5 tab-grid hidden">
+          <div class="flex flex-col">
+            <label class="mb-2 text-xs font-semibold text-slate-700">From</label>
+            <select id="search-tickets-origin"
+              class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
+              <option value="">🛫 Origin Airport</option>
+              <option value="New York, USA">New York, USA (NYC)</option>
+              <option value="London, UK">London, UK (LHR)</option>
+              <option value="Tokyo, Japan">Tokyo, Japan (NRT)</option>
+            </select>
+          </div>
+          <div class="flex flex-col">
+            <label class="mb-2 text-xs font-semibold text-slate-700">To</label>
+            <select id="search-tickets-location"
+              class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
+              <option value="">🛬 Destination Airport</option>
+              <option value="Hawaii, USA">Hawaii, USA (OGG)</option>
+              <option value="Reykjavík, Iceland">Reykjavík, Iceland (KEF)</option>
+              <option value="Barcelona, Spain">Barcelona, Spain (BCN)</option>
+              <option value="Tokyo, Japan">Tokyo, Japan (NRT)</option>
+            </select>
+          </div>
+          <div class="flex flex-col">
+            <label class="mb-2 text-xs font-semibold text-slate-700">Departure</label>
+            <input id="search-tickets-checkin" type="date"
+              class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400" />
+          </div>
+          <div class="flex flex-col">
+            <label class="mb-2 text-xs font-semibold text-slate-700">Return</label>
+            <input id="search-tickets-checkout" type="date"
+              class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400" />
+          </div>
+          <div class="flex flex-col justify-end">
+            <button type="submit"
+              class="inline-flex items-center justify-center gap-2 rounded-full bg-black px-8 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800">
+              🔍 Find Flights
+            </button>
+          </div>
+        </div>
 
-    <div class="flex flex-col">
-      <label class="mb-2 text-xs font-semibold text-slate-700">Check out</label>
-      <input id="search-checkout" type="date"
-        class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400" />
-    </div>
+        <!-- Rental Tab Grid -->
+        <div id="grid-rental" class="grid gap-6 sm:grid-cols-5 tab-grid hidden">
+          <div class="flex flex-col">
+            <label class="mb-2 text-xs font-semibold text-slate-700">Pick-up Location</label>
+            <select id="search-rental-location"
+              class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
+              <option value="">🚗 Rental Location</option>
+              <option value="Hawaii, USA">Hawaii, USA</option>
+              <option value="Reykjavík, Iceland">Reykjavík, Iceland</option>
+              <option value="Tokyo, Japan">Tokyo, Japan</option>
+            </select>
+          </div>
+          <div class="flex flex-col">
+            <label class="mb-2 text-xs font-semibold text-slate-700">Pick-up Date</label>
+            <input id="search-rental-checkin" type="date"
+              class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400" />
+          </div>
+          <div class="flex flex-col">
+            <label class="mb-2 text-xs font-semibold text-slate-700">Drop-off Date</label>
+            <input id="search-rental-checkout" type="date"
+              class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400" />
+          </div>
+          <div class="flex flex-col">
+            <label class="mb-2 text-xs font-semibold text-slate-700">Car Type</label>
+            <select id="search-rental-guests"
+              class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
+              <option>🚗 All Cars (Economy/SUV)</option>
+              <option>SUV / Crossover</option>
+              <option>Convertible / Luxury</option>
+            </select>
+          </div>
+          <div class="flex flex-col justify-end">
+            <button type="submit"
+              class="inline-flex items-center justify-center gap-2 rounded-full bg-black px-8 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800">
+              🔍 Find Cars
+            </button>
+          </div>
+        </div>
 
-    <div class="flex flex-col">
-      <label class="mb-2 text-xs font-semibold text-slate-700">Guest</label>
-      <select id="search-guests" 
-        class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
-        <option>👥 2 adults, 2 children</option>
-        <option>1 adult</option>
-        <option>2 adults</option>
-        <option>3 adults</option>
-      </select>
-    </div>
-
-    <div class="flex flex-col justify-end">
-      <button type="submit"
-        class="inline-flex items-center justify-center gap-2 rounded-full bg-black px-8 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800">
-        🔍 Search
-      </button>
-    </div>
-
-  </div>
-</form>
+        <!-- Activities Tab Grid -->
+        <div id="grid-activities" class="grid gap-6 sm:grid-cols-5 tab-grid hidden">
+          <div class="flex flex-col">
+            <label class="mb-2 text-xs font-semibold text-slate-700">Where to go?</label>
+            <select id="search-activities-location"
+              class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
+              <option value="">🎟️ Activity Destination</option>
+              <option value="Hawaii, USA">Hawaii, USA</option>
+              <option value="Reykjavík, Iceland">Reykjavík, Iceland</option>
+              <option value="Tokyo, Japan">Tokyo, Japan</option>
+              <option value="Bali, Indonesia">Bali, Indonesia</option>
+            </select>
+          </div>
+          <div class="flex flex-col">
+            <label class="mb-2 text-xs font-semibold text-slate-700">Date</label>
+            <input id="search-activities-checkin" type="date"
+              class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400" />
+          </div>
+          <div class="flex flex-col">
+            <label class="mb-2 text-xs font-semibold text-slate-700">Category</label>
+            <select id="search-activities-category"
+              class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
+              <option>🎟️ All Activities</option>
+              <option>Adventure & Outdoor</option>
+              <option>Sightseeing & Culture</option>
+              <option>Water Sports</option>
+            </select>
+          </div>
+          <div class="flex flex-col">
+            <label class="mb-2 text-xs font-semibold text-slate-700">Group Size</label>
+            <select id="search-activities-guests"
+              class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
+              <option>👥 2 People</option>
+              <option>1 Person</option>
+              <option>4+ People</option>
+            </select>
+          </div>
+          <div class="flex flex-col justify-end">
+            <button type="submit"
+              class="inline-flex items-center justify-center gap-2 rounded-full bg-black px-8 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800">
+              🔍 Find Activities
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 
