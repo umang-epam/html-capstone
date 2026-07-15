@@ -2,5 +2,4 @@
 node_modules/
 output.css
 .env
-.config.js
 /config.js

@@ -1,895 +1,982 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Discover handcrafted travel experiences, curated stays, and inspiring destinations with Velora Travel." />
-    <title>Velora Travel</title>
-    <link rel="stylesheet" href="output.css" />
-  </head>
-  <body class="min-h-screen bg-slate-50 text-slate-900">
-    <script src="config.js"></script>
-      <!-- Top Info Bar -->
-      <div class="bg-gradient-to-r from-slate-900 to-slate-800 text-white text-xs py-2 px-4">
-        <div class="mx-auto max-w-7xl flex items-center justify-between flex-wrap gap-2">
-          <div class="flex items-center gap-4">
-            <div class="flex items-center gap-1">
-              <span>📞</span>
-              <span>+1 222-555-33-99</span>
-            </div>
-            <span>|</span>
-            <div class="flex items-center gap-1">
-              <span>✉️</span>
-              <span>support@travila.com</span>
-            </div>
-          </div>
-          <div class="flex items-center gap-2">
-            <span>✨ Unlock the Magic of Travel with Travila · Your Gateway to Extraordinary Experiences</span>
-            <a href="#" class="text-yellow-400 font-semibold hover:text-yellow-300">Get This Now →</a>
-          </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Discover handcrafted travel experiences, curated stays, and inspiring destinations with Velora Travel." />
+  <title>Velora Travel</title>
+
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/icons/icon-512.png" />
+  <link rel="stylesheet" href="output.css" />
+</head>
+<!-- Register Service Worker -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker
+        .register('/sw.js')
+        .then((reg) => console.log('[PWA] Service Worker registered:', reg.scope))
+        .catch((err) => console.error('[PWA] Service Worker failed:', err));
+    });
+  }
+</script>
+
+<body class="min-h-screen bg-slate-50 text-slate-900">
+  <script src="config.js"></script>
+  <!-- Top Info Bar -->
+  <div class="bg-gradient-to-r from-slate-900 to-slate-800 text-white text-xs py-2 px-4">
+    <div class="mx-auto max-w-7xl flex items-center justify-between flex-wrap gap-2">
+      <div class="flex items-center gap-4">
+        <div class="flex items-center gap-1">
+          <span>📞</span>
+          <span>+1 222-555-33-99</span>
+        </div>
+        <span>|</span>
+        <div class="flex items-center gap-1">
+          <span>✉️</span>
+          <span>support@travila.com</span>
         </div>
       </div>
+      <div class="flex items-center gap-2">
+        <span>✨ Unlock the Magic of Travel with Travila · Your Gateway to Extraordinary Experiences</span>
+        <a href="#" class="text-yellow-400 font-semibold hover:text-yellow-300">Get This Now →</a>
+      </div>
+    </div>
+  </div>
 
-      <!-- Main Navigation Bar -->
-      <nav class="sticky top-0 z-50 bg-white shadow-md">
-        <div class="mx-0 px-4 py-4 sm:px-6 lg:px-8">
-          <div class="flex items-center justify-between">
-            <!-- Logo -->
-            <div class="flex items-center gap-2">
-              <div class="text-2xl font-bold text-slate-900">🧳</div>
-              <span class="text-xl font-bold text-slate-900">Travila</span>
-            </div>
-
-            <!-- Center Menu -->
-            <div class="hidden lg:flex items-center gap-8">
-              <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Home</a>
-              <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Tours</a>
-              <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Destinations</a>
-              <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Activities</a>
-              <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Hotel</a>
-              <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Rental</a>
-              <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Tickets</a>
-              <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Pages</a>
-              <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Blog</a>
-              <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Contact</a>
-            </div>
-
-            <!-- Right Side Controls -->
-            <div class="flex items-center gap-4">
-              <button class="hidden sm:inline-flex items-center justify-center px-3 py-2 rounded-full bg-yellow-400 text-sm font-bold text-black transition hover:bg-yellow-300">
-                Become Local Expert
-              </button>
-              <select class="text-xs border border-slate-300 rounded px-2 py-1 bg-white text-slate-700">
-                <option>EN</option>
-                <option>ES</option>
-                <option>FR</option>
-              </select>
-              <select class="text-xs border border-slate-300 rounded px-2 py-1 bg-white text-slate-700">
-                <option>USD</option>
-                <option>EUR</option>
-                <option>GBP</option>
-              </select>
-            </div>
-          </div>
+  <!-- Main Navigation Bar -->
+  <nav class="sticky top-0 z-50 bg-white shadow-md">
+    <div class="mx-0 px-4 py-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between">
+        <!-- Logo -->
+        <div class="flex items-center gap-2">
+          <div class="text-2xl font-bold text-slate-900">🧳</div>
+          <span class="text-xl font-bold text-slate-900">Travila</span>
         </div>
-      </nav>
 
-      <!-- Hero section -->
-      <section class="relative overflow-hidden bg-gradient-to-br from-blue-100 via-blue-50 to-cyan-50 pt-12">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div class="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-center lg:gap-8">
-            <!-- Left Content -->
-            <div class="space-y-8 py-8 lg:py-16">
-              <div class="space-y-4">
-                <h1 id="hero-title" class="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-5xl">
-                  Begin Your <span class="font-black text-slate-900">Fantastic Travel Experience</span> <span class="font-light text-slate-600">Here</span>
-                </h1>
-                <p id="hero-description" class="max-w-xl text-base leading-8 text-slate-600">
-                  Discover handcrafted travel experiences that blend adventure and luxury, creating memories that last a lifetime
-                </p>
-              </div>
-
-              <!-- CTA Buttons -->
-              <div class="flex flex-wrap items-center gap-4">
-                <a id="hero-primary-cta" href="#discover" class="inline-flex items-center justify-center rounded-full bg-yellow-400 px-8 py-3 text-sm font-bold text-black transition hover:bg-yellow-300">
-                  Discover Now
-                </a>
-                <button id="hero-secondary-cta" class="inline-flex items-center gap-3 text-sm font-semibold text-slate-900 transition hover:text-slate-700">
-                  <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-black">
-                    <span class="block h-0 w-0 border-l-4 border-t-2.5 border-b-2.5 border-l-white border-t-transparent border-b-transparent"></span>
-                  </span>
-                  How It Works?
-                </button>
-              </div>
-
-              <!-- Search Section with Tabs -->
-              
-            </div>
-
-            <!-- Right Image -->
-            <div class="relative">
-              <div class="relative h-96 sm:h-96 lg:h-full lg:min-h-[500px]">
-                <img id="hero-main-image" src="assets/banner.png (1).png" alt="Happy couple on vacation" class="h-full w-full object-cover rounded-lg" />
-                <!-- Decorative elements -->
-                <div class="absolute -top-4 -right-4 h-20 w-20 rounded-full bg-yellow-300 opacity-80"></div>
-                <div class="absolute bottom-12 -left-6 h-16 w-16 rounded-full bg-blue-300 opacity-60"></div>
-              </div>
-            </div>
-          </div>
+        <!-- Center Menu -->
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Home</a>
+          <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Tours</a>
+          <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Destinations</a>
+          <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Activities</a>
+          <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Hotel</a>
+          <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Rental</a>
+          <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Tickets</a>
+          <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Pages</a>
+          <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Blog</a>
+          <a href="#" class="text-sm font-medium text-slate-700 hover:text-slate-900 transition">Contact</a>
         </div>
-      </section>
-      <div class=" space-y-0">
-                <!-- Search Section Container -->
-<div class="max-w-6xl rounded-2xl bg-white p-6 shadow-lg mx-auto">
-                  <!-- Search Tabs -->
-                  <div class="mb-6 flex items-center justify-between border-b border-slate-100 pb-4">
-                    <div class="flex gap-2">
-                      <button class="rounded-full bg-black px-6 py-2 text-sm font-semibold text-white hover:bg-slate-800">Tours</button>
-                      <button class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-slate-900">Hotels</button>
-                      <button class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-slate-900">Tickets</button>
-                      <button class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-slate-900">Rental</button>
-                      <button class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-slate-900">Activities</button>
-                    </div>
-                    <button class="flex items-center gap-1 text-sm font-medium text-slate-600 hover:text-slate-900">
-                      <span>👤</span>
-                      <span>Need some help?</span>
-                    </button>
-                  </div>
 
-                  <!-- Search Form -->
-                  <form id="hero-search-form" class="space-y-0">
-                    <div class="grid gap-6 sm:grid-cols-5">
-                      <div class="flex flex-col">
-                        <label class="mb-2 text-xs font-semibold text-slate-700">Location</label>
-                        <select class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
-                          <option>📍 New York, USA</option>
-                          <option>Los Angeles, USA</option>
-                          <option>Paris, France</option>
-                        </select>
-                      </div>
-                      <div class="flex flex-col">
-                        <label class="mb-2 text-xs font-semibold text-slate-700">Check in</label>
-                        <input type="date" class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400" value="2024-01-02" />
-                      </div>
-                      <div class="flex flex-col">
-                        <label class="mb-2 text-xs font-semibold text-slate-700">Check out</label>
-                        <input type="date" class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400" value="2024-01-02" />
-                      </div>
-                      <div class="flex flex-col">
-                        <label class="mb-2 text-xs font-semibold text-slate-700">Guest</label>
-                        <select class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
-                          <option>👥 2 adults, 2 children</option>
-                          <option>1 adult</option>
-                          <option>2 adults</option>
-                        </select>
-                      </div>
-                      <div class="flex flex-col justify-end">
-                        <button type="submit" class="inline-flex items-center justify-center gap-2 rounded-full bg-black px-8 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800">
-                          🔍 Search
-                        </button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
+        <!-- Right Side Controls -->
+        <div class="flex items-center gap-4">
+          <button
+            class="hidden sm:inline-flex items-center justify-center px-3 py-2 rounded-full bg-yellow-400 text-sm font-bold text-black transition hover:bg-yellow-300">
+            Become Local Expert
+          </button>
+          <select class="text-xs border border-slate-300 rounded px-2 py-1 bg-white text-slate-700">
+            <option>EN</option>
+            <option>ES</option>
+            <option>FR</option>
+          </select>
+          <select class="text-xs border border-slate-300 rounded px-2 py-1 bg-white text-slate-700">
+            <option>USD</option>
+            <option>EUR</option>
+            <option>GBP</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-      <div id="signin-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 px-4 py-8">
-        <div class="absolute inset-0" id="close-signin-modal"></div>
-        <div class="relative w-full max-w-md rounded-[2rem] bg-slate-900 p-6 text-white shadow-2xl sm:p-8">
-          <button id="close-modal-button" class="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-slate-300 transition hover:bg-slate-700">×</button>
+  <!-- Hero section -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-blue-100 via-blue-50 to-cyan-50 pt-12">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-center lg:gap-8">
+        <!-- Left Content -->
+        <div class="space-y-8 py-8 lg:py-16">
           <div class="space-y-4">
-            <p id="signin-modal-label" class="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-200">Sign in</p>
-            <h2 id="signin-modal-title" class="text-3xl font-semibold">Welcome back</h2>
-            <p id="signin-modal-subtitle" class="text-sm text-slate-300">Access your saved trips and exclusive offers.</p>
-          </div>
-          <form class="mt-6 space-y-4">
-            <label class="block">
-              <span class="sr-only">Email</span>
-              <input type="email" placeholder="Email address" class="w-full rounded-full border border-white/20 bg-slate-950/40 px-4 py-3 text-sm text-white outline-none transition focus:border-cyan-300 focus:ring-2 focus:ring-cyan-300/40" />
-            </label>
-            <label class="block">
-              <span class="sr-only">Password</span>
-              <input type="password" placeholder="Password" class="w-full rounded-full border border-white/20 bg-slate-950/40 px-4 py-3 text-sm text-white outline-none transition focus:border-cyan-300 focus:ring-2 focus:ring-cyan-300/40" />
-            </label>
-            <button id="signin-modal-submit" type="submit" class="w-full rounded-full bg-cyan-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-cyan-400">Sign in</button>
-            <p class="text-center text-sm text-slate-300">
-              New here?
-              <a id="signin-modal-link" href="#" class="ml-1 font-semibold text-cyan-200 hover:text-cyan-100">Create an account</a>
+            <h1 id="hero-title" class="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-5xl">
+              Begin Your <span class="font-black text-slate-900">Fantastic Travel Experience</span> <span
+                class="font-light text-slate-600">Here</span>
+            </h1>
+            <p id="hero-description" class="max-w-xl text-base leading-8 text-slate-600">
+              Discover handcrafted travel experiences that blend adventure and luxury, creating memories that last a
+              lifetime
             </p>
-          </form>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-wrap items-center gap-4">
+            <a id="hero-primary-cta" href="#discover"
+              class="inline-flex items-center justify-center rounded-full bg-yellow-400 px-8 py-3 text-sm font-bold text-black transition hover:bg-yellow-300">
+              Discover Now
+            </a>
+            <button id="hero-secondary-cta"
+              class="inline-flex items-center gap-3 text-sm font-semibold text-slate-900 transition hover:text-slate-700">
+              <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-black">
+                <span
+                  class="block h-0 w-0 border-l-4 border-t-2.5 border-b-2.5 border-l-white border-t-transparent border-b-transparent"></span>
+              </span>
+              How It Works?
+            </button>
+          </div>
+
+          <!-- Search Section with Tabs -->
+
+        </div>
+
+        <!-- Right Image -->
+        <div class="relative">
+          <div class="relative h-96 sm:h-96 lg:h-full lg:min-h-[500px]">
+            <img id="hero-main-image" src="assets/banner.png (1).png" alt="Happy couple on vacation"
+              class="h-full w-full object-cover rounded-lg" />
+            <!-- Decorative elements -->
+            <div class="absolute -top-4 -right-4 h-20 w-20 rounded-full bg-yellow-300 opacity-80"></div>
+            <div class="absolute bottom-12 -left-6 h-16 w-16 rounded-full bg-blue-300 opacity-60"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class=" space-y-0">
+    <!-- Search Section Container -->
+    <div class="max-w-6xl rounded-2xl bg-white p-6 shadow-lg mx-auto">
+      <!-- Search Tabs -->
+      <div class="mb-6 flex items-center justify-between border-b border-slate-100 pb-4">
+        <div class="flex gap-2">
+          <button
+            class="rounded-full bg-black px-6 py-2 text-sm font-semibold text-white hover:bg-slate-800">Tours</button>
+          <button class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-slate-900">Hotels</button>
+          <button class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-slate-900">Tickets</button>
+          <button class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-slate-900">Rental</button>
+          <button class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-slate-900">Activities</button>
+        </div>
+        <button class="flex items-center gap-1 text-sm font-medium text-slate-600 hover:text-slate-900">
+          <span>👤</span>
+          <span>Need some help?</span>
+        </button>
+      </div>
+
+      <!-- Search Form -->
+      <form id="hero-search-form" class="space-y-0">
+        <div class="grid gap-6 sm:grid-cols-5">
+          <div class="flex flex-col">
+            <label class="mb-2 text-xs font-semibold text-slate-700">Location</label>
+            <select
+              class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
+              <option>📍 New York, USA</option>
+              <option>Los Angeles, USA</option>
+              <option>Paris, France</option>
+            </select>
+          </div>
+          <div class="flex flex-col">
+            <label class="mb-2 text-xs font-semibold text-slate-700">Check in</label>
+            <input type="date"
+              class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
+              value="2024-01-02" />
+          </div>
+          <div class="flex flex-col">
+            <label class="mb-2 text-xs font-semibold text-slate-700">Check out</label>
+            <input type="date"
+              class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
+              value="2024-01-02" />
+          </div>
+          <div class="flex flex-col">
+            <label class="mb-2 text-xs font-semibold text-slate-700">Guest</label>
+            <select
+              class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
+              <option>👥 2 adults, 2 children</option>
+              <option>1 adult</option>
+              <option>2 adults</option>
+            </select>
+          </div>
+          <div class="flex flex-col justify-end">
+            <button type="submit"
+              class="inline-flex items-center justify-center gap-2 rounded-full bg-black px-8 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800">
+              🔍 Search
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="signin-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 px-4 py-8">
+    <div class="absolute inset-0" id="close-signin-modal"></div>
+    <div class="relative w-full max-w-md rounded-[2rem] bg-slate-900 p-6 text-white shadow-2xl sm:p-8">
+      <button id="close-modal-button"
+        class="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-slate-300 transition hover:bg-slate-700">×</button>
+      <div class="space-y-4">
+        <p id="signin-modal-label" class="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-200">Sign in</p>
+        <h2 id="signin-modal-title" class="text-3xl font-semibold">Welcome back</h2>
+        <p id="signin-modal-subtitle" class="text-sm text-slate-300">Access your saved trips and exclusive offers.</p>
+      </div>
+      <form class="mt-6 space-y-4">
+        <label class="block">
+          <span class="sr-only">Email</span>
+          <input type="email" placeholder="Email address"
+            class="w-full rounded-full border border-white/20 bg-slate-950/40 px-4 py-3 text-sm text-white outline-none transition focus:border-cyan-300 focus:ring-2 focus:ring-cyan-300/40" />
+        </label>
+        <label class="block">
+          <span class="sr-only">Password</span>
+          <input type="password" placeholder="Password"
+            class="w-full rounded-full border border-white/20 bg-slate-950/40 px-4 py-3 text-sm text-white outline-none transition focus:border-cyan-300 focus:ring-2 focus:ring-cyan-300/40" />
+        </label>
+        <button id="signin-modal-submit" type="submit"
+          class="w-full rounded-full bg-cyan-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-cyan-400">Sign
+          in</button>
+        <p class="text-center text-sm text-slate-300">
+          New here?
+          <a id="signin-modal-link" href="#" class="ml-1 font-semibold text-cyan-200 hover:text-cyan-100">Create an
+            account</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <div class="mx-auto max-w-7xl px-4 pb-6 sm:px-6 lg:px-8">
+
+    <!-- Partner logos section -->
+    <section class="mt-6 rounded-[2rem] bg-white p-6 shadow-xl sm:p-6 lg:p-6">
+      <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+        <div class="space-y-2">
+          <p id="partners-eyebrow" class="text-sm font-semibold uppercase tracking-[0.3em] text-slate-500">Partner with
+          </p>
+          <p id="partners-title" class="text-lg font-semibold text-slate-900">Trusted by leading travel and payment
+            brands</p>
+        </div>
+        <div id="partner-logos" class="grid grid-cols-4 gap-3 text-sm text-slate-600 sm:grid-cols-4 lg:gap-4">
+          <div class="flex items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2">
+            <img src="assets/paypal.png.png" alt="PayPal logo" class="h-6 object-contain" />
+          </div>
+          <div class="flex items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2">
+            <img src="assets/stripe.png.png" alt="Stripe logo" class="h-6 object-contain" />
+          </div>
+          <div class="flex items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2">
+            <img src="assets/mastercard.png.png" alt="Mastercard logo" class="h-6 object-contain" />
+          </div>
+          <div class="flex items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2">
+            <img src="assets/skrill.png.png" alt="Skrill logo" class="h-6 object-contain" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live search filters and destination cards -->
+    <section id="discover" class="mt-6 rounded-[2rem] border border-slate-200 bg-white p-5 shadow-xl sm:p-6 lg:p-8">
+      <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div>
+          <p id="discover-eyebrow" class="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-600">Live search
+          </p>
+          <h2 id="discover-title" class="text-2xl font-semibold text-slate-900">Pick a vibe that fits your mood</h2>
+        </div>
+        <div class="flex flex-wrap gap-2" id="filter-buttons">
+          <button data-filter="All"
+            class="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white">All</button>
+          <button data-filter="Beach"
+            class="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-50">Beach</button>
+          <button data-filter="City"
+            class="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-50">City</button>
+          <button data-filter="Nature"
+            class="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-50">Nature</button>
         </div>
       </div>
 
-      <div class="mx-auto max-w-7xl px-4 pb-6 sm:px-6 lg:px-8">
+      <div id="destinations" class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3"></div>
+    </section>
 
-      <!-- Partner logos section -->
-      <section class="mt-6 rounded-[2rem] bg-white p-6 shadow-xl sm:p-6 lg:p-6">
-        <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-          <div class="space-y-2">
-            <p id="partners-eyebrow" class="text-sm font-semibold uppercase tracking-[0.3em] text-slate-500">Partner with</p>
-            <p id="partners-title" class="text-lg font-semibold text-slate-900">Trusted by leading travel and payment brands</p>
-          </div>
-          <div id="partner-logos" class="grid grid-cols-4 gap-3 text-sm text-slate-600 sm:grid-cols-4 lg:gap-4">
-            <div class="flex items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2">
-              <img src="assets/paypal.png.png" alt="PayPal logo" class="h-6 object-contain" />
-            </div>
-            <div class="flex items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2">
-              <img src="assets/stripe.png.png" alt="Stripe logo" class="h-6 object-contain" />
-            </div>
-            <div class="flex items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2">
-              <img src="assets/mastercard.png.png" alt="Mastercard logo" class="h-6 object-contain" />
-            </div>
-            <div class="flex items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2">
-              <img src="assets/skrill.png.png" alt="Skrill logo" class="h-6 object-contain" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Live search filters and destination cards -->
-      <section id="discover" class="mt-6 rounded-[2rem] border border-slate-200 bg-white p-5 shadow-xl sm:p-6 lg:p-8">
-        <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+    <!-- Travel by Activities section -->
+    <section class="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-xl sm:p-8">
+      <div class="mb-8 text-center">
+        <p id="activities-eyebrow" class="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-600">Travel By
+          Activities</p>
+        <h2 id="activities-title" class="mt-3 text-3xl font-semibold text-slate-900">Navigate the Globe with Confidence
+        </h2>
+      </div>
+      <div class="mb-8 rounded-[2rem] border border-slate-200 bg-slate-50 p-4">
+        <div class="flex items-center justify-between gap-4">
           <div>
-            <p id="discover-eyebrow" class="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-600">Live search</p>
-            <h2 id="discover-title" class="text-2xl font-semibold text-slate-900">Pick a vibe that fits your mood</h2>
+            <p id="activities-featured-eyebrow" class="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-600">
+              Featured places</p>
+            <p id="activities-featured-title" class="text-lg font-semibold text-slate-900">Popular destinations and
+              experiences</p>
           </div>
-          <div class="flex flex-wrap gap-2" id="filter-buttons">
-            <button data-filter="All" class="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white">All</button>
-            <button data-filter="Beach" class="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-50">Beach</button>
-            <button data-filter="City" class="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-50">City</button>
-            <button data-filter="Nature" class="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-50">Nature</button>
-          </div>
+          <!-- <span class="text-sm text-slate-500">Hover to pause auto-scroll</span> -->
         </div>
-
-        <div id="destinations" class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3"></div>
-      </section>
-
-      <!-- Travel by Activities section -->
-      <section class="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-xl sm:p-8">
-        <div class="mb-8 text-center">
-          <p id="activities-eyebrow" class="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-600">Travel By Activities</p>
-          <h2 id="activities-title" class="mt-3 text-3xl font-semibold text-slate-900">Navigate the Globe with Confidence</h2>
+        <div id="activity-logo-scroller" class="mt-5 flex gap-5 overflow-x-auto pb-2 hide-scrollbar">
+          <article
+            class="flex min-w-[120px] flex-col items-center gap-3 rounded-[1.75rem] border border-slate-200 bg-white px-4 py-5 text-center shadow-sm">
+            <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=200&q=80"
+              alt="Explore Ruins" class="h-20 w-20 rounded-full object-cover" />
+            <p class="text-sm font-semibold text-slate-900">Explore Ruins</p>
+          </article>
+          <article
+            class="flex min-w-[120px] flex-col items-center gap-3 rounded-[1.75rem] border border-slate-200 bg-white px-4 py-5 text-center shadow-sm">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=200&q=80"
+              alt="Beach Snorkel" class="h-20 w-20 rounded-full object-cover" />
+            <p class="text-sm font-semibold text-slate-900">Beach Snorkel</p>
+          </article>
+          <article
+            class="flex min-w-[120px] flex-col items-center gap-3 rounded-[1.75rem] border border-slate-200 bg-white px-4 py-5 text-center shadow-sm">
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=200&q=80"
+              alt="City Cycling" class="h-20 w-20 rounded-full object-cover" />
+            <p class="text-sm font-semibold text-slate-900">City Cycling</p>
+          </article>
+          <article
+            class="flex min-w-[120px] flex-col items-center gap-3 rounded-[1.75rem] border border-slate-200 bg-white px-4 py-5 text-center shadow-sm">
+            <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=200&q=80"
+              alt="Mountain Trek" class="h-20 w-20 rounded-full object-cover" />
+            <p class="text-sm font-semibold text-slate-900">Mountain Trek</p>
+          </article>
+          <article
+            class="flex min-w-[120px] flex-col items-center gap-3 rounded-[1.75rem] border border-slate-200 bg-white px-4 py-5 text-center shadow-sm">
+            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=200&q=80"
+              alt="Food Tour" class="h-20 w-20 rounded-full object-cover" />
+            <p class="text-sm font-semibold text-slate-900">Food Tour</p>
+          </article>
+          <article
+            class="flex min-w-[120px] flex-col items-center gap-3 rounded-[1.75rem] border border-slate-200 bg-white px-4 py-5 text-center shadow-sm">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=200&q=80"
+              alt="River Cruise" class="h-20 w-20 rounded-full object-cover" />
+            <p class="text-sm font-semibold text-slate-900">River Cruise</p>
+          </article>
+          <article
+            class="flex min-w-[120px] flex-col items-center gap-3 rounded-[1.75rem] border border-slate-200 bg-white px-4 py-5 text-center shadow-sm">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80"
+              alt="Spa Retreat" class="h-20 w-20 rounded-full object-cover" />
+            <p class="text-sm font-semibold text-slate-900">Spa Retreat</p>
+          </article>
+          <article
+            class="flex min-w-[120px] flex-col items-center gap-3 rounded-[1.75rem] border border-slate-200 bg-white px-4 py-5 text-center shadow-sm">
+            <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=200&q=80"
+              alt="Road Trip" class="h-20 w-20 rounded-full object-cover" />
+            <p class="text-sm font-semibold text-slate-900">Road Trip</p>
+          </article>
+          <article
+            class="flex min-w-[120px] flex-col items-center gap-3 rounded-[1.75rem] border border-slate-200 bg-white px-4 py-5 text-center shadow-sm">
+            <img src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=200&q=80"
+              alt="Forest Hike" class="h-20 w-20 rounded-full object-cover" />
+            <p class="text-sm font-semibold text-slate-900">Forest Hike</p>
+          </article>
+          <article
+            class="flex min-w-[120px] flex-col items-center gap-3 rounded-[1.75rem] border border-slate-200 bg-white px-4 py-5 text-center shadow-sm">
+            <img src="https://images.unsplash.com/photo-1496306784236-60f5bdd5e0e8?auto=format&fit=crop&w=200&q=80"
+              alt="Desert Safari" class="h-20 w-20 rounded-full object-cover" />
+            <p class="text-sm font-semibold text-slate-900">Desert Safari</p>
+          </article>
+          <article
+            class="flex min-w-[120px] flex-col items-center gap-3 rounded-[1.75rem] border border-slate-200 bg-white px-4 py-5 text-center shadow-sm">
+            <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=200&q=80"
+              alt="Snow Escape" class="h-20 w-20 rounded-full object-cover" />
+            <p class="text-sm font-semibold text-slate-900">Snow Escape</p>
+          </article>
         </div>
-        <div class="mb-8 rounded-[2rem] border border-slate-200 bg-slate-50 p-4">
-          <div class="flex items-center justify-between gap-4">
-            <div>
-              <p id="activities-featured-eyebrow" class="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-600">Featured places</p>
-              <p id="activities-featured-title" class="text-lg font-semibold text-slate-900">Popular destinations and experiences</p>
-            </div>
-            <!-- <span class="text-sm text-slate-500">Hover to pause auto-scroll</span> -->
-          </div>
-          <div id="activity-logo-scroller" class="mt-5 flex gap-5 overflow-x-auto pb-2 hide-scrollbar">
-            <article class="flex min-w-[120px] flex-col items-center gap-3 rounded-[1.75rem] border border-slate-200 bg-white px-4 py-5 text-center shadow-sm">
-              <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=200&q=80" alt="Explore Ruins" class="h-20 w-20 rounded-full object-cover" />
-              <p class="text-sm font-semibold text-slate-900">Explore Ruins</p>
-            </article>
-            <article class="flex min-w-[120px] flex-col items-center gap-3 rounded-[1.75rem] border border-slate-200 bg-white px-4 py-5 text-center shadow-sm">
-              <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=200&q=80" alt="Beach Snorkel" class="h-20 w-20 rounded-full object-cover" />
-              <p class="text-sm font-semibold text-slate-900">Beach Snorkel</p>
-            </article>
-            <article class="flex min-w-[120px] flex-col items-center gap-3 rounded-[1.75rem] border border-slate-200 bg-white px-4 py-5 text-center shadow-sm">
-              <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=200&q=80" alt="City Cycling" class="h-20 w-20 rounded-full object-cover" />
-              <p class="text-sm font-semibold text-slate-900">City Cycling</p>
-            </article>
-            <article class="flex min-w-[120px] flex-col items-center gap-3 rounded-[1.75rem] border border-slate-200 bg-white px-4 py-5 text-center shadow-sm">
-              <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=200&q=80" alt="Mountain Trek" class="h-20 w-20 rounded-full object-cover" />
-              <p class="text-sm font-semibold text-slate-900">Mountain Trek</p>
-            </article>
-            <article class="flex min-w-[120px] flex-col items-center gap-3 rounded-[1.75rem] border border-slate-200 bg-white px-4 py-5 text-center shadow-sm">
-              <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=200&q=80" alt="Food Tour" class="h-20 w-20 rounded-full object-cover" />
-              <p class="text-sm font-semibold text-slate-900">Food Tour</p>
-            </article>
-            <article class="flex min-w-[120px] flex-col items-center gap-3 rounded-[1.75rem] border border-slate-200 bg-white px-4 py-5 text-center shadow-sm">
-              <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=200&q=80" alt="River Cruise" class="h-20 w-20 rounded-full object-cover" />
-              <p class="text-sm font-semibold text-slate-900">River Cruise</p>
-            </article>
-            <article class="flex min-w-[120px] flex-col items-center gap-3 rounded-[1.75rem] border border-slate-200 bg-white px-4 py-5 text-center shadow-sm">
-              <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80" alt="Spa Retreat" class="h-20 w-20 rounded-full object-cover" />
-              <p class="text-sm font-semibold text-slate-900">Spa Retreat</p>
-            </article>
-            <article class="flex min-w-[120px] flex-col items-center gap-3 rounded-[1.75rem] border border-slate-200 bg-white px-4 py-5 text-center shadow-sm">
-              <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=200&q=80" alt="Road Trip" class="h-20 w-20 rounded-full object-cover" />
-              <p class="text-sm font-semibold text-slate-900">Road Trip</p>
-            </article>
-            <article class="flex min-w-[120px] flex-col items-center gap-3 rounded-[1.75rem] border border-slate-200 bg-white px-4 py-5 text-center shadow-sm">
-              <img src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=200&q=80" alt="Forest Hike" class="h-20 w-20 rounded-full object-cover" />
-              <p class="text-sm font-semibold text-slate-900">Forest Hike</p>
-            </article>
-            <article class="flex min-w-[120px] flex-col items-center gap-3 rounded-[1.75rem] border border-slate-200 bg-white px-4 py-5 text-center shadow-sm">
-              <img src="https://images.unsplash.com/photo-1496306784236-60f5bdd5e0e8?auto=format&fit=crop&w=200&q=80" alt="Desert Safari" class="h-20 w-20 rounded-full object-cover" />
-              <p class="text-sm font-semibold text-slate-900">Desert Safari</p>
-            </article>
-            <article class="flex min-w-[120px] flex-col items-center gap-3 rounded-[1.75rem] border border-slate-200 bg-white px-4 py-5 text-center shadow-sm">
-              <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=200&q=80" alt="Snow Escape" class="h-20 w-20 rounded-full object-cover" />
-              <p class="text-sm font-semibold text-slate-900">Snow Escape</p>
-            </article>
-          </div>
-        </div>
-        <div id="activities-cards" class="grid gap-6 lg:grid-cols-3">
-          <div class="rounded-[1.75rem] overflow-hidden border border-slate-200 bg-slate-50 shadow-sm">
-            <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=80" alt="Adventure Activities" class="h-48 w-full object-cover" />
-            <div class="space-y-3 p-6">
-              <p class="text-lg font-semibold text-slate-900">Adventure Activities</p>
-              <div class="grid gap-2 text-sm text-slate-600">
-                <p>Mountain Hiking</p>
-                <p>Rock Climbing</p>
-                <p>Rafting Excursion</p>
-              </div>
-            </div>
-          </div>
-          <div class="rounded-[1.75rem] overflow-hidden border border-slate-200 bg-slate-50 shadow-sm">
-            <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=900&q=80" alt="Cultural Exploration" class="h-48 w-full object-cover" />
-            <div class="space-y-3 p-6">
-              <p class="text-lg font-semibold text-slate-900">Cultural Exploration</p>
-              <div class="grid gap-2 text-sm text-slate-600">
-                <p>Temple Tours</p>
-                <p>Local Cuisine</p>
-                <p>Heritage Walks</p>
-              </div>
-            </div>
-          </div>
-          <div class="rounded-[1.75rem] overflow-hidden border border-slate-200 bg-slate-50 shadow-sm">
-            <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=80" alt="Wildlife safari" class="h-48 w-full object-cover" />
-            <div class="space-y-3 p-6">
-              <p class="text-lg font-semibold text-slate-900">Wildlife Experiences</p>
-              <div class="grid gap-2 text-sm text-slate-600">
-                <p>Safari Tours</p>
-                <p>Bird Watching</p>
-                <p>Nature Walks</p>
-              </div>
-            </div>
-          </div>
-          <div class="rounded-[1.75rem] overflow-hidden border border-slate-200 bg-slate-50 shadow-sm">
-            <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=80" alt="Relaxation Travel" class="h-48 w-full object-cover" />
-            <div class="space-y-3 p-6">
-              <p class="text-lg font-semibold text-slate-900">Relaxation Travel</p>
-              <div class="grid gap-2 text-sm text-slate-600">
-                <p>Spa Retreats</p>
-                <p>Beach Lounging</p>
-                <p>Yoga Sessions</p>
-              </div>
-            </div>
-          </div>
-          <div class="rounded-[1.75rem] overflow-hidden border border-slate-200 bg-slate-50 shadow-sm">
-            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="Wellness Tours" class="h-48 w-full object-cover" />
-            <div class="space-y-3 p-6">
-              <p class="text-lg font-semibold text-slate-900">Wellness Tours</p>
-              <div class="grid gap-2 text-sm text-slate-600">
-                <p>Meditation Retreats</p>
-                <p>Healthy Cuisine</p>
-                <p>Mindful Hikes</p>
-              </div>
-            </div>
-          </div>
-          <div class="rounded-[1.75rem] overflow-hidden border border-slate-200 bg-slate-50 shadow-sm">
-            <img src="https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?auto=format&fit=crop&w=900&q=80" alt="River Cruise" class="h-48 w-full object-cover" />
-            <div class="space-y-3 p-6">
-              <p class="text-lg font-semibold text-slate-900">River Cruise</p>
-              <div class="grid gap-2 text-sm text-slate-600">
-                <p>Luxury Journeys</p>
-                <p>Scenic Views</p>
-                <p>Onboard Dining</p>
-              </div>
+      </div>
+      <div id="activities-cards" class="grid gap-6 lg:grid-cols-3">
+        <div class="rounded-[1.75rem] overflow-hidden border border-slate-200 bg-slate-50 shadow-sm">
+          <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=80"
+            alt="Adventure Activities" class="h-48 w-full object-cover" />
+          <div class="space-y-3 p-6">
+            <p class="text-lg font-semibold text-slate-900">Adventure Activities</p>
+            <div class="grid gap-2 text-sm text-slate-600">
+              <p>Mountain Hiking</p>
+              <p>Rock Climbing</p>
+              <p>Rafting Excursion</p>
             </div>
           </div>
         </div>
-      </section>
-
-      <!-- Itinerary and traveler insights section -->
-      <section id="itineraries" class="mt-6 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-        <div class="rounded-[2rem] border border-slate-200 bg-white p-5 shadow-xl sm:p-6">
-          <div class="flex items-center justify-between">
-            <div>
-              <p id="itinerary-eyebrow" class="text-sm font-semibold text-cyan-600">Suggested plan</p>
-              <h3 id="itinerary-title" class="text-xl font-semibold text-slate-900">Your 3-day adventure</h3>
-            </div>
-            <span id="itinerary-badge" class="rounded-full bg-amber-50 px-3 py-1 text-sm font-semibold text-amber-600">Handpicked</span>
-          </div>
-          <div id="itinerary-list" class="mt-5 space-y-3"></div>
-        </div>
-
-        <div id="insights" class="rounded-[2rem] border border-slate-200 bg-slate-100 p-5 text-slate-900 shadow-xl sm:p-6">
-          <p id="insights-eyebrow" class="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300">Traveler insights</p>
-          <h3 id="insights-title" class="mt-2 text-2xl font-semibold">Why explorers love Velora</h3>
-          <div id="insights-cards" class="mt-6 grid gap-4 md:grid-cols-2">
-            <div class="rounded-[1.25rem] border border-white/10 bg-white/10 p-4">
-              <p class="text-3xl font-semibold">82%</p>
-              <p class="mt-1 text-sm text-slate-300">Of travelers save 20% by booking flexible packages.</p>
-            </div>
-            <div class="rounded-[1.25rem] border border-white/10 bg-white/10 p-4">
-              <p class="text-3xl font-semibold">15k+</p>
-              <p class="mt-1 text-sm text-slate-300">Local guides available across 40+ destinations.</p>
-            </div>
-            <div class="rounded-[1.25rem] border border-white/10 bg-white/10 p-4 md:col-span-2">
-              <p class="text-lg font-semibold">“Every plan felt personal and effortless.”</p>
-              <p class="mt-2 text-sm text-slate-300">— Mia, solo explorer</p>
+        <div class="rounded-[1.75rem] overflow-hidden border border-slate-200 bg-slate-50 shadow-sm">
+          <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=900&q=80"
+            alt="Cultural Exploration" class="h-48 w-full object-cover" />
+          <div class="space-y-3 p-6">
+            <p class="text-lg font-semibold text-slate-900">Cultural Exploration</p>
+            <div class="grid gap-2 text-sm text-slate-600">
+              <p>Temple Tours</p>
+              <p>Local Cuisine</p>
+              <p>Heritage Walks</p>
             </div>
           </div>
         </div>
-      </section>
-      <!-- ===================== -->
-<!--   FLOATING CHAT BTN   -->
-<!-- ===================== -->
-<button
-  id="chatToggleBtn"
-  class="fixed bottom-6 right-6 z-50 bg-blue-600 hover:bg-blue-700 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg focus:outline-none transition-all duration-300"
-  title="Open Chat"
->
-  <!-- Chat Icon -->
-  <svg id="iconOpen" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
-    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-    <path stroke-linecap="round" stroke-linejoin="round"
-      d="M8 10h.01M12 10h.01M16 10h.01M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z"/>
-  </svg>
-  <!-- Close Icon -->
-  <svg id="iconClose" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 hidden" fill="none"
-    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-  </svg>
-</button>
+        <div class="rounded-[1.75rem] overflow-hidden border border-slate-200 bg-slate-50 shadow-sm">
+          <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=80"
+            alt="Wildlife safari" class="h-48 w-full object-cover" />
+          <div class="space-y-3 p-6">
+            <p class="text-lg font-semibold text-slate-900">Wildlife Experiences</p>
+            <div class="grid gap-2 text-sm text-slate-600">
+              <p>Safari Tours</p>
+              <p>Bird Watching</p>
+              <p>Nature Walks</p>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-[1.75rem] overflow-hidden border border-slate-200 bg-slate-50 shadow-sm">
+          <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=80"
+            alt="Relaxation Travel" class="h-48 w-full object-cover" />
+          <div class="space-y-3 p-6">
+            <p class="text-lg font-semibold text-slate-900">Relaxation Travel</p>
+            <div class="grid gap-2 text-sm text-slate-600">
+              <p>Spa Retreats</p>
+              <p>Beach Lounging</p>
+              <p>Yoga Sessions</p>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-[1.75rem] overflow-hidden border border-slate-200 bg-slate-50 shadow-sm">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80"
+            alt="Wellness Tours" class="h-48 w-full object-cover" />
+          <div class="space-y-3 p-6">
+            <p class="text-lg font-semibold text-slate-900">Wellness Tours</p>
+            <div class="grid gap-2 text-sm text-slate-600">
+              <p>Meditation Retreats</p>
+              <p>Healthy Cuisine</p>
+              <p>Mindful Hikes</p>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-[1.75rem] overflow-hidden border border-slate-200 bg-slate-50 shadow-sm">
+          <img src="https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?auto=format&fit=crop&w=900&q=80"
+            alt="River Cruise" class="h-48 w-full object-cover" />
+          <div class="space-y-3 p-6">
+            <p class="text-lg font-semibold text-slate-900">River Cruise</p>
+            <div class="grid gap-2 text-sm text-slate-600">
+              <p>Luxury Journeys</p>
+              <p>Scenic Views</p>
+              <p>Onboard Dining</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<!-- ===================== -->
-<!--     CHAT WINDOW       -->
-<!-- ===================== -->
-<div
-  id="chatWindow"
-  class="hidden fixed bottom-24 right-6 z-50 w-80 sm:w-96 h-[520px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-gray-200 transition-all duration-300 opacity-0 scale-95 origin-bottom-right"
->
-  <!-- Header -->
-  <div class="bg-blue-600 text-white px-4 py-3 flex items-center justify-between shrink-0">
-    <div class="flex items-center gap-2">
-      <div class="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse"></div>
-      <span class="font-semibold text-sm">Chat Assistant</span>
-    </div>
-    <div class="flex items-center gap-2">
-      <button id="chatFullBtn" class="text-white hover:text-gray-200 focus:outline-none" title="Occupy half screen">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M9 3H4v5"/>
-          <path d="M4 4l7 7"/>
-          <path d="M15 21h5v-5"/>
-          <path d="M20 20l-7-7"/>
-        </svg>
-      </button>
-      <button id="chatCloseBtn" class="text-white hover:text-gray-200 focus:outline-none">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
-          viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-        </svg>
-      </button>
-    </div>
-  </div>
+    <!-- Itinerary and traveler insights section -->
+    <section id="itineraries" class="mt-6 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+      <div class="rounded-[2rem] border border-slate-200 bg-white p-5 shadow-xl sm:p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p id="itinerary-eyebrow" class="text-sm font-semibold text-cyan-600">Suggested plan</p>
+            <h3 id="itinerary-title" class="text-xl font-semibold text-slate-900">Your 3-day adventure</h3>
+          </div>
+          <span id="itinerary-badge"
+            class="rounded-full bg-amber-50 px-3 py-1 text-sm font-semibold text-amber-600">Handpicked</span>
+        </div>
+        <div id="itinerary-list" class="mt-5 space-y-3"></div>
+      </div>
 
-  <!-- Messages Area -->
-  <div
-    id="messagesContainer"
-    class="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50 scrollbar-thin"
-  >
-    <!-- Messages injected by JS -->
-  </div>
-
-  <!-- Input Area -->
-  <div class="px-3 py-3 border-t border-gray-200 bg-white flex items-center gap-2 shrink-0">
-    <input
-      id="userInput"
-      type="text"
-      placeholder="Type a message..."
-      class="flex-1 text-sm border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-    />
-    <button
-      id="sendBtn"
-      class="bg-blue-600 hover:bg-blue-700 text-white rounded-full w-9 h-9 flex items-center justify-center transition-colors focus:outline-none shadow"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 rotate-90" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+      <div id="insights"
+        class="rounded-[2rem] border border-slate-200 bg-slate-100 p-5 text-slate-900 shadow-xl sm:p-6">
+        <p id="insights-eyebrow" class="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300">Traveler
+          insights</p>
+        <h3 id="insights-title" class="mt-2 text-2xl font-semibold">Why explorers love Velora</h3>
+        <div id="insights-cards" class="mt-6 grid gap-4 md:grid-cols-2">
+          <div class="rounded-[1.25rem] border border-white/10 bg-white/10 p-4">
+            <p class="text-3xl font-semibold">82%</p>
+            <p class="mt-1 text-sm text-slate-300">Of travelers save 20% by booking flexible packages.</p>
+          </div>
+          <div class="rounded-[1.25rem] border border-white/10 bg-white/10 p-4">
+            <p class="text-3xl font-semibold">15k+</p>
+            <p class="mt-1 text-sm text-slate-300">Local guides available across 40+ destinations.</p>
+          </div>
+          <div class="rounded-[1.25rem] border border-white/10 bg-white/10 p-4 md:col-span-2">
+            <p class="text-lg font-semibold">“Every plan felt personal and effortless.”</p>
+            <p class="mt-2 text-sm text-slate-300">— Mia, solo explorer</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ===================== -->
+    <!--   FLOATING CHAT BTN   -->
+    <!-- ===================== -->
+    <button id="chatToggleBtn"
+      class="fixed bottom-6 right-6 z-50 bg-blue-600 hover:bg-blue-700 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg focus:outline-none transition-all duration-300"
+      title="Open Chat">
+      <!-- Chat Icon -->
+      <svg id="iconOpen" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M8 10h.01M12 10h.01M16 10h.01M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" />
+      </svg>
+      <!-- Close Icon -->
+      <svg id="iconClose" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
       </svg>
     </button>
-  </div>
-</div>
 
-      <!-- Flight offer deals section -->
-      <section class="mt-10 rounded-[2rem] bg-white p-6 shadow-xl sm:p-8">
-        <div class="mx-auto max-w-6xl">
-          <div class="text-center">
-            <p id="offers-eyebrow" class="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-600">Flight Offer Deals</p>
-            <h2 id="offers-title" class="mt-3 text-3xl font-semibold text-slate-900">Competitive fares for your route-specific searches.</h2>
-          </div>
-
-          <div id="offers-grid" class="mt-8 grid gap-6 lg:grid-cols-2">
-            <article class="group overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-50 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
-              <div class="relative overflow-hidden rounded-t-[2rem]">
-                <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=80" alt="Statue of Liberty" class="h-56 w-full object-cover transition duration-500 group-hover:scale-105" />
-                <button class="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white bg-white/90 text-slate-900 shadow-sm transition hover:bg-white">
-                  <span class="text-lg">♥</span>
-                </button>
-              </div>
-              <div class="p-6 sm:p-7">
-                <div class="flex flex-wrap items-center justify-between gap-4 text-sm text-slate-500">
-                  <span>09 Jun 2024</span>
-                  <span>16 Jun 2024</span>
-                </div>
-                <div class="mt-5 grid gap-4 md:grid-cols-2">
-                  <div class="rounded-[1.5rem] bg-white p-4 shadow-sm">
-                    <p class="text-sm uppercase tracking-[0.2em] text-slate-500">Denmark</p>
-                    <p class="mt-2 text-lg font-semibold text-slate-900">New York</p>
-                    <p class="mt-2 text-sm text-slate-500">Business</p>
-                  </div>
-                  <div class="rounded-[1.5rem] bg-white p-4 shadow-sm">
-                    <p class="text-sm uppercase tracking-[0.2em] text-slate-500">Business</p>
-                    <p class="mt-2 text-2xl font-semibold text-slate-900">$288.15</p>
-                  </div>
-                </div>
-                <div class="mt-5 flex flex-wrap items-center justify-between gap-4">
-                  <span class="text-sm text-slate-500">18 Seats left</span>
-                  <button class="rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">Book Now</button>
-                </div>
-              </div>
-            </article>
-
-            <article class="group overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-50 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
-              <div class="relative overflow-hidden rounded-t-[2rem]">
-                <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80" alt="European city" class="h-56 w-full object-cover transition duration-500 group-hover:scale-105" />
-                <button class="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white bg-white/90 text-slate-900 shadow-sm transition hover:bg-white">
-                  <span class="text-lg">♥</span>
-                </button>
-              </div>
-              <div class="p-6 sm:p-7">
-                <div class="flex flex-wrap items-center justify-between gap-4 text-sm text-slate-500">
-                  <span>09 Jun 2024</span>
-                  <span>16 Jun 2024</span>
-                </div>
-                <div class="mt-5 grid gap-4 md:grid-cols-2">
-                  <div class="rounded-[1.5rem] bg-white p-4 shadow-sm">
-                    <p class="text-sm uppercase tracking-[0.2em] text-slate-500">Denmark</p>
-                    <p class="mt-2 text-lg font-semibold text-slate-900">New York</p>
-                    <p class="mt-2 text-sm text-slate-500">Business</p>
-                  </div>
-                  <div class="rounded-[1.5rem] bg-white p-4 shadow-sm">
-                    <p class="text-sm uppercase tracking-[0.2em] text-slate-500">Business</p>
-                    <p class="mt-2 text-2xl font-semibold text-slate-900">$288.15</p>
-                  </div>
-                </div>
-                <div class="mt-5 flex flex-wrap items-center justify-between gap-4">
-                  <span class="text-sm text-slate-500">18 Seats left</span>
-                  <button class="rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">Book Now</button>
-                </div>
-              </div>
-            </article>
-
-            <article class="group overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-50 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
-              <div class="relative overflow-hidden rounded-t-[2rem]">
-                <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=900&q=80" alt="City skyline" class="h-56 w-full object-cover transition duration-500 group-hover:scale-105" />
-                <button class="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white bg-white/90 text-slate-900 shadow-sm transition hover:bg-white">
-                  <span class="text-lg">♥</span>
-                </button>
-              </div>
-              <div class="p-6 sm:p-7">
-                <div class="flex flex-wrap items-center justify-between gap-4 text-sm text-slate-500">
-                  <span>09 Jun 2024</span>
-                  <span>16 Jun 2024</span>
-                </div>
-                <div class="mt-5 grid gap-4 md:grid-cols-2">
-                  <div class="rounded-[1.5rem] bg-white p-4 shadow-sm">
-                    <p class="text-sm uppercase tracking-[0.2em] text-slate-500">Denmark</p>
-                    <p class="mt-2 text-lg font-semibold text-slate-900">New York</p>
-                    <p class="mt-2 text-sm text-slate-500">Business</p>
-                  </div>
-                  <div class="rounded-[1.5rem] bg-white p-4 shadow-sm">
-                    <p class="text-sm uppercase tracking-[0.2em] text-slate-500">Business</p>
-                    <p class="mt-2 text-2xl font-semibold text-slate-900">$288.15</p>
-                  </div>
-                </div>
-                <div class="mt-5 flex flex-wrap items-center justify-between gap-4">
-                  <span class="text-sm text-slate-500">18 Seats left</span>
-                  <button class="rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">Book Now</button>
-                </div>
-              </div>
-            </article>
-
-            <article class="group overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-50 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
-              <div class="relative overflow-hidden rounded-t-[2rem]">
-                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80" alt="City landmarks" class="h-56 w-full object-cover transition duration-500 group-hover:scale-105" />
-                <button class="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white bg-white/90 text-slate-900 shadow-sm transition hover:bg-white">
-                  <span class="text-lg">♥</span>
-                </button>
-              </div>
-              <div class="p-6 sm:p-7">
-                <div class="flex flex-wrap items-center justify-between gap-4 text-sm text-slate-500">
-                  <span>09 Jun 2024</span>
-                  <span>16 Jun 2024</span>
-                </div>
-                <div class="mt-5 grid gap-4 md:grid-cols-2">
-                  <div class="rounded-[1.5rem] bg-white p-4 shadow-sm">
-                    <p class="text-sm uppercase tracking-[0.2em] text-slate-500">Denmark</p>
-                    <p class="mt-2 text-lg font-semibold text-slate-900">New York</p>
-                    <p class="mt-2 text-sm text-slate-500">Business</p>
-                  </div>
-                  <div class="rounded-[1.5rem] bg-white p-4 shadow-sm">
-                    <p class="text-sm uppercase tracking-[0.2em] text-slate-500">Business</p>
-                    <p class="mt-2 text-2xl font-semibold text-slate-900">$288.15</p>
-                  </div>
-                </div>
-                <div class="mt-5 flex flex-wrap items-center justify-between gap-4">
-                  <span class="text-sm text-slate-500">18 Seats left</span>
-                  <button class="rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">Book Now</button>
-                </div>
-              </div>
-            </article>
-          </div>
-
-          <div class="mt-8 flex justify-center gap-3" aria-label="Carousel pagination">
-            <button type="button" class="h-3 w-3 rounded-full bg-slate-300 transition hover:bg-slate-400" aria-label="Go to slide 1"></button>
-            <button type="button" class="h-3 w-3 rounded-full bg-slate-300 transition hover:bg-slate-400" aria-label="Go to slide 2"></button>
-            <button type="button" class="h-3 w-3 rounded-full bg-slate-300 transition hover:bg-slate-400" aria-label="Go to slide 3"></button>
-          </div>
+    <!-- ===================== -->
+    <!--     CHAT WINDOW       -->
+    <!-- ===================== -->
+    <div id="chatWindow"
+      class="hidden fixed bottom-24 right-6 z-50 w-80 sm:w-96 h-[520px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-gray-200 transition-all duration-300 opacity-0 scale-95 origin-bottom-right">
+      <!-- Header -->
+      <div class="bg-blue-600 text-white px-4 py-3 flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-2">
+          <div class="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse"></div>
+          <span class="font-semibold text-sm">Chat Assistant</span>
         </div>
-      </section>
+        <div class="flex items-center gap-2">
+          <button id="chatFullBtn" class="text-white hover:text-gray-200 focus:outline-none" title="Occupy half screen">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 3H4v5" />
+              <path d="M4 4l7 7" />
+              <path d="M15 21h5v-5" />
+              <path d="M20 20l-7-7" />
+            </svg>
+          </button>
+          <button id="chatCloseBtn" class="text-white hover:text-gray-200 focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
 
-      <!-- Client testimonials section -->
-      <section class="mt-10 rounded-[2rem] bg-slate-100 p-6 shadow-xl sm:p-8">
-        <div class="mx-auto max-w-6xl">
-          <div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-            <div class="space-y-5">
-              <span class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm">
-                <span class="h-8 w-8 rounded-full bg-slate-200"></span>
-                testimonials
-              </span>
-              <h2 id="testimonials-title" class="text-4xl font-semibold text-slate-950">What our clients are saying about us?</h2>
-              <p id="testimonials-description" class="max-w-xl text-base leading-8 text-slate-600">Discover how you can offset your adventure’s carbon emissions and support the sustainable initiatives practiced by our operators worldwide.</p>
+      <!-- Messages Area -->
+      <div id="messagesContainer" class="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50 scrollbar-thin">
+        <!-- Messages injected by JS -->
+      </div>
+
+      <!-- Input Area -->
+      <div class="px-3 py-3 border-t border-gray-200 bg-white flex items-center gap-2 shrink-0">
+        <input id="userInput" type="text" placeholder="Type a message..."
+          class="flex-1 text-sm border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        <button id="sendBtn"
+          class="bg-blue-600 hover:bg-blue-700 text-white rounded-full w-9 h-9 flex items-center justify-center transition-colors focus:outline-none shadow">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 rotate-90" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Flight offer deals section -->
+    <section class="mt-10 rounded-[2rem] bg-white p-6 shadow-xl sm:p-8">
+      <div class="mx-auto max-w-6xl">
+        <div class="text-center">
+          <p id="offers-eyebrow" class="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-600">Flight Offer
+            Deals</p>
+          <h2 id="offers-title" class="mt-3 text-3xl font-semibold text-slate-900">Competitive fares for your
+            route-specific searches.</h2>
+        </div>
+
+        <div id="offers-grid" class="mt-8 grid gap-6 lg:grid-cols-2">
+          <article
+            class="group overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-50 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+            <div class="relative overflow-hidden rounded-t-[2rem]">
+              <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=900&q=80"
+                alt="Statue of Liberty"
+                class="h-56 w-full object-cover transition duration-500 group-hover:scale-105" />
+              <button
+                class="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white bg-white/90 text-slate-900 shadow-sm transition hover:bg-white">
+                <span class="text-lg">♥</span>
+              </button>
             </div>
-
-            <div class="space-y-6">
-              <div id="testimonials-grid" class="grid gap-6 md:grid-cols-2">
-                <article class="rounded-[2rem] bg-white p-6 shadow-sm">
-                  <div class="flex items-center gap-4">
-                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80" alt="Sara Mohamed" class="h-16 w-16 rounded-full object-cover" />
-                    <div>
-                      <p class="text-lg font-semibold text-slate-900">Sara Mohamed</p>
-                      <p class="text-sm text-slate-500">Jakarta</p>
-                    </div>
-                  </div>
-                  <div class="mt-4 flex items-center gap-1 text-amber-400">
-                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                  </div>
-                  <p class="mt-4 text-sm leading-7 text-slate-600">I’ve been using the hotel booking system for several years now, and it’s become my go-to platform for planning my trips. The interface is user-friendly, and I appreciate the detailed information and real-time availability of hotels.</p>
-                </article>
-
-                <article class="rounded-[2rem] bg-white p-6 shadow-sm">
-                  <div class="flex items-center gap-4">
-                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80" alt="Atend John" class="h-16 w-16 rounded-full object-cover" />
-                    <div>
-                      <p class="text-lg font-semibold text-slate-900">Atend John</p>
-                      <p class="text-sm text-slate-500">California</p>
-                    </div>
-                  </div>
-                  <div class="mt-4 flex items-center gap-1 text-amber-400">
-                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                  </div>
-                  <p class="mt-4 text-sm leading-7 text-slate-600">I had a last-minute business trip, and the hotel booking system came to the rescue. I was able to find a high-quality hotel in no time and even got a great deal on the room.</p>
-                </article>
+            <div class="p-6 sm:p-7">
+              <div class="flex flex-wrap items-center justify-between gap-4 text-sm text-slate-500">
+                <span>09 Jun 2024</span>
+                <span>16 Jun 2024</span>
+              </div>
+              <div class="mt-5 grid gap-4 md:grid-cols-2">
+                <div class="rounded-[1.5rem] bg-white p-4 shadow-sm">
+                  <p class="text-sm uppercase tracking-[0.2em] text-slate-500">Denmark</p>
+                  <p class="mt-2 text-lg font-semibold text-slate-900">New York</p>
+                  <p class="mt-2 text-sm text-slate-500">Business</p>
+                </div>
+                <div class="rounded-[1.5rem] bg-white p-4 shadow-sm">
+                  <p class="text-sm uppercase tracking-[0.2em] text-slate-500">Business</p>
+                  <p class="mt-2 text-2xl font-semibold text-slate-900">$288.15</p>
+                </div>
+              </div>
+              <div class="mt-5 flex flex-wrap items-center justify-between gap-4">
+                <span class="text-sm text-slate-500">18 Seats left</span>
+                <button
+                  class="rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">Book
+                  Now</button>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </article>
 
-      <!-- Newsletter sign-up section -->
-      <section class="mt-10 rounded-[2.5rem] bg-sky-100 p-6 shadow-xl sm:p-8">
-        <div class="mx-auto grid gap-8 lg:grid-cols-2 lg:items-center max-w-7xl">
+          <article
+            class="group overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-50 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+            <div class="relative overflow-hidden rounded-t-[2rem]">
+              <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80"
+                alt="European city" class="h-56 w-full object-cover transition duration-500 group-hover:scale-105" />
+              <button
+                class="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white bg-white/90 text-slate-900 shadow-sm transition hover:bg-white">
+                <span class="text-lg">♥</span>
+              </button>
+            </div>
+            <div class="p-6 sm:p-7">
+              <div class="flex flex-wrap items-center justify-between gap-4 text-sm text-slate-500">
+                <span>09 Jun 2024</span>
+                <span>16 Jun 2024</span>
+              </div>
+              <div class="mt-5 grid gap-4 md:grid-cols-2">
+                <div class="rounded-[1.5rem] bg-white p-4 shadow-sm">
+                  <p class="text-sm uppercase tracking-[0.2em] text-slate-500">Denmark</p>
+                  <p class="mt-2 text-lg font-semibold text-slate-900">New York</p>
+                  <p class="mt-2 text-sm text-slate-500">Business</p>
+                </div>
+                <div class="rounded-[1.5rem] bg-white p-4 shadow-sm">
+                  <p class="text-sm uppercase tracking-[0.2em] text-slate-500">Business</p>
+                  <p class="mt-2 text-2xl font-semibold text-slate-900">$288.15</p>
+                </div>
+              </div>
+              <div class="mt-5 flex flex-wrap items-center justify-between gap-4">
+                <span class="text-sm text-slate-500">18 Seats left</span>
+                <button
+                  class="rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">Book
+                  Now</button>
+              </div>
+            </div>
+          </article>
+
+          <article
+            class="group overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-50 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+            <div class="relative overflow-hidden rounded-t-[2rem]">
+              <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=900&q=80"
+                alt="City skyline" class="h-56 w-full object-cover transition duration-500 group-hover:scale-105" />
+              <button
+                class="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white bg-white/90 text-slate-900 shadow-sm transition hover:bg-white">
+                <span class="text-lg">♥</span>
+              </button>
+            </div>
+            <div class="p-6 sm:p-7">
+              <div class="flex flex-wrap items-center justify-between gap-4 text-sm text-slate-500">
+                <span>09 Jun 2024</span>
+                <span>16 Jun 2024</span>
+              </div>
+              <div class="mt-5 grid gap-4 md:grid-cols-2">
+                <div class="rounded-[1.5rem] bg-white p-4 shadow-sm">
+                  <p class="text-sm uppercase tracking-[0.2em] text-slate-500">Denmark</p>
+                  <p class="mt-2 text-lg font-semibold text-slate-900">New York</p>
+                  <p class="mt-2 text-sm text-slate-500">Business</p>
+                </div>
+                <div class="rounded-[1.5rem] bg-white p-4 shadow-sm">
+                  <p class="text-sm uppercase tracking-[0.2em] text-slate-500">Business</p>
+                  <p class="mt-2 text-2xl font-semibold text-slate-900">$288.15</p>
+                </div>
+              </div>
+              <div class="mt-5 flex flex-wrap items-center justify-between gap-4">
+                <span class="text-sm text-slate-500">18 Seats left</span>
+                <button
+                  class="rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">Book
+                  Now</button>
+              </div>
+            </div>
+          </article>
+
+          <article
+            class="group overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-50 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+            <div class="relative overflow-hidden rounded-t-[2rem]">
+              <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80"
+                alt="City landmarks" class="h-56 w-full object-cover transition duration-500 group-hover:scale-105" />
+              <button
+                class="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white bg-white/90 text-slate-900 shadow-sm transition hover:bg-white">
+                <span class="text-lg">♥</span>
+              </button>
+            </div>
+            <div class="p-6 sm:p-7">
+              <div class="flex flex-wrap items-center justify-between gap-4 text-sm text-slate-500">
+                <span>09 Jun 2024</span>
+                <span>16 Jun 2024</span>
+              </div>
+              <div class="mt-5 grid gap-4 md:grid-cols-2">
+                <div class="rounded-[1.5rem] bg-white p-4 shadow-sm">
+                  <p class="text-sm uppercase tracking-[0.2em] text-slate-500">Denmark</p>
+                  <p class="mt-2 text-lg font-semibold text-slate-900">New York</p>
+                  <p class="mt-2 text-sm text-slate-500">Business</p>
+                </div>
+                <div class="rounded-[1.5rem] bg-white p-4 shadow-sm">
+                  <p class="text-sm uppercase tracking-[0.2em] text-slate-500">Business</p>
+                  <p class="mt-2 text-2xl font-semibold text-slate-900">$288.15</p>
+                </div>
+              </div>
+              <div class="mt-5 flex flex-wrap items-center justify-between gap-4">
+                <span class="text-sm text-slate-500">18 Seats left</span>
+                <button
+                  class="rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">Book
+                  Now</button>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="mt-8 flex justify-center gap-3" aria-label="Carousel pagination">
+          <button type="button" class="h-3 w-3 rounded-full bg-slate-300 transition hover:bg-slate-400"
+            aria-label="Go to slide 1"></button>
+          <button type="button" class="h-3 w-3 rounded-full bg-slate-300 transition hover:bg-slate-400"
+            aria-label="Go to slide 2"></button>
+          <button type="button" class="h-3 w-3 rounded-full bg-slate-300 transition hover:bg-slate-400"
+            aria-label="Go to slide 3"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Client testimonials section -->
+    <section class="mt-10 rounded-[2rem] bg-slate-100 p-6 shadow-xl sm:p-8">
+      <div class="mx-auto max-w-6xl">
+        <div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+          <div class="space-y-5">
+            <span
+              class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm">
+              <span class="h-8 w-8 rounded-full bg-slate-200"></span>
+              testimonials
+            </span>
+            <h2 id="testimonials-title" class="text-4xl font-semibold text-slate-950">What our clients are saying about
+              us?</h2>
+            <p id="testimonials-description" class="max-w-xl text-base leading-8 text-slate-600">Discover how you can
+              offset your adventure’s carbon emissions and support the sustainable initiatives practiced by our
+              operators worldwide.</p>
+          </div>
+
           <div class="space-y-6">
-            <span id="newsletter-eyebrow" class="inline-flex rounded-full bg-yellow-300 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-slate-900">Join our newsletter</span>
-            <div class="max-w-xl space-y-4">
-              <h2 id="newsletter-title" class="text-4xl font-semibold text-slate-950">Subscribe to see secret deals prices drop the moment you sign up!</h2>
-              <p id="newsletter-description" class="text-sm text-slate-600">No ads. No trails. No commitments.</p>
+            <div id="testimonials-grid" class="grid gap-6 md:grid-cols-2">
+              <article class="rounded-[2rem] bg-white p-6 shadow-sm">
+                <div class="flex items-center gap-4">
+                  <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80"
+                    alt="Sara Mohamed" class="h-16 w-16 rounded-full object-cover" />
+                  <div>
+                    <p class="text-lg font-semibold text-slate-900">Sara Mohamed</p>
+                    <p class="text-sm text-slate-500">Jakarta</p>
+                  </div>
+                </div>
+                <div class="mt-4 flex items-center gap-1 text-amber-400">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+                <p class="mt-4 text-sm leading-7 text-slate-600">I’ve been using the hotel booking system for several
+                  years now, and it’s become my go-to platform for planning my trips. The interface is user-friendly,
+                  and I appreciate the detailed information and real-time availability of hotels.</p>
+              </article>
+
+              <article class="rounded-[2rem] bg-white p-6 shadow-sm">
+                <div class="flex items-center gap-4">
+                  <img
+                    src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80"
+                    alt="Atend John" class="h-16 w-16 rounded-full object-cover" />
+                  <div>
+                    <p class="text-lg font-semibold text-slate-900">Atend John</p>
+                    <p class="text-sm text-slate-500">California</p>
+                  </div>
+                </div>
+                <div class="mt-4 flex items-center gap-1 text-amber-400">
+                  <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+                <p class="mt-4 text-sm leading-7 text-slate-600">I had a last-minute business trip, and the hotel
+                  booking system came to the rescue. I was able to find a high-quality hotel in no time and even got a
+                  great deal on the room.</p>
+              </article>
             </div>
-            <form id="newsletter-form" class="flex flex-col gap-3 sm:flex-row sm:items-center">
-              <label class="sr-only" for="newsletter-email">Your Email</label>
-              <input id="newsletter-email" type="email" placeholder="Your Email" class="w-full rounded-full border border-slate-200 bg-white px-5 py-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-cyan-400 focus:ring-2 focus:ring-cyan-200 sm:flex-1" required />
-              <button id="newsletter-submit-button" type="submit" class="inline-flex h-12 items-center justify-center rounded-full bg-slate-950 px-7 text-sm font-semibold text-white transition hover:bg-slate-800">Subscribe</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter sign-up section -->
+    <section class="mt-10 rounded-[2.5rem] bg-sky-100 p-6 shadow-xl sm:p-8">
+      <div class="mx-auto grid gap-8 lg:grid-cols-2 lg:items-center max-w-7xl">
+        <div class="space-y-6">
+          <span id="newsletter-eyebrow"
+            class="inline-flex rounded-full bg-yellow-300 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-slate-900">Join
+            our newsletter</span>
+          <div class="max-w-xl space-y-4">
+            <h2 id="newsletter-title" class="text-4xl font-semibold text-slate-950">Subscribe to see secret deals prices
+              drop the moment you sign up!</h2>
+            <p id="newsletter-description" class="text-sm text-slate-600">No ads. No trails. No commitments.</p>
+          </div>
+          <form id="newsletter-form" class="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <label class="sr-only" for="newsletter-email">Your Email</label>
+            <input id="newsletter-email" type="email" placeholder="Your Email"
+              class="w-full rounded-full border border-slate-200 bg-white px-5 py-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-cyan-400 focus:ring-2 focus:ring-cyan-200 sm:flex-1"
+              required />
+            <button id="newsletter-submit-button" type="submit"
+              class="inline-flex h-12 items-center justify-center rounded-full bg-slate-950 px-7 text-sm font-semibold text-white transition hover:bg-slate-800">Subscribe</button>
+          </form>
+        </div>
+
+        <div class="overflow-hidden rounded-[2.25rem] bg-white shadow-lg">
+          <img id="newsletter-image"
+            src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80"
+            alt="Resort pool" class="h-full w-full object-cover" />
+        </div>
+      </div>
+    </section>
+
+    <div id="newsletter-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 px-4 py-8">
+      <div class="absolute inset-0" id="close-newsletter-modal"></div>
+      <div class="relative w-full max-w-lg rounded-[2rem] bg-white p-6 text-slate-900 shadow-2xl sm:p-8">
+        <button id="close-newsletter-button"
+          class="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-700 transition hover:bg-slate-200">×</button>
+        <div class="space-y-4">
+          <p class="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-600">Subscribed</p>
+          <h2 class="text-3xl font-semibold text-slate-950">You're on the list!</h2>
+          <p class="text-sm text-slate-600">Thanks for subscribing. We’ll send great deals to <span
+              id="newsletter-email-confirmation" class="font-semibold text-slate-900"></span>.</p>
+        </div>
+        <div class="mt-6 text-right">
+          <button id="newsletter-ok-button"
+            class="inline-flex h-12 items-center justify-center rounded-full bg-cyan-600 px-6 text-sm font-semibold text-white transition hover:bg-cyan-500">OK</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer section -->
+    <footer class="mt-16 border-t border-slate-200 bg-white py-16">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[2fr_1fr_1fr_1fr_1fr_1.5fr]">
+          <!-- Logo -->
+          <div class="space-y-5">
+            <div class="flex items-center gap-3">
+              <div
+                class="flex h-14 w-14 items-center justify-center rounded-full bg-slate-900 text-xl font-bold text-white shadow">
+                T
+              </div>
+
+              <div>
+                <p id="footer-brand" class="text-2xl font-bold text-slate-900">
+                  Travila
+                </p>
+              </div>
+            </div>
+
+            <p id="footer-description" class="max-w-sm text-sm leading-7 text-slate-600">
+              Dive into local recommendations for a truly authentic travel
+              experience. Discover handpicked destinations, hotels, and adventures
+              around the world.
+            </p>
+
+            <div class="flex items-start gap-3">
+              <div class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100">
+                ☎
+              </div>
+
+              <div>
+                <p id="footer-phone-label" class="text-sm font-medium text-slate-500">
+                  Need help? Call us
+                </p>
+
+                <p id="footer-phone-number" class="text-lg font-bold text-amber-500">
+                  1-800-222-8888
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Company -->
+          <div>
+            <h3 class="mb-5 text-sm font-bold uppercase tracking-[0.2em] text-slate-500">
+              Company
+            </h3>
+
+            <ul class="space-y-3 text-sm text-slate-600">
+              <li><a href="#" class="transition hover:text-slate-900">About Us</a></li>
+              <li><a href="#" class="transition hover:text-slate-900">Community Blog</a></li>
+              <li><a href="#" class="transition hover:text-slate-900">Jobs & Careers</a></li>
+              <li><a href="#" class="transition hover:text-slate-900">Contact Us</a></li>
+              <li><a href="#" class="transition hover:text-slate-900">Our Awards</a></li>
+            </ul>
+          </div>
+
+          <!-- Services -->
+          <div>
+            <h3 class="mb-5 text-sm font-bold uppercase tracking-[0.2em] text-slate-500">
+              Services
+            </h3>
+
+            <ul class="space-y-3 text-sm text-slate-600">
+              <li><a href="#" class="transition hover:text-slate-900">Tour Guide</a></li>
+              <li><a href="#" class="transition hover:text-slate-900">Tour Booking</a></li>
+              <li><a href="#" class="transition hover:text-slate-900">Hotel Booking</a></li>
+              <li><a href="#" class="transition hover:text-slate-900">Ticket Booking</a></li>
+              <li><a href="#" class="transition hover:text-slate-900">Rental Services</a></li>
+            </ul>
+          </div>
+
+          <!-- Legal -->
+          <div>
+            <h3 class="mb-5 text-sm font-bold uppercase tracking-[0.2em] text-slate-500">
+              Legal
+            </h3>
+
+            <ul class="space-y-3 text-sm text-slate-600">
+              <li><a href="#" class="transition hover:text-slate-900">Terms of Service</a></li>
+              <li><a href="#" class="transition hover:text-slate-900">Privacy Policy</a></li>
+              <li><a href="#" class="transition hover:text-slate-900">Cookies Policy</a></li>
+              <li><a href="#" class="transition hover:text-slate-900">Data Processing</a></li>
+              <li><a href="#" class="transition hover:text-slate-900">Data Policy</a></li>
+            </ul>
+          </div>
+
+          <!-- Support -->
+          <div>
+            <h3 class="mb-5 text-sm font-bold uppercase tracking-[0.2em] text-slate-500">
+              Support
+            </h3>
+
+            <ul class="space-y-3 text-sm text-slate-600">
+              <li><a href="#" class="transition hover:text-slate-900">Forum Support</a></li>
+              <li><a href="#" class="transition hover:text-slate-900">Help Center</a></li>
+              <li><a href="#" class="transition hover:text-slate-900">How It Works</a></li>
+              <li><a href="#" class="transition hover:text-slate-900">Security</a></li>
+            </ul>
+          </div>
+
+          <!-- Newsletter -->
+          <div class="space-y-5">
+            <h3 class="text-sm font-bold uppercase tracking-[0.2em] text-slate-500">
+              Newsletter
+            </h3>
+
+            <p class="text-sm leading-6 text-slate-600">
+              Subscribe to receive travel deals, destination guides, and exclusive
+              offers.
+            </p>
+
+            <form class="space-y-3">
+              <div class="relative">
+                <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-slate-400">
+                  ✉
+                </span>
+
+                <input id="footer-email" type="email" placeholder="Enter your email"
+                  class="w-full rounded-full border border-slate-200 py-3 pl-11 pr-4 text-sm outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200" />
+              </div>
+
+              <button type="submit"
+                class="w-full rounded-full bg-yellow-300 py-3 font-semibold text-slate-900 transition hover:bg-yellow-400">
+                Subscribe
+              </button>
             </form>
           </div>
-
-          <div class="overflow-hidden rounded-[2.25rem] bg-white shadow-lg">
-            <img id="newsletter-image" src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80" alt="Resort pool" class="h-full w-full object-cover" />
-          </div>
-        </div>
-      </section>
-
-      <div id="newsletter-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 px-4 py-8">
-        <div class="absolute inset-0" id="close-newsletter-modal"></div>
-        <div class="relative w-full max-w-lg rounded-[2rem] bg-white p-6 text-slate-900 shadow-2xl sm:p-8">
-          <button id="close-newsletter-button" class="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-700 transition hover:bg-slate-200">×</button>
-          <div class="space-y-4">
-            <p class="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-600">Subscribed</p>
-            <h2 class="text-3xl font-semibold text-slate-950">You're on the list!</h2>
-            <p class="text-sm text-slate-600">Thanks for subscribing. We’ll send great deals to <span id="newsletter-email-confirmation" class="font-semibold text-slate-900"></span>.</p>
-          </div>
-          <div class="mt-6 text-right">
-            <button id="newsletter-ok-button" class="inline-flex h-12 items-center justify-center rounded-full bg-cyan-600 px-6 text-sm font-semibold text-white transition hover:bg-cyan-500">OK</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Footer section -->
-      <footer class="mt-16 border-t border-slate-200 bg-white py-16">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div
-      class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[2fr_1fr_1fr_1fr_1fr_1.5fr]"
-    >
-      <!-- Logo -->
-      <div class="space-y-5">
-        <div class="flex items-center gap-3">
-          <div
-            class="flex h-14 w-14 items-center justify-center rounded-full bg-slate-900 text-xl font-bold text-white shadow"
-          >
-            T
-          </div>
-
-          <div>
-            <p
-              id="footer-brand"
-              class="text-2xl font-bold text-slate-900"
-            >
-              Travila
-            </p>
-          </div>
         </div>
 
-        <p
-          id="footer-description"
-          class="max-w-sm text-sm leading-7 text-slate-600"
-        >
-          Dive into local recommendations for a truly authentic travel
-          experience. Discover handpicked destinations, hotels, and adventures
-          around the world.
-        </p>
+        <!-- Bottom -->
+        <div
+          class="mt-12 flex flex-col gap-4 border-t border-slate-200 pt-6 text-center text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:text-left">
+          <p id="footer-copyright">
+            © 2024 Travila Inc. All rights reserved.
+          </p>
 
-        <div class="flex items-start gap-3">
-          <div
-            class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100"
-          >
-            ☎
-          </div>
-
-          <div>
-            <p
-              id="footer-phone-label"
-              class="text-sm font-medium text-slate-500"
-            >
-              Need help? Call us
-            </p>
-
-            <p
-              id="footer-phone-number"
-              class="text-lg font-bold text-amber-500"
-            >
-              1-800-222-8888
-            </p>
-          </div>
+          <p>Follow us</p>
         </div>
       </div>
-
-      <!-- Company -->
-      <div>
-        <h3
-          class="mb-5 text-sm font-bold uppercase tracking-[0.2em] text-slate-500"
-        >
-          Company
-        </h3>
-
-        <ul class="space-y-3 text-sm text-slate-600">
-          <li><a href="#" class="transition hover:text-slate-900">About Us</a></li>
-          <li><a href="#" class="transition hover:text-slate-900">Community Blog</a></li>
-          <li><a href="#" class="transition hover:text-slate-900">Jobs & Careers</a></li>
-          <li><a href="#" class="transition hover:text-slate-900">Contact Us</a></li>
-          <li><a href="#" class="transition hover:text-slate-900">Our Awards</a></li>
-        </ul>
-      </div>
-
-      <!-- Services -->
-      <div>
-        <h3
-          class="mb-5 text-sm font-bold uppercase tracking-[0.2em] text-slate-500"
-        >
-          Services
-        </h3>
-
-        <ul class="space-y-3 text-sm text-slate-600">
-          <li><a href="#" class="transition hover:text-slate-900">Tour Guide</a></li>
-          <li><a href="#" class="transition hover:text-slate-900">Tour Booking</a></li>
-          <li><a href="#" class="transition hover:text-slate-900">Hotel Booking</a></li>
-          <li><a href="#" class="transition hover:text-slate-900">Ticket Booking</a></li>
-          <li><a href="#" class="transition hover:text-slate-900">Rental Services</a></li>
-        </ul>
-      </div>
-
-      <!-- Legal -->
-      <div>
-        <h3
-          class="mb-5 text-sm font-bold uppercase tracking-[0.2em] text-slate-500"
-        >
-          Legal
-        </h3>
-
-        <ul class="space-y-3 text-sm text-slate-600">
-          <li><a href="#" class="transition hover:text-slate-900">Terms of Service</a></li>
-          <li><a href="#" class="transition hover:text-slate-900">Privacy Policy</a></li>
-          <li><a href="#" class="transition hover:text-slate-900">Cookies Policy</a></li>
-          <li><a href="#" class="transition hover:text-slate-900">Data Processing</a></li>
-          <li><a href="#" class="transition hover:text-slate-900">Data Policy</a></li>
-        </ul>
-      </div>
-
-      <!-- Support -->
-      <div>
-        <h3
-          class="mb-5 text-sm font-bold uppercase tracking-[0.2em] text-slate-500"
-        >
-          Support
-        </h3>
-
-        <ul class="space-y-3 text-sm text-slate-600">
-          <li><a href="#" class="transition hover:text-slate-900">Forum Support</a></li>
-          <li><a href="#" class="transition hover:text-slate-900">Help Center</a></li>
-          <li><a href="#" class="transition hover:text-slate-900">How It Works</a></li>
-          <li><a href="#" class="transition hover:text-slate-900">Security</a></li>
-        </ul>
-      </div>
-
-      <!-- Newsletter -->
-      <div class="space-y-5">
-        <h3
-          class="text-sm font-bold uppercase tracking-[0.2em] text-slate-500"
-        >
-          Newsletter
-        </h3>
-
-        <p class="text-sm leading-6 text-slate-600">
-          Subscribe to receive travel deals, destination guides, and exclusive
-          offers.
-        </p>
-
-        <form class="space-y-3">
-          <div class="relative">
-            <span
-              class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-slate-400"
-            >
-              ✉
-            </span>
-
-            <input
-              id="footer-email"
-              type="email"
-              placeholder="Enter your email"
-              class="w-full rounded-full border border-slate-200 py-3 pl-11 pr-4 text-sm outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200"
-            />
-          </div>
-
-          <button
-            type="submit"
-            class="w-full rounded-full bg-yellow-300 py-3 font-semibold text-slate-900 transition hover:bg-yellow-400"
-          >
-            Subscribe
-          </button>
-        </form>
-      </div>
-    </div>
-
-    <!-- Bottom -->
-    <div
-      class="mt-12 flex flex-col gap-4 border-t border-slate-200 pt-6 text-center text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:text-left"
-    >
-      <p id="footer-copyright">
-        © 2024 Travila Inc. All rights reserved.
-      </p>
-
-      <p>Follow us</p>
-    </div>
+    </footer>
   </div>
-</footer>
-    </div>
 
-    <script src="assets/js/script.js"></script>
-    <script src="assets/js/chatbot.js"></script>
-  
-  </body>
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/chatbot.js"></script>
+
+</body>
+
 </html>
