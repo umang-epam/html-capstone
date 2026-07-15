@@ -947,8 +947,42 @@ function initBookingModal() {
   });
 }
 
+// ── Theme Toggler ────────────────────────────────────────
+function initThemeToggle() {
+  const toggleBtn = document.getElementById("theme-toggle-btn");
+  const sunIcon = document.getElementById("theme-sun-icon");
+  const moonIcon = document.getElementById("theme-moon-icon");
+  if (!toggleBtn) return;
+
+  function setDarkMode(isDark) {
+    if (isDark) {
+      document.documentElement.classList.add("dark");
+      sunIcon?.classList.add("hidden");
+      moonIcon?.classList.remove("hidden");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      sunIcon?.classList.remove("hidden");
+      moonIcon?.classList.add("hidden");
+      localStorage.setItem("theme", "light");
+    }
+  }
+
+  // Load initial theme state
+  const savedTheme = localStorage.getItem("theme");
+  const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const initialDark = savedTheme === "dark" || (!savedTheme && systemPrefersDark);
+  setDarkMode(initialDark);
+
+  toggleBtn.addEventListener("click", () => {
+    const isCurrentlyDark = document.documentElement.classList.contains("dark");
+    setDarkMode(!isCurrentlyDark);
+  });
+}
+
 // ── App Init ─────────────────────────────────────────────
 function initApp() {
+  initThemeToggle();
   initNavDropdowns();
   initFilters();
   initActivityScroller();
