@@ -31,7 +31,7 @@
 
       <!-- Main Navigation Bar -->
       <nav class="sticky top-0 z-50 bg-white shadow-md">
-        <div class="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+        <div class="mx-0 px-4 py-4 sm:px-6 lg:px-8">
           <div class="flex items-center justify-between">
             <!-- Logo -->
             <div class="flex items-center gap-2">
@@ -631,88 +631,182 @@
       </div>
 
       <!-- Footer section -->
-      <footer class="mt-10 border-t border-slate-200 bg-white py-10">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div class="grid gap-8 xl:grid-cols-[1.5fr_1fr_1fr_1fr_1fr] xl:items-start">
-            <div class="space-y-4">
-              <div class="flex items-center gap-3">
-                <div class="flex h-12 w-12 items-center justify-center rounded-full bg-slate-900 text-white shadow-sm">T</div>
-                <div>
-                  <p id="footer-brand" class="text-xl font-semibold text-slate-900">Travila</p>
-                </div>
-              </div>
-              <p id="footer-description" class="max-w-sm text-sm leading-6 text-slate-600">Dive into local recommendations for a truly authentic experience.</p>
-              <div class="flex items-center gap-3 text-sm text-slate-700">
-                <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-900">☎</span>
-                <div>
-                  <p id="footer-phone-label" class="font-semibold text-slate-900">Need help? Call us</p>
-                  <p id="footer-phone-number" class="text-lg font-semibold text-amber-500">1-800-222-8888</p>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <h3 class="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">Company</h3>
-              <ul class="space-y-3 text-sm text-slate-600">
-                <li><a href="#" class="transition hover:text-slate-900">About Us</a></li>
-                <li><a href="#" class="transition hover:text-slate-900">Community Blog</a></li>
-                <li><a href="#" class="transition hover:text-slate-900">Jobs & Careers</a></li>
-                <li><a href="#" class="transition hover:text-slate-900">Contact Us</a></li>
-                <li><a href="#" class="transition hover:text-slate-900">Our Awards</a></li>
-              </ul>
-            </div>
-
-            <div class="footer-links-column">
-              <h3 class="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">Services</h3>
-              <ul class="space-y-3 text-sm text-slate-600">
-                <li><a href="#" class="transition hover:text-slate-900">Tour Guide</a></li>
-                <li><a href="#" class="transition hover:text-slate-900">Tour Booking</a></li>
-                <li><a href="#" class="transition hover:text-slate-900">Hotel Booking</a></li>
-                <li><a href="#" class="transition hover:text-slate-900">Ticket Booking</a></li>
-                <li><a href="#" class="transition hover:text-slate-900">Rental Services</a></li>
-              </ul>
-            </div>
-
-            <div class="footer-links-column">
-              <h3 class="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">Legal</h3>
-              <ul class="space-y-3 text-sm text-slate-600">
-                <li><a href="#" class="transition hover:text-slate-900">Terms of Service</a></li>
-                <li><a href="#" class="transition hover:text-slate-900">Privacy Policy</a></li>
-                <li><a href="#" class="transition hover:text-slate-900">Cookies Policy</a></li>
-                <li><a href="#" class="transition hover:text-slate-900">Data Processing</a></li>
-                <li><a href="#" class="transition hover:text-slate-900">Data Policy</a></li>
-              </ul>
-            </div>
-
-            <div class="footer-links-column">
-              <h3 class="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">Support</h3>
-              <ul class="space-y-3 text-sm text-slate-600">
-                <li><a href="#" class="transition hover:text-slate-900">Forum support</a></li>
-                <li><a href="#" class="transition hover:text-slate-900">Help Center</a></li>
-                <li><a href="#" class="transition hover:text-slate-900">How it works</a></li>
-                <li><a href="#" class="transition hover:text-slate-900">Security</a></li>
-              </ul>
-            </div>
-
-            <div class="space-y-4">
-              <h3 class="text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">Newsletter</h3>
-              <form class="flex flex-col gap-3">
-                <label class="sr-only" for="footer-email">Enter your email</label>
-                <div class="relative">
-                  <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-slate-400">✉</span>
-                  <input id="footer-email" type="email" placeholder="Enter your email" class="w-full rounded-full border border-slate-200 bg-white py-3 pl-12 pr-4 text-sm text-slate-900 outline-none transition focus:border-cyan-400 focus:ring-2 focus:ring-cyan-200" />
-                </div>
-                <button type="submit" class="rounded-full bg-yellow-300 px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-yellow-400">Subscribe</button>
-              </form>
-            </div>
+      <footer class="mt-16 border-t border-slate-200 bg-white py-16">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div
+      class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[2fr_1fr_1fr_1fr_1fr_1.5fr]"
+    >
+      <!-- Logo -->
+      <div class="space-y-5">
+        <div class="flex items-center gap-3">
+          <div
+            class="flex h-14 w-14 items-center justify-center rounded-full bg-slate-900 text-xl font-bold text-white shadow"
+          >
+            T
           </div>
 
-          <div class="mt-10 border-t border-slate-200 pt-6 text-sm text-slate-500 sm:flex sm:items-center sm:justify-between">
-            <p id="footer-copyright">© 2024 Travila Inc. All rights reserved.</p>
-            <p class="mt-3 sm:mt-0">Follow us</p>
+          <div>
+            <p
+              id="footer-brand"
+              class="text-2xl font-bold text-slate-900"
+            >
+              Travila
+            </p>
           </div>
         </div>
-      </footer>
+
+        <p
+          id="footer-description"
+          class="max-w-sm text-sm leading-7 text-slate-600"
+        >
+          Dive into local recommendations for a truly authentic travel
+          experience. Discover handpicked destinations, hotels, and adventures
+          around the world.
+        </p>
+
+        <div class="flex items-start gap-3">
+          <div
+            class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100"
+          >
+            ☎
+          </div>
+
+          <div>
+            <p
+              id="footer-phone-label"
+              class="text-sm font-medium text-slate-500"
+            >
+              Need help? Call us
+            </p>
+
+            <p
+              id="footer-phone-number"
+              class="text-lg font-bold text-amber-500"
+            >
+              1-800-222-8888
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <h3
+          class="mb-5 text-sm font-bold uppercase tracking-[0.2em] text-slate-500"
+        >
+          Company
+        </h3>
+
+        <ul class="space-y-3 text-sm text-slate-600">
+          <li><a href="#" class="transition hover:text-slate-900">About Us</a></li>
+          <li><a href="#" class="transition hover:text-slate-900">Community Blog</a></li>
+          <li><a href="#" class="transition hover:text-slate-900">Jobs & Careers</a></li>
+          <li><a href="#" class="transition hover:text-slate-900">Contact Us</a></li>
+          <li><a href="#" class="transition hover:text-slate-900">Our Awards</a></li>
+        </ul>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <h3
+          class="mb-5 text-sm font-bold uppercase tracking-[0.2em] text-slate-500"
+        >
+          Services
+        </h3>
+
+        <ul class="space-y-3 text-sm text-slate-600">
+          <li><a href="#" class="transition hover:text-slate-900">Tour Guide</a></li>
+          <li><a href="#" class="transition hover:text-slate-900">Tour Booking</a></li>
+          <li><a href="#" class="transition hover:text-slate-900">Hotel Booking</a></li>
+          <li><a href="#" class="transition hover:text-slate-900">Ticket Booking</a></li>
+          <li><a href="#" class="transition hover:text-slate-900">Rental Services</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div>
+        <h3
+          class="mb-5 text-sm font-bold uppercase tracking-[0.2em] text-slate-500"
+        >
+          Legal
+        </h3>
+
+        <ul class="space-y-3 text-sm text-slate-600">
+          <li><a href="#" class="transition hover:text-slate-900">Terms of Service</a></li>
+          <li><a href="#" class="transition hover:text-slate-900">Privacy Policy</a></li>
+          <li><a href="#" class="transition hover:text-slate-900">Cookies Policy</a></li>
+          <li><a href="#" class="transition hover:text-slate-900">Data Processing</a></li>
+          <li><a href="#" class="transition hover:text-slate-900">Data Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Support -->
+      <div>
+        <h3
+          class="mb-5 text-sm font-bold uppercase tracking-[0.2em] text-slate-500"
+        >
+          Support
+        </h3>
+
+        <ul class="space-y-3 text-sm text-slate-600">
+          <li><a href="#" class="transition hover:text-slate-900">Forum Support</a></li>
+          <li><a href="#" class="transition hover:text-slate-900">Help Center</a></li>
+          <li><a href="#" class="transition hover:text-slate-900">How It Works</a></li>
+          <li><a href="#" class="transition hover:text-slate-900">Security</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="space-y-5">
+        <h3
+          class="text-sm font-bold uppercase tracking-[0.2em] text-slate-500"
+        >
+          Newsletter
+        </h3>
+
+        <p class="text-sm leading-6 text-slate-600">
+          Subscribe to receive travel deals, destination guides, and exclusive
+          offers.
+        </p>
+
+        <form class="space-y-3">
+          <div class="relative">
+            <span
+              class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-slate-400"
+            >
+              ✉
+            </span>
+
+            <input
+              id="footer-email"
+              type="email"
+              placeholder="Enter your email"
+              class="w-full rounded-full border border-slate-200 py-3 pl-11 pr-4 text-sm outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200"
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="w-full rounded-full bg-yellow-300 py-3 font-semibold text-slate-900 transition hover:bg-yellow-400"
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Bottom -->
+    <div
+      class="mt-12 flex flex-col gap-4 border-t border-slate-200 pt-6 text-center text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:text-left"
+    >
+      <p id="footer-copyright">
+        © 2024 Travila Inc. All rights reserved.
+      </p>
+
+      <p>Follow us</p>
+    </div>
+  </div>
+</footer>
     </div>
 
     <script src="assets/js/script.js"></script>
