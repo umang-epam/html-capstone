@@ -446,7 +446,7 @@
         <!-- Tours Tab Grid -->
         <div id="grid-tours" class="grid gap-6 sm:grid-cols-5 tab-grid">
           <div class="flex flex-col">
-            <label class="mb-2 text-xs font-semibold text-slate-700">Location</label>
+            <label for="search-location" class="mb-2 text-xs font-semibold text-slate-700">Location</label>
             <select id="search-location"
               class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
               <option value="">📍 All Locations</option>
@@ -461,17 +461,17 @@
             </select>
           </div>
           <div class="flex flex-col">
-            <label class="mb-2 text-xs font-semibold text-slate-700">Check in</label>
+            <label for="search-checkin" class="mb-2 text-xs font-semibold text-slate-700">Check in</label>
             <input id="search-checkin" type="date"
               class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400" />
           </div>
           <div class="flex flex-col">
-            <label class="mb-2 text-xs font-semibold text-slate-700">Check out</label>
+            <label for="search-checkout" class="mb-2 text-xs font-semibold text-slate-700">Check out</label>
             <input id="search-checkout" type="date"
               class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400" />
           </div>
           <div class="flex flex-col">
-            <label class="mb-2 text-xs font-semibold text-slate-700">Guest</label>
+            <label for="search-guests" class="mb-2 text-xs font-semibold text-slate-700">Guest</label>
             <select id="search-guests"
               class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
               <option>👥 2 adults, 2 children</option>
@@ -491,7 +491,7 @@
         <!-- Hotels Tab Grid -->
         <div id="grid-hotels" class="grid gap-6 sm:grid-cols-5 tab-grid hidden">
           <div class="flex flex-col">
-            <label class="mb-2 text-xs font-semibold text-slate-700">Destination</label>
+            <label for="search-hotels-location" class="mb-2 text-xs font-semibold text-slate-700">Destination</label>
             <select id="search-hotels-location"
               class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
               <option value="">🏨 Where are you staying?</option>
@@ -506,17 +506,17 @@
             </select>
           </div>
           <div class="flex flex-col">
-            <label class="mb-2 text-xs font-semibold text-slate-700">Check in</label>
+            <label for="search-hotels-checkin" class="mb-2 text-xs font-semibold text-slate-700">Check in</label>
             <input id="search-hotels-checkin" type="date"
               class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400" />
           </div>
           <div class="flex flex-col">
-            <label class="mb-2 text-xs font-semibold text-slate-700">Check out</label>
+            <label for="search-hotels-checkout" class="mb-2 text-xs font-semibold text-slate-700">Check out</label>
             <input id="search-hotels-checkout" type="date"
               class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400" />
           </div>
           <div class="flex flex-col">
-            <label class="mb-2 text-xs font-semibold text-slate-700">Rooms & Guests</label>
+            <label for="search-hotels-guests" class="mb-2 text-xs font-semibold text-slate-700">Rooms & Guests</label>
             <select id="search-hotels-guests"
               class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
               <option>👥 1 room, 2 guests</option>
@@ -535,7 +535,7 @@
         <!-- Tickets Tab Grid -->
         <div id="grid-tickets" class="grid gap-6 sm:grid-cols-5 tab-grid hidden">
           <div class="flex flex-col">
-            <label class="mb-2 text-xs font-semibold text-slate-700">From</label>
+            <label for="search-tickets-origin" class="mb-2 text-xs font-semibold text-slate-700">From</label>
             <select id="search-tickets-origin"
               class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
               <option value="">🛫 Origin Airport</option>
@@ -545,7 +545,7 @@
             </select>
           </div>
           <div class="flex flex-col">
-            <label class="mb-2 text-xs font-semibold text-slate-700">To</label>
+            <label for="search-tickets-location" class="mb-2 text-xs font-semibold text-slate-700">To</label>
             <select id="search-tickets-location"
               class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
               <option value="">🛬 Destination Airport</option>
@@ -556,12 +556,12 @@
             </select>
           </div>
           <div class="flex flex-col">
-            <label class="mb-2 text-xs font-semibold text-slate-700">Departure</label>
+            <label for="search-tickets-checkin" class="mb-2 text-xs font-semibold text-slate-700">Departure</label>
             <input id="search-tickets-checkin" type="date"
               class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400" />
           </div>
           <div class="flex flex-col">
-            <label class="mb-2 text-xs font-semibold text-slate-700">Return</label>
+            <label for="search-tickets-checkout" class="mb-2 text-xs font-semibold text-slate-700">Return</label>
             <input id="search-tickets-checkout" type="date"
               class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400" />
           </div>
@@ -576,7 +576,7 @@
         <!-- Rental Tab Grid -->
         <div id="grid-rental" class="grid gap-6 sm:grid-cols-5 tab-grid hidden">
           <div class="flex flex-col">
-            <label class="mb-2 text-xs font-semibold text-slate-700">Pick-up Location</label>
+            <label for="search-rental-location" class="mb-2 text-xs font-semibold text-slate-700">Pick-up Location</label>
             <select id="search-rental-location"
               class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
               <option value="">🚗 Rental Location</option>
@@ -586,17 +586,17 @@
             </select>
           </div>
           <div class="flex flex-col">
-            <label class="mb-2 text-xs font-semibold text-slate-700">Pick-up Date</label>
+            <label for="search-rental-checkin" class="mb-2 text-xs font-semibold text-slate-700">Pick-up Date</label>
             <input id="search-rental-checkin" type="date"
               class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400" />
           </div>
           <div class="flex flex-col">
-            <label class="mb-2 text-xs font-semibold text-slate-700">Drop-off Date</label>
+            <label for="search-rental-checkout" class="mb-2 text-xs font-semibold text-slate-700">Drop-off Date</label>
             <input id="search-rental-checkout" type="date"
               class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400" />
           </div>
           <div class="flex flex-col">
-            <label class="mb-2 text-xs font-semibold text-slate-700">Car Type</label>
+            <label for="search-rental-guests" class="mb-2 text-xs font-semibold text-slate-700">Car Type</label>
             <select id="search-rental-guests"
               class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
               <option>🚗 All Cars (Economy/SUV)</option>
@@ -615,7 +615,7 @@
         <!-- Activities Tab Grid -->
         <div id="grid-activities" class="grid gap-6 sm:grid-cols-5 tab-grid hidden">
           <div class="flex flex-col">
-            <label class="mb-2 text-xs font-semibold text-slate-700">Where to go?</label>
+            <label for="search-activities-location" class="mb-2 text-xs font-semibold text-slate-700">Where to go?</label>
             <select id="search-activities-location"
               class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
               <option value="">🎟️ Activity Destination</option>
@@ -626,12 +626,12 @@
             </select>
           </div>
           <div class="flex flex-col">
-            <label class="mb-2 text-xs font-semibold text-slate-700">Date</label>
+            <label for="search-activities-checkin" class="mb-2 text-xs font-semibold text-slate-700">Date</label>
             <input id="search-activities-checkin" type="date"
               class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400" />
           </div>
           <div class="flex flex-col">
-            <label class="mb-2 text-xs font-semibold text-slate-700">Category</label>
+            <label for="search-activities-category" class="mb-2 text-xs font-semibold text-slate-700">Category</label>
             <select id="search-activities-category"
               class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
               <option>🎟️ All Activities</option>
@@ -641,7 +641,7 @@
             </select>
           </div>
           <div class="flex flex-col">
-            <label class="mb-2 text-xs font-semibold text-slate-700">Group Size</label>
+            <label for="search-activities-guests" class="mb-2 text-xs font-semibold text-slate-700">Group Size</label>
             <select id="search-activities-guests"
               class="rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none transition focus:border-blue-400 focus:ring-1 focus:ring-blue-400">
               <option>👥 2 People</option>
@@ -1756,7 +1756,7 @@
           <h3 class="text-xl font-bold text-slate-900">Become a Local Expert</h3>
           <p class="text-xs text-slate-500 mt-0.5">Share your passion and earn by guiding travelers.</p>
         </div>
-        <button id="close-expert-modal-btn" type="button" class="text-slate-400 hover:text-slate-600 transition p-1.5 rounded-lg hover:bg-slate-50">
+        <button id="close-expert-modal-btn" type="button" aria-label="Close Expert Modal" class="text-slate-400 hover:text-slate-600 transition p-1.5 rounded-lg hover:bg-slate-50">
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
@@ -1888,7 +1888,7 @@
           <h3 class="text-xl font-bold text-slate-900">Book Your Adventure</h3>
           <p class="text-xs text-slate-500 mt-0.5">Destination: <span id="booking-dest-name" class="font-semibold text-slate-800">-</span></p>
         </div>
-        <button id="close-booking-modal-btn" type="button" class="text-slate-400 hover:text-slate-600 transition p-1.5 rounded-lg hover:bg-slate-50">
+        <button id="close-booking-modal-btn" type="button" aria-label="Close Booking Modal" class="text-slate-400 hover:text-slate-600 transition p-1.5 rounded-lg hover:bg-slate-50">
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
