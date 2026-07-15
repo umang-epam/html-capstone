@@ -11,6 +11,58 @@ let isActivityPaused = false;
 let activityFrame = null;
 const activityScrollSpeed = 0.5;
 
+// ── Generic Nav Dropdowns (works for all dropdown buttons) ──
+// ── Generic Nav Dropdowns (hover-based) ──────────────────
+function initNavDropdowns() {
+  const wrappers = document.querySelectorAll('.nav-dropdown-wrapper');
+  if (!wrappers.length) return;
+
+  let closeTimeout = null;
+
+  function closeAll(except = null) {
+    wrappers.forEach((wrapper) => {
+      if (wrapper === except) return;
+      wrapper.querySelector('.nav-dropdown-menu')?.classList.add('hidden');
+      wrapper.querySelector('.nav-dropdown-icon')?.classList.remove('rotate-180');
+    });
+  }
+
+  function openMenu(wrapper) {
+    const menu = wrapper.querySelector('.nav-dropdown-menu');
+    const icon = wrapper.querySelector('.nav-dropdown-icon');
+
+    closeAll(wrapper);
+    menu?.classList.remove('hidden');
+    icon?.classList.add('rotate-180');
+  }
+
+  function closeMenu(wrapper) {
+    const menu = wrapper.querySelector('.nav-dropdown-menu');
+    const icon = wrapper.querySelector('.nav-dropdown-icon');
+
+    menu?.classList.add('hidden');
+    icon?.classList.remove('rotate-180');
+  }
+
+  wrappers.forEach((wrapper) => {
+    wrapper.addEventListener('mouseenter', () => {
+      clearTimeout(closeTimeout);
+      openMenu(wrapper);
+    });
+
+    wrapper.addEventListener('mouseleave', () => {
+      closeTimeout = setTimeout(() => {
+        closeMenu(wrapper);
+      }, 150); // small delay to avoid flicker when moving mouse toward menu
+    });
+  });
+
+  // Optional: also close everything if mouse leaves the whole nav area
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeAll();
+  });
+}
+
 // ── Get filtered destinations ────────────────────────────
 function getVisibleDestinations() {
   return cardData.filter(
@@ -264,6 +316,7 @@ function initNewsletter() {
 
 // ── App Init ─────────────────────────────────────────────
 function initApp() {
+  initNavDropdowns();
   initFilters();
   initActivityScroller();
   initNewsletter();
