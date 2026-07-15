@@ -5,7 +5,14 @@
       "location": "Hawaii, USA",
       "tag": "Beach",
       "price": "$980",
+      "duration": "5 nights",
       "rating": "4.8",
+      "reviews": 320,
+      "best_time_to_visit": "April to October",
+      "family_friendly": true,
+      "description": "A stunning beachside escape with crystal-clear waters, surfing, and tropical sunsets.",
+      "activities": ["Surfing", "Snorkeling", "Whale watching", "Hiking"],
+      "includes": ["Hotel stay", "Breakfast", "Airport transfer"],
       "image": "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=900&q=80"
     },
     {
@@ -13,7 +20,14 @@
       "location": "Reykjavík, Iceland",
       "tag": "Nature",
       "price": "$1,240",
+      "duration": "6 nights",
       "rating": "4.9",
+      "reviews": 210,
+      "best_time_to_visit": "September to March",
+      "family_friendly": false,
+      "description": "Experience the magical aurora borealis from a cozy lodge in the heart of Iceland.",
+      "activities": ["Northern lights viewing", "Glacier hiking", "Hot springs", "Whale watching"],
+      "includes": ["Lodge stay", "All meals", "Guided tours"],
       "image": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=900&q=80"
     },
     {
@@ -21,7 +35,14 @@
       "location": "Tokyo, Japan",
       "tag": "City",
       "price": "$760",
+      "duration": "4 nights",
       "rating": "4.7",
+      "reviews": 450,
+      "best_time_to_visit": "March to May, October to November",
+      "family_friendly": true,
+      "description": "Immerse yourself in Tokyo's vibrant culture, world-class cuisine, and neon-lit streets.",
+      "activities": ["City tours", "Street food tasting", "Temple visits", "Shopping"],
+      "includes": ["Hotel stay", "Breakfast", "Metro pass"],
       "image": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=900&q=80"
     },
     {
@@ -29,7 +50,14 @@
       "location": "Bali, Indonesia",
       "tag": "Beach",
       "price": "$890",
+      "duration": "6 nights",
       "rating": "4.8",
+      "reviews": 510,
+      "best_time_to_visit": "April to October",
+      "family_friendly": true,
+      "description": "Relax on golden beaches, explore rice terraces, and enjoy Balinese spa treatments.",
+      "activities": ["Beach relaxation", "Temple tours", "Surfing", "Spa & wellness"],
+      "includes": ["Villa stay", "Daily breakfast", "Airport transfer"],
       "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80"
     },
     {
@@ -37,7 +65,14 @@
       "location": "Zermatt, Switzerland",
       "tag": "Nature",
       "price": "$1,340",
+      "duration": "5 nights",
       "rating": "4.9",
+      "reviews": 180,
+      "best_time_to_visit": "December to March, July to August",
+      "family_friendly": true,
+      "description": "Ski the Swiss Alps or hike stunning mountain trails with views of the Matterhorn.",
+      "activities": ["Skiing", "Snowboarding", "Mountain hiking", "Cable car rides"],
+      "includes": ["Chalet stay", "All meals", "Ski pass"],
       "image": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=80"
     },
     {
@@ -45,7 +80,14 @@
       "location": "Barcelona, Spain",
       "tag": "City",
       "price": "$690",
+      "duration": "4 nights",
       "rating": "4.6",
+      "reviews": 390,
+      "best_time_to_visit": "May to June, September to October",
+      "family_friendly": true,
+      "description": "Explore Gaudí architecture, tapas bars, and beautiful Mediterranean beaches.",
+      "activities": ["City sightseeing", "Beach visits", "Food tours", "Museum visits"],
+      "includes": ["Hotel stay", "Breakfast", "City tour"],
       "image": "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=900&q=80"
     },
     {
@@ -53,7 +95,14 @@
       "location": "Malé, Maldives",
       "tag": "Beach",
       "price": "$1,560",
+      "duration": "7 nights",
       "rating": "4.95",
+      "reviews": 275,
+      "best_time_to_visit": "November to April",
+      "family_friendly": false,
+      "description": "Luxurious overwater bungalows with direct access to vibrant coral reefs.",
+      "activities": ["Scuba diving", "Snorkeling", "Sunset cruises", "Dolphin watching"],
+      "includes": ["Overwater bungalow", "All-inclusive meals", "Diving sessions"],
       "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80"
     },
     {
@@ -61,8 +110,37 @@
       "location": "Sedona, USA",
       "tag": "Nature",
       "price": "$810",
+      "duration": "4 nights",
       "rating": "4.7",
+      "reviews": 230,
+      "best_time_to_visit": "March to May, September to November",
+      "family_friendly": true,
+      "description": "Red rock canyon views, spiritual retreats, and adventure hiking in Sedona.",
+      "activities": ["Jeep tours", "Hiking", "Yoga & meditation", "Stargazing"],
+      "includes": ["Lodge stay", "Breakfast", "One guided hike"],
       "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80"
+    }
+  ],
+  "faq": [
+    {
+      "question": "How do I book a trip?",
+      "answer": "You can book directly through our website by selecting a destination and clicking the Book Now button."
+    },
+    {
+      "question": "What is the cancellation policy?",
+      "answer": "Free cancellation up to 14 days before departure. After that, a 50% fee applies."
+    },
+    {
+      "question": "Are flights included in the price?",
+      "answer": "No, prices shown are for accommodation and the listed inclusions only. Flights are not included."
+    },
+    {
+      "question": "Do you offer group discounts?",
+      "answer": "Yes! Groups of 5 or more receive a 10% discount. Contact our support team for details."
+    },
+    {
+      "question": "What payment methods do you accept?",
+      "answer": "We accept Visa, Mastercard, PayPal, and bank transfers."
     }
   ]
 }
