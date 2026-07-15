@@ -193,14 +193,13 @@
         <!-- Right Side Controls -->
         <div class="flex items-center gap-4">
 
-          <!-- Become Local Expert Dropdown -->
-<div class="relative hidden sm:inline-block nav-dropdown-wrapper">
-  <!-- Become Local Expert Button -->
-<button
-  class="hidden sm:inline-flex items-center justify-center p-2 m-2 rounded-full bg-yellow-400 text-sm font-bold text-black transition hover:bg-yellow-300">
-  Become Local Expert
-</button>
-</div>
+          <!-- Become Local Expert Button -->
+          <div class="relative hidden sm:inline-block">
+            <button id="become-expert-btn"
+              class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 rounded-full bg-yellow-400 text-sm font-bold text-black transition hover:bg-yellow-300">
+              Become Local Expert
+            </button>
+          </div>
           <select class="text-xs border border-slate-300 rounded px-2 py-1 bg-white text-slate-700">
             <option>EN</option>
             <option>ES</option>
@@ -1426,6 +1425,255 @@
         </div>
       </div>
     </footer>
+  </div>
+
+  <!-- Become Local Expert Modal -->
+  <div id="become-expert-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+    <!-- Modal Card -->
+    <div id="become-expert-card" class="bg-white rounded-2xl max-w-lg w-full shadow-2xl relative max-h-[90vh] overflow-y-auto transform scale-95 opacity-0 transition-all duration-300 flex flex-col">
+      
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between sticky top-0 bg-white z-10">
+        <div>
+          <h3 class="text-xl font-bold text-slate-900">Become a Local Expert</h3>
+          <p class="text-xs text-slate-500 mt-0.5">Share your passion and earn by guiding travelers.</p>
+        </div>
+        <button id="close-expert-modal-btn" type="button" class="text-slate-400 hover:text-slate-600 transition p-1.5 rounded-lg hover:bg-slate-50">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Success Screen Overlay (Hidden by default) -->
+      <div id="expert-success-screen" class="hidden absolute inset-0 bg-white z-20 flex flex-col items-center justify-center p-6 text-center">
+        <!-- Animated Checkmark Icon -->
+        <div class="w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-500 mb-4 animate-bounce">
+          <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h4 class="text-2xl font-bold text-slate-900 mb-2">Application Submitted!</h4>
+        <p class="text-sm text-slate-600 max-w-sm mb-6">
+          Thank you for applying to be a local expert. Our team will review your application and contact you within 2-3 business days.
+        </p>
+        <button id="success-close-btn" type="button" class="px-6 py-2.5 bg-slate-900 text-white rounded-xl text-sm font-semibold hover:bg-slate-800 transition">
+          Done
+        </button>
+      </div>
+
+      <!-- Modal Body (Form) -->
+      <form id="become-expert-form" class="p-6 space-y-4 flex-1" novalidate>
+        
+        <!-- Full Name -->
+        <div>
+          <label for="expert-name" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">Full Name *</label>
+          <input type="text" id="expert-name" name="name" placeholder="John Doe"
+            class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100" />
+          <span class="error-msg text-xs text-red-500 mt-1 hidden">Please enter a valid full name (letters and spaces only, min 3 characters).</span>
+        </div>
+
+        <!-- Email & Phone (Grid) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="expert-email" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">Email Address *</label>
+            <input type="email" id="expert-email" name="email" placeholder="john@example.com"
+              class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100" />
+            <span class="error-msg text-xs text-red-500 mt-1 hidden">Please enter a valid email address.</span>
+          </div>
+          <div>
+            <label for="expert-phone" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">Phone Number *</label>
+            <input type="tel" id="expert-phone" name="phone" placeholder="+1 (555) 123-4567"
+              class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100" />
+            <span class="error-msg text-xs text-red-500 mt-1 hidden">Please enter a valid phone number (10-20 digits).</span>
+          </div>
+        </div>
+
+        <!-- City & Expertise (Grid) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="expert-city" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">City / Region *</label>
+            <input type="text" id="expert-city" name="city" placeholder="e.g. Kyoto, Japan"
+              class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100" />
+            <span class="error-msg text-xs text-red-500 mt-1 hidden">Please enter your city/region (min 2 characters).</span>
+          </div>
+          <div>
+            <label for="expert-specialty" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">Expertise Area *</label>
+            <select id="expert-specialty" name="specialty"
+              class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm outline-none bg-white transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100">
+              <option value="">Select specialty...</option>
+              <option value="culture">Culture & History Tour</option>
+              <option value="food">Local Food & Culinary</option>
+              <option value="adventure">Adventure & Trekking</option>
+              <option value="nature">Nature & Wildlife</option>
+              <option value="city">City Sightseeing & Secret Spots</option>
+            </select>
+            <span class="error-msg text-xs text-red-500 mt-1 hidden">Please select an expertise area.</span>
+          </div>
+        </div>
+
+        <!-- Bio / Experience -->
+        <div>
+          <label for="expert-bio" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">Why are you a good fit? *</label>
+          <textarea id="expert-bio" name="bio" rows="3" placeholder="Tell us about your guiding experience, local knowledge, or passion..."
+            class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100 resize-none"></textarea>
+          <div class="flex justify-between items-center mt-1">
+            <span class="error-msg text-xs text-red-500 hidden">Please provide a bio/pitch (minimum 30 characters).</span>
+            <span id="bio-char-counter" class="text-[10px] text-slate-400 ml-auto">0 / 30 chars</span>
+          </div>
+        </div>
+
+        <!-- File Upload (Guide License or Verification ID) -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">Guide License / ID Verification (Optional)</label>
+          <div id="expert-dropzone" class="border-2 border-dashed border-slate-200 rounded-xl p-4 text-center cursor-pointer hover:bg-slate-50 hover:border-slate-300 transition flex flex-col items-center justify-center">
+            <input type="file" id="expert-file" name="license" class="hidden" accept=".pdf,.png,.jpg,.jpeg" />
+            <span class="text-2xl mb-1">📄</span>
+            <span class="text-xs font-semibold text-slate-700" id="dropzone-text">Click or drag & drop here to upload</span>
+            <span class="text-[10px] text-slate-400 mt-0.5">PDF, PNG, JPG up to 5MB</span>
+          </div>
+        </div>
+
+        <!-- Terms and conditions -->
+        <div>
+          <label class="flex items-start gap-2.5 cursor-pointer">
+            <input type="checkbox" id="expert-terms" name="terms" class="mt-1 rounded border-slate-300 text-cyan-600 focus:ring-cyan-500" />
+            <span class="text-xs text-slate-600 leading-relaxed">
+              I agree to the Travila <a href="#" class="text-cyan-600 hover:underline">Expert terms of service</a> and privacy policy.
+            </span>
+          </label>
+          <span class="error-msg text-xs text-red-500 mt-1 hidden">You must agree to the terms to proceed.</span>
+        </div>
+
+        <!-- Form Actions -->
+        <div class="flex items-center gap-3 pt-2">
+          <button type="button" id="cancel-expert-btn" class="flex-1 py-2.5 rounded-xl border border-slate-200 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition">
+            Cancel
+          </button>
+          <button type="submit" id="submit-expert-btn" class="flex-1 py-2.5 rounded-xl bg-yellow-400 text-sm font-bold text-black hover:bg-yellow-300 transition flex items-center justify-center gap-2">
+            Submit Application
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- Booking Modal -->
+  <div id="booking-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+    <!-- Modal Card -->
+    <div id="booking-card" class="bg-white rounded-2xl max-w-md w-full shadow-2xl relative max-h-[90vh] overflow-y-auto transform scale-95 opacity-0 transition-all duration-300 flex flex-col">
+      
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between sticky top-0 bg-white z-10">
+        <div>
+          <h3 class="text-xl font-bold text-slate-900">Book Your Adventure</h3>
+          <p class="text-xs text-slate-500 mt-0.5">Destination: <span id="booking-dest-name" class="font-semibold text-slate-800">-</span></p>
+        </div>
+        <button id="close-booking-modal-btn" type="button" class="text-slate-400 hover:text-slate-600 transition p-1.5 rounded-lg hover:bg-slate-50">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Success Screen Overlay (Hidden by default) -->
+      <div id="booking-success-screen" class="hidden absolute inset-0 bg-white z-20 flex flex-col items-center justify-center p-6 text-center">
+        <!-- Animated Checkmark Icon -->
+        <div class="w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-500 mb-4 animate-bounce">
+          <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h4 class="text-2xl font-bold text-slate-900 mb-2">Booking Confirmed!</h4>
+        <p class="text-sm text-slate-600 max-w-sm mb-4">
+          Your trip has been booked successfully. Your Booking ID is <span id="booking-success-id" class="font-mono font-bold text-slate-900">TRV-XXXXXX</span>.
+        </p>
+        <div class="bg-slate-50 rounded-xl p-4 w-full max-w-xs text-left text-xs text-slate-600 space-y-1.5 mb-6">
+          <p>📍 <strong class="text-slate-700">Destination:</strong> <span id="success-dest-val">-</span></p>
+          <p>📅 <strong class="text-slate-700">Date:</strong> <span id="success-date-val">-</span></p>
+          <p>👥 <strong class="text-slate-700">Guests:</strong> <span id="success-guests-val">-</span></p>
+          <p>💵 <strong class="text-slate-700">Total Price:</strong> <span id="success-price-val">-</span></p>
+        </div>
+        <button id="booking-success-close-btn" type="button" class="px-6 py-2.5 bg-slate-900 text-white rounded-xl text-sm font-semibold hover:bg-slate-800 transition">
+          Got It
+        </button>
+      </div>
+
+      <!-- Modal Body (Form) -->
+      <form id="booking-form" class="p-6 space-y-4 flex-1" novalidate>
+        
+        <!-- Full Name -->
+        <div>
+          <label for="booking-name" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">Full Name *</label>
+          <input type="text" id="booking-name" name="name" placeholder="John Doe"
+            class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100" />
+          <span class="error-msg text-xs text-red-500 mt-1 hidden">Please enter your full name (letters and spaces only, min 3 characters).</span>
+        </div>
+
+        <!-- Email & Phone (Grid) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="booking-email" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">Email Address *</label>
+            <input type="email" id="booking-email" name="email" placeholder="john@example.com"
+              class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100" />
+            <span class="error-msg text-xs text-red-500 mt-1 hidden">Please enter a valid email address.</span>
+          </div>
+          <div>
+            <label for="booking-phone" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">Phone Number *</label>
+            <input type="tel" id="booking-phone" name="phone" placeholder="+1 (555) 123-4567"
+              class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100" />
+            <span class="error-msg text-xs text-red-500 mt-1 hidden">Please enter a valid phone number (10-20 digits).</span>
+          </div>
+        </div>
+
+        <!-- Date & Guests (Grid) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="booking-date" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">Preferred Date *</label>
+            <input type="date" id="booking-date" name="date"
+              class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100 bg-white" />
+            <span class="error-msg text-xs text-red-500 mt-1 hidden">Please select a future booking date.</span>
+          </div>
+          <div>
+            <label for="booking-guests" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">Number of Guests *</label>
+            <input type="number" id="booking-guests" name="guests" value="1" min="1" max="10"
+              class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100" />
+            <span class="error-msg text-xs text-red-500 mt-1 hidden">Guests must be between 1 and 10.</span>
+          </div>
+        </div>
+
+        <!-- Special Requests -->
+        <div>
+          <label for="booking-requests" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">Special Requests (Optional)</label>
+          <textarea id="booking-requests" name="requests" rows="2" placeholder="Dietary requirements, accessibility options, etc..."
+            class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100 resize-none"></textarea>
+        </div>
+
+        <!-- Dynamic Price Summary Box -->
+        <div class="bg-cyan-50/50 rounded-2xl p-4 border border-cyan-100/50 flex flex-col justify-between sm:flex-row sm:items-center gap-2">
+          <div>
+            <p class="text-xs text-slate-500 font-medium">Package Pricing</p>
+            <p class="text-sm font-semibold text-slate-800 mt-0.5"><span id="booking-unit-price">$0</span> base price</p>
+          </div>
+          <div class="sm:text-right border-t sm:border-t-0 border-cyan-100 pt-2 sm:pt-0">
+            <p class="text-xs text-slate-500 font-medium">Total Estimate (<span id="booking-guests-display">1</span> guest)</p>
+            <p class="text-lg font-black text-cyan-600 mt-0.5" id="booking-total-price">$0</p>
+          </div>
+        </div>
+
+        <!-- Form Actions -->
+        <div class="flex items-center gap-3 pt-2">
+          <button type="button" id="cancel-booking-btn" class="flex-1 py-2.5 rounded-xl border border-slate-200 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition">
+            Cancel
+          </button>
+          <button type="submit" id="submit-booking-btn" class="flex-1 py-2.5 rounded-xl bg-yellow-400 text-sm font-bold text-black hover:bg-yellow-300 transition flex items-center justify-center gap-2">
+            Confirm Booking
+          </button>
+        </div>
+
+      </form>
+    </div>
   </div>
 
   <script src="assets/js/script.js"></script>
