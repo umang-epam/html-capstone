@@ -286,6 +286,45 @@ async function loadCardData() {
   renderDestinations();
 }
 
+
+// ── Activities Cards Interactions ─────────────────────────
+function initActivitiesSection() {
+  const loadMoreBtn = document.getElementById('load-more-btn');
+  const promoBtn    = document.getElementById('promo-view-more');
+  const cardsGrid   = document.getElementById('activities-cards');
+
+  loadMoreBtn?.addEventListener('click', () => {
+    loadMoreBtn.disabled = true;
+    loadMoreBtn.innerHTML = `
+      <svg class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
+      </svg>
+      Loading...
+    `;
+
+    // Simulate loading more cards (replace with real fetch/append logic)
+    setTimeout(() => {
+      loadMoreBtn.disabled = false;
+      loadMoreBtn.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+          <circle cx="5" cy="5" r="1.5" /><circle cx="12" cy="5" r="1.5" /><circle cx="19" cy="5" r="1.5" />
+          <circle cx="5" cy="12" r="1.5" /><circle cx="12" cy="12" r="1.5" /><circle cx="19" cy="12" r="1.5" />
+          <circle cx="5" cy="19" r="1.5" /><circle cx="12" cy="19" r="1.5" /><circle cx="19" cy="19" r="1.5" />
+        </svg>
+        Load More Tours
+      `;
+      console.log('Load more clicked — hook this up to your data source.');
+    }, 1000);
+  });
+
+  promoBtn?.addEventListener('click', () => {
+    console.log('View more clicked — dummy action, no redirect.');
+  });
+}
+
+
+
 // ── Newsletter modal ─────────────────────────────────────
 function initNewsletter() {
   const form        = document.getElementById("newsletter-form");
@@ -314,6 +353,47 @@ function initNewsletter() {
   });
 }
 
+
+// Corosel Data
+
+const images = [
+  {
+    src: "https://images.unsplash.com/photo-1548013146-72479768bada?w=600",
+    alt: "Pagodas with mountains"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=600",
+    alt: "Woman by the sea"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600",
+    alt: "Hiker with backpack"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1530789253388-582c481c54b0?w=600",
+    alt: "Two women sitting on cliff"
+  },
+];
+
+function renderGallery() {
+  const galleryStrip = document.getElementById('gallery-strip');
+
+  images.forEach((image) => {
+    const imgContainer = document.createElement('div');
+    imgContainer.className = 'flex-1 h-64 md:h-80 overflow-hidden relative group cursor-pointer';
+
+    const img = document.createElement('img');
+    img.src = image.src;
+    img.alt = image.alt;
+    img.className = 'w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110';
+
+    imgContainer.appendChild(img);
+    galleryStrip.appendChild(imgContainer);
+  });
+}
+
+// document.addEventListener('DOMContentLoaded', renderGallery);
+
 // ── App Init ─────────────────────────────────────────────
 function initApp() {
   initNavDropdowns();
@@ -321,6 +401,8 @@ function initApp() {
   initActivityScroller();
   initNewsletter();
   loadCardData();
+initActivitiesSection();
+renderGallery();
 }
 
 window.addEventListener("DOMContentLoaded", initApp);
