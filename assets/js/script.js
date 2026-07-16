@@ -338,29 +338,46 @@ function initActivitiesSection() {
 
 
 // ── Newsletter modal ─────────────────────────────────────
+// ── Newsletter modal ─────────────────────────────────────
 function initNewsletter() {
-  const form        = document.getElementById("newsletter-form");
   const modal       = document.getElementById("newsletter-modal");
   const emailConf   = document.getElementById("newsletter-email-confirmation");
   const closeBtn    = document.getElementById("close-newsletter-button");
   const okBtn       = document.getElementById("newsletter-ok-button");
   const closeBack   = document.getElementById("close-newsletter-modal");
 
-  if (!form || !modal) return;
+  if (!modal) return;
 
-  form.addEventListener("submit", (e) => {
+  // Shared handler for any newsletter form (main section + footer)
+  function handleNewsletterSubmit(e) {
     e.preventDefault();
-    const email = document.getElementById("newsletter-email").value;
+    const form = e.currentTarget;
+    const emailInput = form.querySelector('input[type="email"]');
+    if (!emailInput) return;
+
+    const email = emailInput.value.trim();
     if (emailConf) emailConf.textContent = email;
+
     modal.classList.remove("hidden");
     modal.classList.add("flex");
+
+    form.reset();
+  }
+
+  // Attach the SAME handler to both the main form and the footer form
+  const forms = [
+    document.getElementById("newsletter-form"),
+    document.getElementById("footer-newsletter-form")
+  ];
+
+  forms.forEach((form) => {
+    if (form) form.addEventListener("submit", handleNewsletterSubmit);
   });
 
   [closeBtn, okBtn, closeBack].forEach((el) => {
     el?.addEventListener("click", () => {
       modal.classList.add("hidden");
       modal.classList.remove("flex");
-      form.reset();
     });
   });
 }
