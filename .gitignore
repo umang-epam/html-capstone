@@ -3,3 +3,4 @@ node_modules/
 output.css
 .env
 /config.js
+/.vscode

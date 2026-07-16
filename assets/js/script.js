@@ -1,4 +1,4 @@
-// ── Config ───────────────────────────────────────────────
+﻿// ── Config ───────────────────────────────────────────────
 const cardsApiUrl = "./data/ui-data.json";
 let cardData = [];
 let activeDestinationFilter = "All";
@@ -45,6 +45,8 @@ function initNavDropdowns() {
   }
 
   wrappers.forEach((wrapper) => {
+    const label = wrapper.querySelector('.nav-dropdown-label');
+
     wrapper.addEventListener('mouseenter', () => {
       clearTimeout(closeTimeout);
       openMenu(wrapper);
@@ -54,6 +56,16 @@ function initNavDropdowns() {
       closeTimeout = setTimeout(() => {
         closeMenu(wrapper);
       }, 150); // small delay to avoid flicker when moving mouse toward menu
+    });
+
+    // Handle option selection (update label + close menu)
+    wrapper.querySelectorAll('a[data-value]').forEach((option) => {
+      option.addEventListener('click', (e) => {
+        e.preventDefault();
+        const value = option.getAttribute('data-value');
+        if (label) label.textContent = value;
+        closeMenu(wrapper);
+      });
     });
   });
 
