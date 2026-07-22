@@ -10,6 +10,33 @@ const activityScroller = document.getElementById("activity-logo-scroller");
 let isActivityPaused = false;
 let activityFrame = null;
 const activityScrollSpeed = 0.5;
+const MODAL_TRANSITION_MS = 300;
+const MOCK_SUBMIT_DELAY_MS = 1200;
+const AUTO_CLOSE_DELAY_MS = 2500;
+const FOCUSABLE_SELECTOR = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+function getFocusableElements(container) {
+  return Array.from(container.querySelectorAll(FOCUSABLE_SELECTOR))
+    .filter((el) => !el.hasAttribute("disabled") && el.tabIndex !== -1);
+}
+
+function trapFocusInContainer(container, event) {
+  if (event.key !== "Tab") return;
+
+  const focusable = getFocusableElements(container);
+  if (!focusable.length) return;
+
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  }
+}
 
 // ── Generic Nav Dropdowns (works for all dropdown buttons) ──
 // ── Generic Nav Dropdowns (hover-based) ──────────────────
@@ -24,6 +51,7 @@ function initNavDropdowns() {
       if (wrapper === except) return;
       wrapper.querySelector('.nav-dropdown-menu')?.classList.add('hidden');
       wrapper.querySelector('.nav-dropdown-icon')?.classList.remove('rotate-180');
+      wrapper.querySelector('.nav-dropdown-btn')?.setAttribute('aria-expanded', 'false');
     });
   }
 
@@ -34,6 +62,7 @@ function initNavDropdowns() {
     closeAll(wrapper);
     menu?.classList.remove('hidden');
     icon?.classList.add('rotate-180');
+    wrapper.querySelector('.nav-dropdown-btn')?.setAttribute('aria-expanded', 'true');
   }
 
   function closeMenu(wrapper) {
@@ -42,10 +71,12 @@ function initNavDropdowns() {
 
     menu?.classList.add('hidden');
     icon?.classList.remove('rotate-180');
+    wrapper.querySelector('.nav-dropdown-btn')?.setAttribute('aria-expanded', 'false');
   }
 
   wrappers.forEach((wrapper) => {
     const label = wrapper.querySelector('.nav-dropdown-label');
+    wrapper.querySelector('.nav-dropdown-btn')?.setAttribute('aria-expanded', 'false');
 
     wrapper.addEventListener('mouseenter', () => {
       clearTimeout(closeTimeout);
@@ -108,6 +139,7 @@ function renderDestinations() {
         <img
           src="${item.image}"
           alt="${item.title}"
+          loading="lazy"
           class="h-48 w-full object-cover" />
         <span class="absolute top-3 left-3 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-700 shadow-sm">
           ${item.tag}
@@ -194,7 +226,7 @@ function initActivityScroller() {
 // ── Load card data from JSON ─────────────────────────────
 async function loadCardData() {
   try {
-    const response = await fetch(cardsApiUrl, { cache: "no-store" });
+    const response = await fetch(cardsApiUrl);
     if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
 
     const data = await response.json();
@@ -326,12 +358,12 @@ function initActivitiesSection() {
         </svg>
         Load More Tours
       `;
-      console.log('Load more clicked — hook this up to your data source.');
     }, 1000);
   });
 
   promoBtn?.addEventListener('click', () => {
-    console.log('View more clicked — dummy action, no redirect.');
+    // Placeholder action until section is wired to a dedicated page.
+    document.getElementById('activities-title')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 }
 
@@ -345,8 +377,19 @@ function initNewsletter() {
   const closeBtn    = document.getElementById("close-newsletter-button");
   const okBtn       = document.getElementById("newsletter-ok-button");
   const closeBack   = document.getElementById("close-newsletter-modal");
+  let lastFocusedElement = null;
 
   if (!modal) return;
+
+  function closeNewsletter() {
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+    modal.setAttribute("aria-hidden", "true");
+
+    if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+      lastFocusedElement.focus();
+    }
+  }
 
   // Shared handler for any newsletter form (main section + footer)
   function handleNewsletterSubmit(e) {
@@ -358,8 +401,12 @@ function initNewsletter() {
     const email = emailInput.value.trim();
     if (emailConf) emailConf.textContent = email;
 
+    lastFocusedElement = document.activeElement;
+
     modal.classList.remove("hidden");
     modal.classList.add("flex");
+    modal.setAttribute("aria-hidden", "false");
+    closeBtn?.focus();
 
     form.reset();
   }
@@ -375,10 +422,16 @@ function initNewsletter() {
   });
 
   [closeBtn, okBtn, closeBack].forEach((el) => {
-    el?.addEventListener("click", () => {
-      modal.classList.add("hidden");
-      modal.classList.remove("flex");
-    });
+    el?.addEventListener("click", closeNewsletter);
+  });
+
+  modal.addEventListener("keydown", (e) => {
+    if (modal.classList.contains("hidden")) return;
+    if (e.key === "Escape") {
+      closeNewsletter();
+      return;
+    }
+    trapFocusInContainer(modal, e);
   });
 }
 
@@ -406,6 +459,7 @@ const images = [
 
 function renderGallery() {
   const galleryStrip = document.getElementById('gallery-strip');
+  if (!galleryStrip) return;
 
   images.forEach((image) => {
     const imgContainer = document.createElement('div');
@@ -414,6 +468,7 @@ function renderGallery() {
     const img = document.createElement('img');
     img.src = image.src;
     img.alt = image.alt;
+    img.loading = 'lazy';
     img.className = 'w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110';
 
     imgContainer.appendChild(img);
@@ -447,22 +502,27 @@ function initBecomeExpertModal() {
   const fileInput = document.getElementById("expert-file");
   const dropzone = document.getElementById("expert-dropzone");
   const dropzoneText = document.getElementById("dropzone-text");
+  let lastFocusedElement = null;
 
   let autoCloseTimer = null;
 
   // Open Modal
   function openModal() {
+    lastFocusedElement = document.activeElement;
     modal.classList.remove("opacity-0", "pointer-events-none");
     modal.classList.add("opacity-100");
+    modal.setAttribute("aria-hidden", "false");
     card.classList.remove("scale-95", "opacity-0");
     card.classList.add("scale-100", "opacity-100");
     document.body.classList.add("overflow-hidden");
+    nameInput?.focus();
   }
 
   // Close Modal
   function closeModal() {
     modal.classList.add("opacity-0", "pointer-events-none");
     modal.classList.remove("opacity-100");
+    modal.setAttribute("aria-hidden", "true");
     card.classList.add("scale-95", "opacity-0");
     card.classList.remove("scale-100", "opacity-100");
     document.body.classList.remove("overflow-hidden");
@@ -495,7 +555,10 @@ function initBecomeExpertModal() {
       // Reset submit button state
       submitBtn.disabled = false;
       submitBtn.innerHTML = "Submit Application";
-    }, 300);
+      if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+        lastFocusedElement.focus();
+      }
+    }, MODAL_TRANSITION_MS);
   }
 
   // Event Listeners for Open/Close
@@ -511,11 +574,13 @@ function initBecomeExpertModal() {
     }
   });
 
-  // Close on Escape Key
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal.classList.contains("opacity-100")) {
+  modal.addEventListener("keydown", (e) => {
+    if (!modal.classList.contains("opacity-100")) return;
+    if (e.key === "Escape") {
       closeModal();
+      return;
     }
+    trapFocusInContainer(card, e);
   });
 
   // Helper to show/hide validation errors
@@ -711,8 +776,8 @@ function initBecomeExpertModal() {
       // Auto close after 2.5 seconds
       autoCloseTimer = setTimeout(() => {
         closeModal();
-      }, 2500);
-    }, 1200);
+      }, AUTO_CLOSE_DELAY_MS);
+    }, MOCK_SUBMIT_DELAY_MS);
   });
 }
 
@@ -753,9 +818,11 @@ function initBookingModal() {
   let bookingUnitPrice = 0;
   let activeDestTitle = "";
   let autoCloseTimer = null;
+  let lastFocusedElement = null;
 
   // Open modal
   function openModal(destTitle, destPrice) {
+    lastFocusedElement = document.activeElement;
     activeDestTitle = destTitle;
     
     // Parse package base price
@@ -778,15 +845,18 @@ function initBookingModal() {
 
     modal.classList.remove("opacity-0", "pointer-events-none");
     modal.classList.add("opacity-100");
+    modal.setAttribute("aria-hidden", "false");
     card.classList.remove("scale-95", "opacity-0");
     card.classList.add("scale-100", "opacity-100");
     document.body.classList.add("overflow-hidden");
+    nameInput?.focus();
   }
 
   // Close modal
   function closeModal() {
     modal.classList.add("opacity-0", "pointer-events-none");
     modal.classList.remove("opacity-100");
+    modal.setAttribute("aria-hidden", "true");
     card.classList.add("scale-95", "opacity-0");
     card.classList.remove("scale-100", "opacity-100");
     document.body.classList.remove("overflow-hidden");
@@ -804,7 +874,10 @@ function initBookingModal() {
       }
       submitBtn.disabled = false;
       submitBtn.innerHTML = "Confirm Booking";
-    }, 300);
+      if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+        lastFocusedElement.focus();
+      }
+    }, MODAL_TRANSITION_MS);
   }
 
   // Event Delegation for Book Now buttons
@@ -825,10 +898,13 @@ function initBookingModal() {
     if (e.target === modal) closeModal();
   });
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal.classList.contains("opacity-100")) {
+  modal.addEventListener("keydown", (e) => {
+    if (!modal.classList.contains("opacity-100")) return;
+    if (e.key === "Escape") {
       closeModal();
+      return;
     }
+    trapFocusInContainer(card, e);
   });
 
   // Price calculator
@@ -971,8 +1047,8 @@ function initBookingModal() {
 
       autoCloseTimer = setTimeout(() => {
         closeModal();
-      }, 2500);
-    }, 1200);
+      }, AUTO_CLOSE_DELAY_MS);
+    }, MOCK_SUBMIT_DELAY_MS);
   });
 }
 

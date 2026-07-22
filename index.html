@@ -15,7 +15,10 @@
   <link rel="apple-touch-icon" href="/icons/icon-192.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="/icons/icon-512.png" />
-  <link rel="stylesheet" href="output.css" />
+  
+  <!-- Tailwind Css import -->
+  <link rel="stylesheet" href="output.css" />    
+
 </head>
 <!-- Register Service Worker -->
 <script>
@@ -30,6 +33,11 @@
 </script>
 
 <body class="min-h-screen bg-slate-50 text-slate-900">
+  <noscript>
+    <div class="mx-auto max-w-7xl mt-4 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+      JavaScript is disabled. Search, booking forms, and chat need JavaScript. You can still contact us at support@travila.com or call +1 222-555-33-99.
+    </div>
+  </noscript>
   <script src="config.js"></script>
   <!-- Top Info Bar -->
   <div class="bg-[#FCF2EE] text-slate-700 text-xs py-2 px-4 border-b border-[#F4E3DD]">
@@ -1221,7 +1229,10 @@
     <!-- ===================== -->
     <button id="chatToggleBtn"
       class="fixed bottom-6 right-6 z-50 bg-blue-600 hover:bg-blue-700 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg focus:outline-none transition-all duration-300"
-      title="Open Chat">
+      title="Open Chat"
+      aria-label="Open chat"
+      aria-controls="chatWindow"
+      aria-expanded="false">
       <!-- Chat Icon -->
       <svg id="iconOpen" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
         stroke="currentColor" stroke-width="2">
@@ -1239,15 +1250,16 @@
     <!--     CHAT WINDOW       -->
     <!-- ===================== -->
     <div id="chatWindow"
-      class="hidden fixed bottom-24 right-6 z-50 w-80 sm:w-96 h-[520px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-gray-200 transition-all duration-300 opacity-0 scale-95 origin-bottom-right">
+      class="hidden fixed bottom-24 right-6 z-50 w-80 sm:w-96 h-[520px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-gray-200 transition-all duration-300 opacity-0 scale-95 origin-bottom-right"
+      role="dialog" aria-modal="false" aria-labelledby="chatWindowTitle" aria-hidden="true">
       <!-- Header -->
       <div class="bg-blue-600 text-white px-4 py-3 flex items-center justify-between shrink-0">
         <div class="flex items-center gap-2">
           <div class="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse"></div>
-          <span class="font-semibold text-sm">Chat Assistant</span>
+          <span id="chatWindowTitle" class="font-semibold text-sm">Chat Assistant</span>
         </div>
         <div class="flex items-center gap-2">
-          <button id="chatFullBtn" class="text-white hover:text-gray-200 focus:outline-none" title="Occupy half screen">
+          <button id="chatFullBtn" class="text-white hover:text-gray-200 focus:outline-none" title="Occupy half screen" aria-label="Occupy half screen" aria-pressed="false">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M9 3H4v5" />
@@ -1256,7 +1268,7 @@
               <path d="M20 20l-7-7" />
             </svg>
           </button>
-          <button id="chatCloseBtn" class="text-white hover:text-gray-200 focus:outline-none">
+          <button id="chatCloseBtn" class="text-white hover:text-gray-200 focus:outline-none" aria-label="Close chat">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
               stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -1266,7 +1278,7 @@
       </div>
 
       <!-- Messages Area -->
-      <div id="messagesContainer" class="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50 scrollbar-thin">
+      <div id="messagesContainer" class="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50 scrollbar-thin" role="log" aria-live="polite" aria-atomic="false" aria-relevant="additions text">
         <!-- Messages injected by JS -->
       </div>
 
@@ -1275,6 +1287,7 @@
         <input id="userInput" type="text" placeholder="Type a message..."
           class="flex-1 text-sm border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
         <button id="sendBtn"
+          aria-label="Send message"
           class="bg-blue-600 hover:bg-blue-700 text-white rounded-full w-9 h-9 flex items-center justify-center transition-colors focus:outline-none shadow">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 rotate-90" fill="currentColor" viewBox="0 0 24 24">
             <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
@@ -1727,14 +1740,14 @@
       </div>
     </section>
 
-    <div id="newsletter-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 px-4 py-8">
+    <div id="newsletter-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 px-4 py-8" role="dialog" aria-modal="true" aria-labelledby="newsletter-modal-title" aria-hidden="true">
       <div class="absolute inset-0" id="close-newsletter-modal"></div>
       <div class="relative w-full max-w-lg rounded-[2rem] bg-white p-6 text-slate-900 shadow-2xl sm:p-8">
         <button id="close-newsletter-button"
           class="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-700 transition hover:bg-slate-200">×</button>
         <div class="space-y-4">
           <p class="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-600">Subscribed</p>
-          <h2 class="text-3xl font-semibold text-slate-950">You're on the list!</h2>
+          <h2 id="newsletter-modal-title" class="text-3xl font-semibold text-slate-950">You're on the list!</h2>
           <p class="text-sm text-slate-600">Thanks for subscribing. We’ll send great deals to <span
               id="newsletter-email-confirmation" class="font-semibold text-slate-900"></span>.</p>
         </div>
@@ -1885,14 +1898,14 @@
   </div>
 
   <!-- Become Local Expert Modal -->
-  <div id="become-expert-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+  <div id="become-expert-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300" role="dialog" aria-modal="true" aria-labelledby="become-expert-title" aria-hidden="true">
     <!-- Modal Card -->
     <div id="become-expert-card" class="bg-white rounded-2xl max-w-lg w-full shadow-2xl relative max-h-[90vh] overflow-y-auto transform scale-95 opacity-0 transition-all duration-300 flex flex-col">
       
       <!-- Modal Header -->
       <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between sticky top-0 bg-white z-10">
         <div>
-          <h3 class="text-xl font-bold text-slate-900">Become a Local Expert</h3>
+          <h3 id="become-expert-title" class="text-xl font-bold text-slate-900">Become a Local Expert</h3>
           <p class="text-xs text-slate-500 mt-0.5">Share your passion and earn by guiding travelers.</p>
         </div>
         <button id="close-expert-modal-btn" type="button" aria-label="Close Expert Modal" class="text-slate-400 hover:text-slate-600 transition p-1.5 rounded-lg hover:bg-slate-50">
@@ -1903,7 +1916,7 @@
       </div>
 
       <!-- Success Screen Overlay (Hidden by default) -->
-      <div id="expert-success-screen" class="hidden absolute inset-0 bg-white z-20 flex flex-col items-center justify-center p-6 text-center">
+      <div id="expert-success-screen" class="hidden absolute inset-0 bg-white z-20 flex flex-col items-center justify-center p-6 text-center" role="status" aria-live="polite">
         <!-- Animated Checkmark Icon -->
         <div class="w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-500 mb-4 animate-bounce">
           <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
@@ -2017,14 +2030,14 @@
   </div>
 
   <!-- Booking Modal -->
-  <div id="booking-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+  <div id="booking-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title" aria-hidden="true">
     <!-- Modal Card -->
     <div id="booking-card" class="bg-white rounded-2xl max-w-md w-full shadow-2xl relative max-h-[90vh] overflow-y-auto transform scale-95 opacity-0 transition-all duration-300 flex flex-col">
       
       <!-- Modal Header -->
       <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between sticky top-0 bg-white z-10">
         <div>
-          <h3 class="text-xl font-bold text-slate-900">Book Your Adventure</h3>
+          <h3 id="booking-modal-title" class="text-xl font-bold text-slate-900">Book Your Adventure</h3>
           <p class="text-xs text-slate-500 mt-0.5">Destination: <span id="booking-dest-name" class="font-semibold text-slate-800">-</span></p>
         </div>
         <button id="close-booking-modal-btn" type="button" aria-label="Close Booking Modal" class="text-slate-400 hover:text-slate-600 transition p-1.5 rounded-lg hover:bg-slate-50">
@@ -2035,7 +2048,7 @@
       </div>
 
       <!-- Success Screen Overlay (Hidden by default) -->
-      <div id="booking-success-screen" class="hidden absolute inset-0 bg-white z-20 flex flex-col items-center justify-center p-6 text-center">
+      <div id="booking-success-screen" class="hidden absolute inset-0 bg-white z-20 flex flex-col items-center justify-center p-6 text-center" role="status" aria-live="polite">
         <!-- Animated Checkmark Icon -->
         <div class="w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-500 mb-4 animate-bounce">
           <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
@@ -2132,6 +2145,8 @@
       </form>
     </div>
   </div>
+
+  <div id="searchResultsLive" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
   <script src="assets/js/script.js"></script>
   <script src="assets/js/search.js"></script>  

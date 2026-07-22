@@ -2,15 +2,17 @@ const CACHE_NAME = 'travel-app-v1';
 
 // Files to cache for offline use
 const STATIC_ASSETS = [
-  '/',
-  '/index.html',
-  '/config.js',
-  '/data/travel.json',
-  '/components/chatbot/chatbot.html',
-  '/components/chatbot/chatbot.js',
-  '/manifest.json',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png'
+  './',
+  './index.html',
+  './output.css',
+  './config.js',
+  './data/ui-data.json',
+  './assets/js/script.js',
+  './assets/js/search.js',
+  './assets/js/chatbot.js',
+  './manifest.json',
+  './icons/icon-192.png',
+  './icons/icon-512.png'
 ];
 
 // ── Install: cache all static assets ──────────────────────
@@ -73,7 +75,7 @@ self.addEventListener('fetch', (event) => {
         .catch(() => {
           // Offline fallback for HTML pages
           if (request.destination === 'document') {
-            return caches.match('/index.html');
+            return caches.match('./index.html');
           }
         });
     })

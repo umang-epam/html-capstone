@@ -4,6 +4,7 @@
   const form        = document.getElementById('hero-search-form');
   const discoverSec = document.getElementById('discover');
   const destinGrid  = document.getElementById('destinations');
+  const liveRegion  = document.getElementById('searchResultsLive');
 
   if (!form) return; // guard: exit if form not found
 
@@ -225,6 +226,10 @@
 
     destinGrid.before(banner);
     document.getElementById('clearSearchBtn').addEventListener('click', clearSearch);
+
+    if (liveRegion) {
+      liveRegion.textContent = `${matchCount} ${tabName.toLowerCase()} results found for ${label}.`;
+    }
   }
 
   // ── Empty State ──────────────────────────────────────────
@@ -243,6 +248,10 @@
     `;
     destinGrid.appendChild(empty);
     document.getElementById('emptyResetBtn').addEventListener('click', clearSearch);
+
+    if (liveRegion) {
+      liveRegion.textContent = 'No results found for the current search filters.';
+    }
   }
 
   // ── Clear Search ─────────────────────────────────────────
@@ -257,6 +266,10 @@
     form.querySelectorAll('select').forEach(sel => {
       sel.selectedIndex = 0;
     });
+
+    if (liveRegion) {
+      liveRegion.textContent = 'Search reset. Showing all destinations.';
+    }
   }
 
   function removeEmptyState() {

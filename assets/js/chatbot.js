@@ -3,6 +3,10 @@
     // ── ⚙️ CONFIG ────────────────────────────────────────────
     const GROQ_API_KEY = ENV.GROQ_API_KEY;           // from config.js / import.meta.env
     const MODEL = 'llama-3.3-70b-versatile';
+    const CHAT_TRANSITION_MS = 300;
+    const MAX_HISTORY_MESSAGES = 20;
+    const REQUEST_COOLDOWN_MS = 1200;
+    const FOCUSABLE_SELECTOR = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
     // ── DOM References ───────────────────────────────────────
     const toggleBtn = document.getElementById('chatToggleBtn');
@@ -19,13 +23,17 @@
     let isOpen = false;
     let isHalf = false;
     let travelData = null;
+    let lastRequestAt = 0;
+    let lastFocusedElement = null;
 
     // Conversation history for Groq (built after data loads)
     let conversationHistory = [];
 
     // ── Init ─────────────────────────────────────────────────
     async function init() {
+        if (!toggleBtn || !chatWindow || !messages || !userInput || !sendBtn || !iconOpen || !iconClose) return;
         bindEvents();
+        updateA11yState();
         await loadTravelData();
     }
 
@@ -117,29 +125,75 @@ Remember: Only answer based on the above data. Politely decline anything unrelat
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && isHalf) exitHalfScreen();
         });
+
+        chatWindow.addEventListener('keydown', handleChatKeydown);
+    }
+
+    function updateA11yState() {
+        toggleBtn.setAttribute('aria-expanded', String(isOpen));
+        toggleBtn.setAttribute('aria-label', isOpen ? 'Close chat' : 'Open chat');
+
+        if (fullBtn) {
+            fullBtn.setAttribute('aria-pressed', String(isHalf));
+            fullBtn.setAttribute('aria-label', isHalf ? 'Exit half screen' : 'Occupy half screen');
+        }
+
+        chatWindow.setAttribute('aria-hidden', String(!isOpen));
+    }
+
+    function getFocusableElements(container) {
+        return Array.from(container.querySelectorAll(FOCUSABLE_SELECTOR))
+            .filter((el) => !el.hasAttribute('disabled') && el.tabIndex !== -1);
+    }
+
+    function handleChatKeydown(e) {
+        if (!isOpen || e.key !== 'Tab') return;
+
+        const focusable = getFocusableElements(chatWindow);
+        if (!focusable.length) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+        }
     }
 
     // ── Toggle Chat Window ───────────────────────────────────
     function toggleChat() {
+        if (!isOpen) {
+            lastFocusedElement = document.activeElement;
+        }
+
         isOpen = !isOpen;
 
         iconOpen.classList.toggle('hidden', isOpen);
         iconClose.classList.toggle('hidden', !isOpen);
+        updateA11yState();
 
         if (isOpen) {
             chatWindow.classList.remove('hidden');
             requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    chatWindow.classList.remove('opacity-0', 'scale-95');
-                    chatWindow.classList.add('opacity-100', 'scale-100');
-                });
+                chatWindow.classList.remove('opacity-0', 'scale-95');
+                chatWindow.classList.add('opacity-100', 'scale-100');
             });
             userInput.focus();
         } else {
             if (isHalf) exitHalfScreen();
             chatWindow.classList.remove('opacity-100', 'scale-100');
             chatWindow.classList.add('opacity-0', 'scale-95');
-            setTimeout(() => chatWindow.classList.add('hidden'), 300);
+            setTimeout(() => chatWindow.classList.add('hidden'), CHAT_TRANSITION_MS);
+
+            if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+                lastFocusedElement.focus();
+            } else {
+                toggleBtn.focus();
+            }
         }
     }
 
@@ -161,6 +215,7 @@ Remember: Only answer based on the above data. Politely decline anything unrelat
         } else {
             exitHalfScreen();
         }
+        updateA11yState();
     }
 
     function enterHalfScreen() {
@@ -186,6 +241,16 @@ Remember: Only answer based on the above data. Politely decline anything unrelat
         chatWindow.classList.add('w-80', 'sm:w-96', 'h-[520px]', 'bottom-24', 'right-6');
         chatWindow.classList.remove('origin-top-right');
         chatWindow.classList.add('origin-bottom-right');
+
+        updateA11yState();
+    }
+
+    function trimConversationHistory() {
+        if (conversationHistory.length <= MAX_HISTORY_MESSAGES) return;
+
+        const systemMessage = conversationHistory[0];
+        const recentMessages = conversationHistory.slice(-(MAX_HISTORY_MESSAGES - 1));
+        conversationHistory = [systemMessage, ...recentMessages];
     }
 
     // ── Send Message ─────────────────────────────────────────
@@ -193,9 +258,22 @@ Remember: Only answer based on the above data. Politely decline anything unrelat
         const text = userInput.value.trim();
         if (!text || !travelData) return;
 
+        if (!GROQ_API_KEY) {
+            appendMessage('⚠️ Chat is temporarily unavailable. Missing API key configuration.', 'bot');
+            return;
+        }
+
+        const now = Date.now();
+        if (now - lastRequestAt < REQUEST_COOLDOWN_MS) {
+            appendMessage('⏳ Please wait a moment before sending another message.', 'bot');
+            return;
+        }
+
         appendMessage(text, 'user');
         conversationHistory.push({ role: 'user', content: text });
+        trimConversationHistory();
         userInput.value = '';
+        lastRequestAt = now;
 
         setInputDisabled(true);
         const typingId = showTyping();
@@ -205,6 +283,7 @@ Remember: Only answer based on the above data. Politely decline anything unrelat
             removeTyping(typingId);
             appendMessage(reply, 'bot');
             conversationHistory.push({ role: 'assistant', content: reply });
+            trimConversationHistory();
         } catch (err) {
             removeTyping(typingId);
             appendMessage(`⚠️ Error: ${err.message}`, 'bot');
@@ -240,8 +319,19 @@ Remember: Only answer based on the above data. Politely decline anything unrelat
     }
 
     // ── Markdown Parser ──────────────────────────────────────
+    function escapeHTML(text) {
+        return String(text)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+
     function parseMarkdown(text) {
-        return text
+        const escaped = escapeHTML(text);
+
+        return escaped
             // Bold: **text**
             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
             // Italic: *text*
@@ -251,7 +341,7 @@ Remember: Only answer based on the above data. Politely decline anything unrelat
             // Bullet list: "- item" → <ul><li>
             .replace(/^[-•]\s+(.+)$/gm, '<li class="list-disc ml-4">$1</li>')
             // Wrap consecutive <li> blocks in a list container
-            .replace(/(<li.*<\/li>)/gs, '<ul class="space-y-1 mt-1">$1</ul>')
+            .replace(/((?:<li[^>]*>.*?<\/li>\s*)+)/gs, '<ul class="space-y-1 mt-1">$1</ul>')
             // Line breaks: newline → <br>
             .replace(/\n{2,}/g, '<br/>')
             .replace(/\n/g, '<br/>');
